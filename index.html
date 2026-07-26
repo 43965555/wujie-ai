@@ -501,6 +501,322 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ============================================================
+   Advanced motion system — v2
+   Cursor spotlight, magnetic, 3D tilt, marquee, parallax
+   ============================================================ */
+
+/* Cursor-follow spotlight (global, subtle) */
+.ai-cursor-spotlight {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  width: 480px; height: 480px;
+  left: 0; top: 0;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(184,149,106,0.10) 0%, rgba(184,149,106,0.04) 30%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.6s var(--ai-ease-out);
+  mix-blend-mode: multiply;
+}
+.ai-cursor-spotlight.is-active { opacity: 1; }
+@media (pointer: coarse) { .ai-cursor-spotlight { display: none; } }
+
+/* Magnetic button base */
+.ai-magnetic {
+  transition: transform 0.4s var(--ai-ease-spring);
+  will-change: transform;
+}
+
+/* 3D tilt card base */
+.ai-tilt {
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  transition: transform 0.5s var(--ai-ease-out);
+  will-change: transform;
+}
+.ai-tilt > * { transform: translateZ(0); }
+.ai-tilt.is-tilting { transition: transform 0.1s linear; }
+
+/* Spotlight hover (per-card radial gradient following cursor) */
+.ai-spotlight {
+  position: relative;
+  overflow: hidden;
+}
+.ai-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(184,149,106,0.10) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ai-ease-out);
+  pointer-events: none;
+  z-index: 1;
+}
+.ai-spotlight:hover::before { opacity: 1; }
+.ai-spotlight > * { position: relative; z-index: 2; }
+
+/* Marquee for tech-stack trust bar */
+.ai-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.ai-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: max-content;
+  animation: ai-marquee 36s linear infinite;
+}
+.ai-marquee:hover .ai-marquee-track { animation-play-state: paused; }
+@keyframes ai-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Number counter */
+.ai-counter { display: inline-block; }
+
+/* Parallax float for hero decorations */
+.ai-parallax {
+  transition: transform 0.6s var(--ai-ease-out);
+  will-change: transform;
+}
+
+/* Floating animation for decorative orbs */
+@keyframes ai-float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes ai-float-y-slow {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-10px) translateX(6px); }
+}
+.ai-float { animation: ai-float-y 8s ease-in-out infinite; }
+.ai-float-slow { animation: ai-float-y-slow 12s ease-in-out infinite; }
+
+/* Reveal stagger — finer delays for up to 12 children */
+.ai-reveal-stagger.is-visible > *:nth-child(9) { transition-delay: 0.61s; }
+.ai-reveal-stagger.is-visible > *:nth-child(10) { transition-delay: 0.68s; }
+.ai-reveal-stagger.is-visible > *:nth-child(11) { transition-delay: 0.75s; }
+.ai-reveal-stagger.is-visible > *:nth-child(12) { transition-delay: 0.82s; }
+
+/* Card hover — gold border glow + inner ring */
+.ai-card-hover:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(184, 149, 106, 0.4) !important;
+}
+.ai-card-hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(184,149,106,0) inset;
+  transition: box-shadow 0.5s var(--ai-ease-out);
+}
+.ai-card-hover:hover::after {
+  box-shadow: 0 0 0 1px rgba(184,149,106,0.18) inset;
+}
+
+/* Heading reveal — character-level mask animation */
+.ai-reveal-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.ai-reveal-mask > span {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 1s var(--ai-ease-out);
+}
+.ai-reveal-mask.is-visible > span { transform: translateY(0); }
+
+/* Scroll-triggered gold rule grow */
+.ai-rule-grow {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.4s var(--ai-ease-out);
+}
+.ai-rule-grow.is-visible { transform: scaleX(1); }
+
+/* Link hover — animated arrow nudge */
+.ai-link-arrow i {
+  transition: transform 0.4s var(--ai-ease-spring);
+}
+.ai-link-arrow:hover i { transform: translateX(4px); }
+
+/* Section number — count-up fade */
+.ai-num-glow {
+  text-shadow:
+    0 0 30px rgba(184,149,106,0.15),
+    0 0 60px rgba(184,149,106,0.08);
+}
+
+/* ============================================================
+   Advanced motion v3 — text reveals, ambient pans, ink bleed
+   ============================================================ */
+
+/* Word-by-word reveal for hero titles */
+.ai-word-reveal { display: inline-block; }
+.ai-word-reveal > span {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition:
+    transform 1.1s var(--ai-ease-out),
+    opacity 0.9s ease-out;
+  will-change: transform, opacity;
+}
+.ai-word-reveal.is-visible > span { transform: translateY(0); opacity: 1; }
+.ai-word-reveal.is-visible > span:nth-child(1) { transition-delay: 0.05s; }
+.ai-word-reveal.is-visible > span:nth-child(2) { transition-delay: 0.14s; }
+.ai-word-reveal.is-visible > span:nth-child(3) { transition-delay: 0.23s; }
+.ai-word-reveal.is-visible > span:nth-child(4) { transition-delay: 0.32s; }
+.ai-word-reveal.is-visible > span:nth-child(5) { transition-delay: 0.41s; }
+.ai-word-reveal.is-visible > span:nth-child(6) { transition-delay: 0.50s; }
+
+/* Letter-spaced eyebrow that breathes-in */
+.ai-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.625rem;
+  font-family: var(--ai-font-mono);
+  font-size: 11px; letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ai-primary);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.7s var(--ai-ease-out), transform 0.7s var(--ai-ease-out);
+}
+.ai-eyebrow.is-visible { opacity: 1; transform: translateY(0); }
+.ai-eyebrow::before {
+  content: ""; display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--ai-primary);
+  opacity: 0.6;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.9s var(--ai-ease-out) 0.15s;
+}
+.ai-eyebrow.is-visible::before { transform: scaleX(1); }
+
+/* Slow gradient pan — ambient motion on hero / category visuals */
+@keyframes ai-pan-slow {
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+.ai-pan-slow {
+  background-size: 200% 200% !important;
+  animation: ai-pan-slow 18s ease-in-out infinite;
+}
+
+/* Ink-bleed reveal for large section numbers (01/02/03) */
+.ai-ink-bleed {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.18);
+  transition: -webkit-text-stroke 1.2s var(--ai-ease-out),
+    color 1.2s var(--ai-ease-out);
+}
+.ai-ink-bleed.is-visible {
+  color: rgba(255,255,255,0.10);
+  -webkit-text-stroke: 1px rgba(255,255,255,0.05);
+}
+
+/* Soft pulse glow ring on the status dot */
+@keyframes ai-ring-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(184,149,106,0.4); }
+  50%      { box-shadow: 0 0 0 6px rgba(184,149,106,0); }
+}
+
+/* Editorial row — refined hover (subtle gold wash + indent) */
+.ai-editorial-row {
+  position: relative;
+  transition: background-color 0.35s var(--ai-ease-out),
+    padding-left 0.4s var(--ai-ease-out);
+}
+.ai-editorial-row::before {
+  content: ""; position: absolute;
+  left: 0; top: 50%;
+  width: 0; height: 1px;
+  background: var(--ai-primary);
+  transform: translateY(-50%);
+  transition: width 0.4s var(--ai-ease-out);
+}
+.ai-editorial-row:hover { background-color: rgba(184,149,106,0.045); padding-left: 0.75rem; }
+.ai-editorial-row:hover::before { width: 0.5rem; }
+.ai-editorial-row:hover .ai-editorial-title { color: var(--ai-primary); letter-spacing: 0.005em; }
+.ai-editorial-title { transition: color 0.35s var(--ai-ease-out), letter-spacing 0.4s var(--ai-ease-out); }
+
+/* Marquee — slower default + reverse direction option */
+.ai-marquee-track { animation-duration: 42s; }
+.ai-marquee-reverse .ai-marquee-track { animation-direction: reverse; }
+
+/* Magnetic CTA — stronger pull + glow ring */
+.ai-magnetic.ai-btn-gold:hover {
+  box-shadow: 0 8px 24px rgba(184,149,106,0.35),
+    0 0 0 4px rgba(184,149,106,0.08);
+}
+
+/* Heading — subtle blur-in variant */
+.ai-blur-in {
+  filter: blur(8px); opacity: 0;
+  transform: translateY(12px);
+  transition: filter 1.1s var(--ai-ease-out),
+    opacity 0.9s ease-out,
+    transform 1.1s var(--ai-ease-out);
+  will-change: filter, opacity, transform;
+}
+.ai-blur-in.is-visible {
+  filter: blur(0); opacity: 1; transform: translateY(0);
+}
+
+/* Section number — serif italic with refined glow */
+.ai-serif-num {
+  font-family: var(--ai-font-serif);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--ai-primary);
+  opacity: 0.12;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+  user-select: none; pointer-events: none;
+  transition: opacity 0.8s var(--ai-ease-out);
+}
+.ai-serif-num.is-visible { opacity: 0.18; }
+
+/* Subtle drifting orbs — slow rotation variant */
+@keyframes ai-rotate-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.ai-rotate-slow { animation: ai-rotate-slow 60s linear infinite; }
+
+/* Underline sweep on text links — refined timing */
+.ai-text-link::after { transition: transform 0.55s var(--ai-ease-out); }
+
+/* Card border-shimmer on hover */
+.ai-card-hover {
+  position: relative;
+}
+.ai-card-hover::before {
+  content: ""; position: absolute; inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(120deg, transparent 30%, rgba(184,149,106,0.15) 50%, transparent 70%);
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  opacity: 0;
+  transition: opacity 0.5s var(--ai-ease-out),
+    background-position 1.2s var(--ai-ease-out);
+  pointer-events: none;
+  z-index: 0;
+}
+.ai-card-hover:hover::before {
+  opacity: 1;
+  background-position: 0 0;
+}
     </style>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; img-src 'self' data: https:; font-src 'self' https://cdn.jsdelivr.net https://unpkg.com; connect-src 'self'; frame-ancestors 'none';">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js" integrity="sha384-H7HZ1mz/og5ZEIoB7pO+p3ri0JloxRfmUC+pRHvWodtLXNFLBh6x3GNtbybc4oRb" crossorigin="anonymous"></script>
@@ -604,6 +920,7 @@ body {
 </head>
 <body class="min-h-screen font-sans antialiased">
     <div class="ai-scroll-progress" id="scrollProgress"></div>
+    <div class="ai-cursor-spotlight" id="cursorSpotlight" aria-hidden="true"></div>
     <main>
       <div class="ai-body-backdrop"></div>
 
@@ -616,15 +933,16 @@ body {
             <span class="ai-serif text-[17px] font-medium tracking-tight text-[color:var(--ai-foreground)]">无界<span class="text-[color:var(--ai-primary)]/70">智源</span></span>
           </a>
           <nav class="hidden md:flex items-center gap-1">
-            <a data-dom-id="nav-home" data-nav-key="home" href="index.html" class="px-3.5 py-2 text-sm text-[color:var(--ai-primary)] ai-mono tracking-wide">首页</a>
-            <a data-dom-id="nav-skills" data-nav-key="skills" href="skills.html" class="px-3.5 py-2 text-sm text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-foreground)] transition-colors">专业技能</a>
-            <a data-dom-id="nav-projects" data-nav-key="projects" href="projects.html" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium text-[color:var(--ai-primary)] bg-[color:var(--ai-primary-soft)] ring-1 ring-[color:var(--ai-primary)]/20 hover:bg-[color:var(--ai-primary)]/12 transition-colors">
+            <a data-dom-id="nav-home" data-nav-key="home" href="index.html" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-semibold text-[color:var(--ai-primary-strong)] bg-[color:var(--ai-primary)]/15 ring-1 ring-[color:var(--ai-primary)]/35 transition-colors">
               <span class="relative flex h-1.5 w-1.5">
                 <span class="absolute inline-flex h-full w-full rounded-full bg-[color:var(--ai-primary)] opacity-60 animate-ping"></span>
                 <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-[color:var(--ai-primary)]"></span>
               </span>
-              项目案例
+              首页
+              <span class="ml-0.5 text-[9px] ai-mono tracking-[0.15em] text-[color:var(--ai-primary)]/70 uppercase border-l border-[color:var(--ai-primary)]/30 pl-1.5">CURRENT</span>
             </a>
+            <a data-dom-id="nav-skills" data-nav-key="skills" href="skills.html" class="px-3.5 py-2 text-sm text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-foreground)] transition-colors">专业技能</a>
+            <a data-dom-id="nav-projects" data-nav-key="projects" href="projects.html" class="px-3.5 py-2 text-sm text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-foreground)] transition-colors">项目案例</a>
             <a data-dom-id="nav-blog" data-nav-key="blog" href="blog.html" class="px-3.5 py-2 text-sm text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-foreground)] transition-colors">博客与联系</a>
           </nav>
           <a data-dom-id="nav-cta" href="blog.html" class="hidden sm:inline-flex items-center gap-1.5 ai-btn-gold text-xs"><i data-lucide="send" class="w-3.5 h-3.5"></i> 联系我们</a>
@@ -637,39 +955,36 @@ body {
           <div class="relative mx-auto max-w-7xl px-6 py-20 lg:py-28">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-start">
               <!-- Left: col-span-7 — Editorial text column -->
-              <div class="md:col-span-7 space-y-8 pt-4 ai-reveal">
-                <!-- Eyebrow with hairline -->
-                <div class="flex items-center gap-4">
-                  <span class="ai-mono text-[11px] tracking-[0.2em] text-[color:var(--ai-primary)] uppercase whitespace-nowrap">// AI 科技公司</span>
-                  <div class="flex-1 h-px bg-gradient-to-r from-[color:var(--ai-primary)]/50 to-transparent"></div>
-                </div>
+              <div class="md:col-span-7 space-y-9 pt-4">
+                <!-- Eyebrow with hairline — animated -->
+                <span class="ai-eyebrow" data-reveal-self>// AI 科技公司 · WUJIE AI</span>
 
-                <!-- Massive display serif H1 -->
-                <h1 class="ai-serif text-6xl md:text-7xl lg:text-8xl font-medium leading-[0.95] tracking-tight text-[color:var(--ai-foreground)]">
-                  让智能，<br><span class="ai-gradient-text italic">工程化</span>落地
+                <!-- Massive display serif H1 — word-by-word reveal -->
+                <h1 class="ai-serif text-6xl md:text-7xl lg:text-8xl font-medium leading-[0.95] tracking-tight text-[color:var(--ai-foreground)] ai-word-reveal">
+                  <span>让智能，</span><br><span class="ai-gradient-text italic">工程化</span><span>落地</span>
                 </h1>
 
                 <!-- Subtitle — smaller sans, wider measure -->
-                <p class="text-base md:text-[17px] leading-[1.8] text-[color:var(--ai-muted-foreground)] max-w-lg font-light">
+                <p class="text-base md:text-[17px] leading-[1.9] text-[color:var(--ai-muted-foreground)] max-w-lg font-light tracking-[0.005em] ai-reveal">
                   无界智源深耕大模型研发与 MLOps，把前沿算法变成可上线、可扩展、可度量的产品能力，让 AI 真正落地到业务。
                 </p>
 
                 <!-- CTA row -->
-                <div class="flex flex-wrap items-center gap-6 pt-2">
-                  <a data-dom-id="cta-projects" href="projects.html" class="group inline-flex items-center gap-2.5 ai-btn-gold text-xs relative">
+                <div class="flex flex-wrap items-center gap-6 pt-2 ai-reveal">
+                  <a data-dom-id="cta-projects" href="projects.html" class="group inline-flex items-center gap-2.5 ai-btn-gold ai-magnetic text-xs relative">
                     <span class="relative flex h-1.5 w-1.5">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[color:var(--ai-primary-foreground)] opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[color:var(--ai-primary-foreground)]"></span>
                     </span>
                     查看项目案例 <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"></i>
                   </a>
-                  <a data-dom-id="cta-skills" href="skills.html" class="ai-text-link text-xs ai-mono tracking-wider">
+                  <a data-dom-id="cta-skills" href="skills.html" class="ai-text-link ai-link-arrow text-xs ai-mono tracking-wider">
                     了解技术能力 <i data-lucide="arrow-right" class="w-3 h-3"></i>
                   </a>
                 </div>
 
                 <!-- Sub-eyebrow: direction cue pointing down to categories -->
-                <div class="flex items-center gap-3 pt-6 text-[color:var(--ai-muted-foreground)]/70">
+                <div class="flex items-center gap-3 pt-8 text-[color:var(--ai-muted-foreground)]/70 ai-reveal">
                   <span class="ai-mono text-[10px] tracking-[0.2em] uppercase">向下浏览</span>
                   <span class="h-px w-12 bg-[color:var(--ai-primary)]/40"></span>
                   <span class="ai-mono text-[10px] tracking-wider">10 个项目 · 3 大方向</span>
@@ -681,7 +996,7 @@ body {
               <div class="md:col-span-5 relative pt-8 md:pt-12 ai-reveal-img">
                 <div class="relative ai-corner-tl ai-corner-br p-5">
                   <div class="relative overflow-hidden ai-img-reveal aspect-[4/3] bg-gradient-to-br from-[#1A1A1F] via-[#2A2520] to-[#B8956A]">
-                    <div class="absolute inset-0 opacity-40" style="background:
+                    <div class="absolute inset-0 opacity-40 ai-pan-slow" style="background:
                       radial-gradient(ellipse at 30% 20%, rgba(212,184,150,0.4) 0%, transparent 50%),
                       radial-gradient(ellipse at 70% 80%, rgba(184,149,106,0.3) 0%, transparent 50%),
                       linear-gradient(135deg, transparent 40%, rgba(184,149,106,0.15) 50%, transparent 60%)"></div>
@@ -689,9 +1004,9 @@ body {
                       linear-gradient(rgba(184,149,106,0.2) 1px, transparent 1px),
                       linear-gradient(90deg, rgba(184,149,106,0.2) 1px, transparent 1px);
                       background-size: 40px 40px;"></div>
-                    <div class="absolute top-1/3 left-1/4 w-32 h-32 rounded-full border border-[color:var(--ai-primary)]/30"></div>
-                    <div class="absolute top-1/2 right-1/4 w-48 h-48 rounded-full border border-[color:var(--ai-primary)]/20"></div>
-                    <div class="absolute bottom-1/4 left-1/3 w-20 h-20 rounded-full bg-[color:var(--ai-primary)]/20 blur-xl"></div>
+                    <div class="absolute top-1/3 left-1/4 w-32 h-32 rounded-full border border-[color:var(--ai-primary)]/30 ai-float-slow" data-parallax="0.12"></div>
+                    <div class="absolute top-1/2 right-1/4 w-48 h-48 rounded-full border border-[color:var(--ai-primary)]/20 ai-float" data-parallax="0.18"></div>
+                    <div class="absolute bottom-1/4 left-1/3 w-20 h-20 rounded-full bg-[color:var(--ai-primary)]/20 blur-xl ai-float-slow" data-parallax="0.22"></div>
                     <div class="absolute inset-0 flex items-center justify-center">
                       <div class="text-center">
                         <div class="ai-serif text-6xl md:text-7xl font-light text-white/90 tracking-tight leading-none">WUJIE</div>
@@ -725,22 +1040,42 @@ body {
             <div class="h-px bg-gradient-to-r from-transparent via-[color:var(--ai-primary)]/30 to-transparent"></div>
             <div class="py-8 flex flex-col md:flex-row md:items-center gap-3 md:gap-8">
               <span class="ai-mono text-[10px] tracking-[0.2em] text-[color:var(--ai-primary)] uppercase shrink-0">技术栈</span>
-              <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
-                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Python</span>
-                <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
-                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">PyTorch</span>
-                <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
-                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">TensorFlow</span>
-                <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
-                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">CUDA</span>
-                <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
-                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Ray</span>
-                <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
-                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">vLLM</span>
-                <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
-                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Kubernetes</span>
-                <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
-                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Triton</span>
+              <div class="ai-marquee flex-1">
+                <div class="ai-marquee-track">
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Python</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">PyTorch</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">TensorFlow</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">CUDA</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Ray</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">vLLM</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Kubernetes</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Triton</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                  <!-- Duplicate for seamless loop -->
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Python</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">PyTorch</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">TensorFlow</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">CUDA</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Ray</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">vLLM</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Kubernetes</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Triton</span>
+                  <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                </div>
               </div>
             </div>
             <!-- Thin gold hairline bottom -->
@@ -787,14 +1122,17 @@ body {
             </div>
 
             <!-- Text: col-span-6 col-start-7 -->
-            <div class="md:col-span-6 md:col-start-7 space-y-7 order-1 md:order-2 ai-reveal">
-              <span class="ai-mono text-[11px] tracking-[0.2em] text-[color:var(--ai-primary)] uppercase">// 关于我们</span>
+            <div class="md:col-span-6 md:col-start-7 space-y-8 order-1 md:order-2">
+              <span class="ai-eyebrow" data-reveal-self>// 关于我们 · ABOUT</span>
 
-              <h2 class="ai-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.15] tracking-tight text-[color:var(--ai-foreground)]">
+              <h2 class="ai-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.15] tracking-tight text-[color:var(--ai-foreground)] ai-blur-in">
                 把研究论文，<br>变成线上系统
               </h2>
 
-              <div class="space-y-5 text-base leading-[1.9] text-[color:var(--ai-muted-foreground)] font-light">
+              <!-- Gold rule grow -->
+              <div class="ai-gold-rule ai-rule-grow w-24"></div>
+
+              <div class="space-y-6 text-base leading-[1.95] text-[color:var(--ai-muted-foreground)] font-light tracking-[0.005em] ai-reveal">
                 <p>
                   无界智源是一家专注于大语言模型与 MLOps 的 AI 科技公司。团队在搜索、对话与多模态方向主导过 20 余个模型的研发与上线，关注的不只是算法指标，更是从训练、推理到监控的整条工程链路。
                 </p>
@@ -803,7 +1141,7 @@ body {
                 </p>
               </div>
 
-              <a href="skills.html" class="ai-text-link text-xs ai-mono tracking-wider pt-2">
+              <a href="skills.html" class="ai-text-link ai-link-arrow text-xs ai-mono tracking-wider pt-2 ai-reveal">
                 查看完整能力 <i data-lucide="arrow-right" class="w-3 h-3"></i>
               </a>
             </div>
@@ -813,17 +1151,18 @@ body {
         <!-- ============ PROJECT CATEGORIES — Three navigation cards ============ -->
         <section class="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
           <!-- Section header -->
-          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 ai-reveal">
-            <div class="space-y-4">
-              <span class="ai-mono text-[11px] tracking-[0.2em] text-[color:var(--ai-primary)] uppercase">// 项目案例 · 三大方向</span>
-              <h2 class="ai-serif text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-[color:var(--ai-foreground)]">
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
+            <div class="space-y-6">
+              <span class="ai-eyebrow" data-reveal-self>// 项目案例 · CATEGORIES</span>
+              <h2 class="ai-serif text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-[color:var(--ai-foreground)] ai-blur-in">
                 10 个真实落地项目<br><span class="ai-gradient-text italic">分属三大系统</span>
               </h2>
-              <p class="text-sm md:text-base text-[color:var(--ai-muted-foreground)] leading-relaxed max-w-xl font-light pt-2">
+              <div class="ai-gold-rule ai-rule-grow w-24"></div>
+              <p class="text-sm md:text-base text-[color:var(--ai-muted-foreground)] leading-[1.85] max-w-xl font-light pt-1 ai-reveal">
                 从企业内部效率，到市场获客增长，再到前沿技术基建——选一个方向，进入对应案例。
               </p>
             </div>
-            <a href="projects.html" class="ai-text-link text-xs ai-mono tracking-wider shrink-0 self-start md:self-end">
+            <a href="projects.html" class="ai-text-link ai-link-arrow text-xs ai-mono tracking-wider shrink-0 self-start md:self-end ai-reveal">
               查看全部 <i data-lucide="arrow-right" class="w-3 h-3"></i>
             </a>
           </div>
@@ -832,7 +1171,7 @@ body {
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 ai-reveal-stagger">
 
             <!-- Card 01 — 公司内部 AI 系统 -->
-            <a href="projects.html#category-internal-ai" class="group relative block ai-card-hover ai-gold-corners bg-[color:var(--ai-card)] border border-[color:var(--ai-border)] overflow-hidden">
+            <a href="projects.html#category-internal-ai" class="group relative block ai-card-hover ai-gold-corners ai-spotlight bg-[color:var(--ai-card)] border border-[color:var(--ai-border)] overflow-hidden">
               <!-- Visual -->
               <div class="relative overflow-hidden aspect-[4/3] bg-gradient-to-br from-[#1A1A1F] via-[#2A2520] to-[#3A3025]">
                 <div class="absolute inset-0 opacity-30" style="background:
@@ -892,7 +1231,7 @@ body {
             </a>
 
             <!-- Card 02 — AI 品宣获客系统 -->
-            <a href="projects.html#category-marketing-ai" class="group relative block ai-card-hover ai-gold-corners bg-[color:var(--ai-card)] border border-[color:var(--ai-border)] overflow-hidden md:mt-8">
+            <a href="projects.html#category-marketing-ai" class="group relative block ai-card-hover ai-gold-corners ai-spotlight bg-[color:var(--ai-card)] border border-[color:var(--ai-border)] overflow-hidden md:mt-8">
               <!-- Visual -->
               <div class="relative overflow-hidden aspect-[4/3] bg-gradient-to-br from-[#2A2015] via-[#3A2E1F] to-[#B8956A]">
                 <div class="absolute inset-0 opacity-40" style="background:
@@ -944,7 +1283,7 @@ body {
             </a>
 
             <!-- Card 03 — AI 高级技术系统 -->
-            <a href="projects.html#category-advanced-tech" class="group relative block ai-card-hover ai-gold-corners bg-[color:var(--ai-card)] border border-[color:var(--ai-border)] overflow-hidden md:mt-16">
+            <a href="projects.html#category-advanced-tech" class="group relative block ai-card-hover ai-gold-corners ai-spotlight bg-[color:var(--ai-card)] border border-[color:var(--ai-border)] overflow-hidden md:mt-16">
               <!-- Visual -->
               <div class="relative overflow-hidden aspect-[4/3] bg-gradient-to-br from-[#151820] via-[#1F2430] to-[#2A3040]">
                 <div class="absolute inset-0 opacity-40" style="background:
@@ -1018,37 +1357,37 @@ body {
 
         <!-- ============ CTA BAND — Minimal editorial quote-style ============ -->
         <section class="mx-auto max-w-7xl px-6 py-28 md:py-36">
-          <div class="max-w-3xl mx-auto text-center space-y-8 ai-reveal">
-            <!-- Centered short gold rule -->
+          <div class="max-w-3xl mx-auto text-center space-y-9">
+            <!-- Centered short gold rule grow -->
             <div class="flex justify-center">
-              <div class="w-16 h-px bg-[color:var(--ai-primary)]/50"></div>
+              <div class="w-16 h-px bg-[color:var(--ai-primary)]/50 ai-rule-grow"></div>
             </div>
 
             <!-- Eyebrow -->
-            <div class="flex items-center justify-center gap-3 text-[color:var(--ai-muted-foreground)]/80">
+            <div class="flex items-center justify-center gap-3 text-[color:var(--ai-muted-foreground)]/80 ai-reveal">
               <span class="ai-mono text-[10px] tracking-[0.2em] uppercase">PROJECTS · NEXT</span>
               <span class="h-px w-8 bg-[color:var(--ai-primary)]/40"></span>
               <span class="ai-mono text-[10px] tracking-wider">还在看？</span>
             </div>
 
-            <h2 class="ai-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.25] tracking-tight text-[color:var(--ai-foreground)]">
+            <h2 class="ai-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.25] tracking-tight text-[color:var(--ai-foreground)] ai-blur-in">
               先看我们<span class="ai-gradient-text italic">做过什么</span>，<br>再决定要不要聊聊
             </h2>
 
-            <p class="text-base leading-relaxed text-[color:var(--ai-muted-foreground)] max-w-lg mx-auto font-light">
+            <p class="text-base leading-[1.85] text-[color:var(--ai-muted-foreground)] max-w-lg mx-auto font-light tracking-[0.005em] ai-reveal">
               10 个真实落地的 AI 系统案例，覆盖企业内部、品宣获客与前沿技术三大方向。每一个都附技术栈、量化指标与业务场景。
             </p>
 
             <!-- Primary CTA: projects; Secondary CTA: contact -->
-            <div class="pt-4 flex flex-wrap items-center justify-center gap-4 md:gap-6">
-              <a data-dom-id="cta-projects-band" href="projects.html" class="group inline-flex items-center gap-2.5 ai-btn-gold text-xs">
+            <div class="pt-4 flex flex-wrap items-center justify-center gap-4 md:gap-6 ai-reveal">
+              <a data-dom-id="cta-projects-band" href="projects.html" class="group inline-flex items-center gap-2.5 ai-btn-gold ai-magnetic text-xs">
                 <span class="relative flex h-1.5 w-1.5">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[color:var(--ai-primary-foreground)] opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[color:var(--ai-primary-foreground)]"></span>
                 </span>
                 查看项目案例 <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"></i>
               </a>
-              <a data-dom-id="cta-contact" href="blog.html" class="ai-text-link text-xs ai-mono tracking-wider">
+              <a data-dom-id="cta-contact" href="blog.html" class="ai-text-link ai-link-arrow text-xs ai-mono tracking-wider">
                 或直接联系我们 <i data-lucide="arrow-right" class="w-3 h-3"></i>
               </a>
             </div>
@@ -1102,7 +1441,7 @@ body {
       onScroll();
 
       // Scroll reveal with IntersectionObserver
-      const revealSelectors = '.ai-reveal, .ai-reveal-stagger, .ai-reveal-img, .ai-reveal-line';
+      const revealSelectors = '.ai-reveal, .ai-reveal-stagger, .ai-reveal-img, .ai-reveal-line, .ai-rule-grow, .ai-reveal-mask, .ai-eyebrow, .ai-blur-in, .ai-word-reveal, .ai-ink-bleed, .ai-serif-num';
       const revealEls = document.querySelectorAll(revealSelectors);
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {
@@ -1116,6 +1455,112 @@ body {
         revealEls.forEach(el => io.observe(el));
       } else {
         revealEls.forEach(el => el.classList.add('is-visible'));
+      }
+
+      // ============================================================
+      // Advanced motion v2 — only on devices with fine pointer
+      // ============================================================
+      const finePointer = window.matchMedia('(pointer: fine)').matches;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (finePointer && !reducedMotion) {
+        // ---- Cursor spotlight ----
+        const spotlight = document.getElementById('cursorSpotlight');
+        if (spotlight) {
+          let rafSpot = null, sx = 0, sy = 0;
+          document.addEventListener('mousemove', (e) => {
+            sx = e.clientX; sy = e.clientY;
+            spotlight.classList.add('is-active');
+            if (rafSpot) cancelAnimationFrame(rafSpot);
+            rafSpot = requestAnimationFrame(() => {
+              spotlight.style.transform = `translate(${sx}px, ${sy}px) translate(-50%, -50%)`;
+            });
+          });
+          document.addEventListener('mouseleave', () => spotlight.classList.remove('is-active'));
+        }
+
+        // ---- Magnetic buttons ----
+        document.querySelectorAll('.ai-btn-gold, .ai-magnetic').forEach(el => {
+          el.addEventListener('mousemove', (e) => {
+            const r = el.getBoundingClientRect();
+            const x = e.clientX - (r.left + r.width / 2);
+            const y = e.clientY - (r.top + r.height / 2);
+            const strength = 0.25;
+            el.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+          });
+          el.addEventListener('mouseleave', () => {
+            el.style.transform = '';
+          });
+        });
+
+        // ---- 3D tilt on cards ----
+        document.querySelectorAll('.ai-card-hover, .ai-tilt').forEach(el => {
+          el.addEventListener('mousemove', (e) => {
+            const r = el.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - 0.5;
+            const y = (e.clientY - r.top) / r.height - 0.5;
+            el.classList.add('is-tilting');
+            el.style.transform = `perspective(1000px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg) translateY(-4px)`;
+          });
+          el.addEventListener('mouseleave', () => {
+            el.classList.remove('is-tilting');
+            el.style.transform = '';
+          });
+        });
+
+        // ---- Spotlight hover (per-card radial gradient) ----
+        document.querySelectorAll('.ai-spotlight').forEach(el => {
+          el.addEventListener('mousemove', (e) => {
+            const r = el.getBoundingClientRect();
+            el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+            el.style.setProperty('--my', `${e.clientY - r.top}px`);
+          });
+        });
+
+        // ---- Parallax on hero decorations ----
+        const parallaxEls = document.querySelectorAll('.ai-parallax');
+        if (parallaxEls.length) {
+          let rafPara = null;
+          window.addEventListener('scroll', () => {
+            if (rafPara) cancelAnimationFrame(rafPara);
+            rafPara = requestAnimationFrame(() => {
+              const y = window.scrollY;
+              parallaxEls.forEach((el, i) => {
+                const speed = parseFloat(el.dataset.parallax || '0.15');
+                el.style.transform = `translate3d(0, ${y * speed * (i % 2 ? -1 : 1)}px, 0)`;
+              });
+            });
+          }, { passive: true });
+        }
+      }
+
+      // ---- Number counter animation ----
+      const counters = document.querySelectorAll('[data-counter]');
+      if (counters.length && 'IntersectionObserver' in window) {
+        const counterIO = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const target = parseFloat(el.dataset.counter);
+            const suffix = el.dataset.suffix || '';
+            const prefix = el.dataset.prefix || '';
+            const decimals = parseInt(el.dataset.decimals || '0', 10);
+            const duration = parseInt(el.dataset.duration || '1400', 10);
+            const start = performance.now();
+            const startVal = 0;
+            const step = (t) => {
+              const p = Math.min(1, (t - start) / duration);
+              const eased = 1 - Math.pow(1 - p, 3);
+              const val = startVal + (target - startVal) * eased;
+              el.textContent = prefix + val.toFixed(decimals) + suffix;
+              if (p < 1) requestAnimationFrame(step);
+              else el.textContent = prefix + target.toFixed(decimals) + suffix;
+            };
+            requestAnimationFrame(step);
+            counterIO.unobserve(el);
+          });
+        }, { threshold: 0.4 });
+        counters.forEach(el => counterIO.observe(el));
       }
     </script>
 </body>
