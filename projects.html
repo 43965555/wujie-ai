@@ -1019,7 +1019,7 @@ body.ai-modal-open { overflow: hidden; }
         width: 100%;
         height: 100%;
         pointer-events: none;
-        opacity: 0.55;
+        opacity: 0.85;
         mix-blend-mode: screen;
         z-index: 0;
       }
@@ -1029,14 +1029,14 @@ body.ai-modal-open { overflow: hidden; }
         pointer-events: none;
         z-index: 1;
         background:
-          radial-gradient(ellipse 70% 50% at 30% 40%, transparent 0%, var(--ai-background) 70%),
-          linear-gradient(180deg, var(--ai-background) 0%, transparent 12%, transparent 88%, var(--ai-background) 100%);
+          radial-gradient(ellipse 85% 75% at 30% 40%, transparent 40%, var(--ai-background) 95%),
+          linear-gradient(180deg, var(--ai-background) 0%, transparent 18%, transparent 82%, var(--ai-background) 100%);
       }
       @media (prefers-reduced-motion: reduce) {
         .ai-curl-canvas { display: none; }
       }
       @media (max-width: 768px) {
-        .ai-curl-canvas { opacity: 0.35; }
+        .ai-curl-canvas { opacity: 0.6; }
       }
     </style>
 </head>
@@ -2042,9 +2042,9 @@ body.ai-modal-open { overflow: hidden; }
         let particles = [];
         let mouse = { x: -9999, y: -9999, active: false };
 
-        function spawnParticle(p) {
-          p.x = Math.random() * canvas.width;
-          p.y = Math.random() * canvas.height;
+        function spawnParticle(p, w, h) {
+          p.x = Math.random() * w;
+          p.y = Math.random() * h;
           p.vx = 0;
           p.vy = 0;
           p.life = Math.random() * CURL.PARTICLE_LIFE;
@@ -2052,10 +2052,13 @@ body.ai-modal-open { overflow: hidden; }
           return p;
         }
 
+        // 当前 CSS 像素尺寸（所有粒子坐标基于此）
+        let cssW = 0, cssH = 0;
+
         function initParticles() {
           particles = [];
           for (let i = 0; i < CURL.PARTICLE_COUNT; i++) {
-            particles.push(spawnParticle({}));
+            particles.push(spawnParticle({}, cssW, cssH));
           }
         }
 
@@ -2063,11 +2066,14 @@ body.ai-modal-open { overflow: hidden; }
         const heroSection = canvas.parentElement;
         function resize() {
           const dpr = Math.min(window.devicePixelRatio, CURL.DPR_MAX);
-          const w = heroSection.clientWidth, h = heroSection.clientHeight;
-          canvas.width = w * dpr;
-          canvas.height = h * dpr;
-          canvas.style.width = w + 'px';
-          canvas.style.height = h + 'px';
+          cssW = heroSection.clientWidth;
+          cssH = heroSection.clientHeight;
+          canvas.width = cssW * dpr;
+          canvas.height = cssH * dpr;
+          canvas.style.width = cssW + 'px';
+          canvas.style.height = cssH + 'px';
+          // 重置变换矩阵，避免累积缩放
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
           ctx.scale(dpr, dpr);
         }
         resize();
@@ -2093,8 +2099,7 @@ body.ai-modal-open { overflow: hidden; }
 
         function frame() {
           if (running) {
-            const dpr = Math.min(window.devicePixelRatio, CURL.DPR_MAX);
-            const w = canvas.width / dpr, h = canvas.height / dpr;
+            const w = cssW, h = cssH;
 
             // 拖尾衰减：半透明黑色覆盖
             ctx.fillStyle = `rgba(10, 10, 14, ${CURL.TRAIL_FADE})`;
@@ -2102,7 +2107,7 @@ body.ai-modal-open { overflow: hidden; }
 
             time += CURL.NOISE_TIME_STEP;
 
-            ctx.lineWidth = 0.8;
+            ctx.lineWidth = 1.0;
 
             for (let i = 0; i < particles.length; i++) {
               const p = particles[i];
@@ -2135,13 +2140,13 @@ body.ai-modal-open { overflow: hidden; }
 
               // 边界 / 寿命重生
               if (p.x < 0 || p.x > w || p.y < 0 || p.y > h || p.life > p.maxLife) {
-                spawnParticle(p);
+                spawnParticle(p, w, h);
                 continue;
               }
 
               // 绘制：金色粒子，寿命映射透明度
               const lifeRatio = p.life / p.maxLife;
-              const alpha = Math.sin(lifeRatio * Math.PI) * 0.6;
+              const alpha = Math.sin(lifeRatio * Math.PI) * 0.85;
               const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
               const brightness = Math.min(1, speed / 3);
               // 速度快的粒子更亮

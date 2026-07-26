@@ -914,7 +914,7 @@ body {
         width: 100%;
         height: 100%;
         pointer-events: none;
-        opacity: 0.5;
+        opacity: 0.85;
         mix-blend-mode: screen;
         z-index: 0;
       }
@@ -924,14 +924,14 @@ body {
         pointer-events: none;
         z-index: 1;
         background:
-          radial-gradient(ellipse 75% 55% at 35% 45%, transparent 0%, var(--ai-background) 72%),
-          linear-gradient(180deg, var(--ai-background) 0%, transparent 12%, transparent 88%, var(--ai-background) 100%);
+          radial-gradient(ellipse 88% 78% at 35% 45%, transparent 40%, var(--ai-background) 95%),
+          linear-gradient(180deg, var(--ai-background) 0%, transparent 18%, transparent 82%, var(--ai-background) 100%);
       }
       @media (prefers-reduced-motion: reduce) {
         .ai-boids-canvas { display: none; }
       }
       @media (max-width: 768px) {
-        .ai-boids-canvas { opacity: 0.3; }
+        .ai-boids-canvas { opacity: 0.6; }
       }
     </style>
 </head>
@@ -2023,10 +2023,11 @@ body {
 
         // ---- 群体初始化 ----
         let boids = [];
-        function initBoids(w, h) {
+        let cssW = 0, cssH = 0;
+        function initBoids() {
           boids = [];
           for (let i = 0; i < BOIDS.COUNT; i++) {
-            boids.push(createBoid(Math.random() * w, Math.random() * h));
+            boids.push(createBoid(Math.random() * cssW, Math.random() * cssH));
           }
         }
 
@@ -2034,18 +2035,21 @@ body {
         const heroSection = canvas.parentElement;
         function resize() {
           const dpr = Math.min(window.devicePixelRatio, BOIDS.DPR_MAX);
-          const w = heroSection.clientWidth, h = heroSection.clientHeight;
-          canvas.width = w * dpr;
-          canvas.height = h * dpr;
-          canvas.style.width = w + 'px';
-          canvas.style.height = h + 'px';
+          cssW = heroSection.clientWidth;
+          cssH = heroSection.clientHeight;
+          canvas.width = cssW * dpr;
+          canvas.height = cssH * dpr;
+          canvas.style.width = cssW + 'px';
+          canvas.style.height = cssH + 'px';
+          // 重置变换矩阵，避免累积缩放
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
           ctx.scale(dpr, dpr);
         }
         resize();
-        initBoids(canvas.width / BOIDS.DPR_MAX, canvas.height / BOIDS.DPR_MAX);
+        initBoids();
         window.addEventListener('resize', () => {
           resize();
-          initBoids(canvas.width / BOIDS.DPR_MAX, canvas.height / BOIDS.DPR_MAX);
+          initBoids();
         });
 
         // ---- 鼠标交互 ----
@@ -2095,8 +2099,7 @@ body {
 
         function frame() {
           if (running) {
-            const dpr = Math.min(window.devicePixelRatio, BOIDS.DPR_MAX);
-            const w = canvas.width / dpr, h = canvas.height / dpr;
+            const w = cssW, h = cssH;
 
             // 拖尾衰减
             ctx.fillStyle = `rgba(10, 10, 14, ${BOIDS.TRAIL_FADE})`;
@@ -2200,17 +2203,19 @@ body {
               const angle = Math.atan2(b.vy, b.vx);
               const speed = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
               const brightness = Math.min(1, speed / BOIDS.MAX_SPEED);
-              const alpha = 0.5 + brightness * 0.4;
+              const alpha = 0.7 + brightness * 0.3;
 
               ctx.save();
               ctx.translate(b.x, b.y);
               ctx.rotate(angle);
-              ctx.fillStyle = `rgba(184, 149, 106, ${alpha})`;
+              // 速度快的个体更亮、更大
+              const size = 5 + brightness * 3;
+              ctx.fillStyle = `rgba(212, 184, 150, ${alpha})`;
               ctx.beginPath();
-              ctx.moveTo(6, 0);
-              ctx.lineTo(-4, 3);
-              ctx.lineTo(-2, 0);
-              ctx.lineTo(-4, -3);
+              ctx.moveTo(size, 0);
+              ctx.lineTo(-size * 0.7, size * 0.5);
+              ctx.lineTo(-size * 0.3, 0);
+              ctx.lineTo(-size * 0.7, -size * 0.5);
               ctx.closePath();
               ctx.fill();
               ctx.restore();

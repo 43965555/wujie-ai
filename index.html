@@ -964,9 +964,9 @@ body {
         width: 100%;
         height: 100%;
         pointer-events: none;
-        opacity: 0.28;
+        opacity: 0.7;
         mix-blend-mode: screen;
-        filter: blur(1.5px) contrast(1.15) saturate(1.1);
+        filter: contrast(1.2) saturate(1.2);
         z-index: 0;
       }
       .ai-rd-mask {
@@ -975,14 +975,14 @@ body {
         pointer-events: none;
         z-index: 1;
         background:
-          radial-gradient(ellipse 80% 60% at 30% 40%, transparent 0%, var(--ai-background) 75%),
-          linear-gradient(180deg, var(--ai-background) 0%, transparent 15%, transparent 85%, var(--ai-background) 100%);
+          radial-gradient(ellipse 90% 80% at 30% 40%, transparent 30%, var(--ai-background) 95%),
+          linear-gradient(180deg, var(--ai-background) 0%, transparent 20%, transparent 80%, var(--ai-background) 100%);
       }
       @media (prefers-reduced-motion: reduce) {
         .ai-rd-canvas { display: none; }
       }
       @media (max-width: 768px) {
-        .ai-rd-canvas { opacity: 0.18; }
+        .ai-rd-canvas { opacity: 0.5; }
       }
     </style>
 </head>
@@ -1601,15 +1601,15 @@ body {
         // ---- 配置参数 ----
         const RD = {
           SIM_SIZE: 256,                  // 模拟分辨率（低分辨率迭代，CSS 放大显示）
-          ITERATIONS: 8,                  // 每帧迭代步数
+          ITERATIONS: 12,                 // 每帧迭代步数（越多斑图演化越快）
           FEED: 0.0545,                   // f — 供给率（控制斑图形态）
           KILL: 0.062,                    // k — 消除率
           DU: 0.2097,                     // 抑制剂扩散率
           DV: 0.105,                      // 激活剂扩散率
           DT: 1.0,                        // 时间步长
           MOUSE_RADIUS: 0.025,            // 鼠标播种半径（UV 空间）
-          MOUSE_STRENGTH: 0.5,            // 鼠标播种强度
-          AUTO_SEED_INTERVAL: 5000,       // 自动随机播种间隔(ms)
+          MOUSE_STRENGTH: 0.6,            // 鼠标播种强度
+          AUTO_SEED_INTERVAL: 3000,       // 自动随机播种间隔(ms)
         };
 
         // ---- Shader 源码 ----
@@ -1674,13 +1674,15 @@ body {
             float v = s.g;
             // 金黑映射：深背景 → 暗金 → 高光金
             vec3 bg = vec3(0.04, 0.04, 0.05);
-            vec3 mid = vec3(0.45, 0.36, 0.25);
-            vec3 gold = vec3(0.72, 0.58, 0.42);
+            vec3 mid = vec3(0.55, 0.44, 0.30);
+            vec3 gold = vec3(0.85, 0.70, 0.50);
+            vec3 highlight = vec3(1.0, 0.92, 0.75);
             float t = smoothstep(0.0, 0.5, v);
             vec3 color = mix(bg, mid, t);
-            color = mix(color, gold, smoothstep(0.3, 0.8, v));
+            color = mix(color, gold, smoothstep(0.25, 0.7, v));
+            color = mix(color, highlight, smoothstep(0.6, 0.95, v));
             // 边缘衰减，融入背景
-            float vignette = smoothstep(1.0, 0.4, length(vUv - 0.5) * 1.4);
+            float vignette = smoothstep(1.0, 0.3, length(vUv - 0.5) * 1.3);
             color *= vignette;
             fragColor = vec4(color, 1.0);
           }`;
@@ -1757,11 +1759,11 @@ body {
           for (let y = 0; y < RD.SIM_SIZE; y++) {
             for (let x = 0; x < RD.SIM_SIZE; x++) {
               const dx = x - cx, dy = y - cy;
-              if (dx * dx + dy * dy < 64) {
+              if (dx * dx + dy * dy < 100) {
                 data[(y * RD.SIM_SIZE + x) * 2 + 1] = f2h(0.9);
               }
               // 随机散点播种，制造非对称斑图
-              if (Math.random() < 0.0008) {
+              if (Math.random() < 0.003) {
                 data[(y * RD.SIM_SIZE + x) * 2 + 1] = f2h(0.8 + Math.random() * 0.2);
               }
             }

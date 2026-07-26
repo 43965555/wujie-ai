@@ -905,7 +905,8 @@ body {
         height: 100%;
         pointer-events: none;
         mix-blend-mode: screen;
-        opacity: 0.85;
+        opacity: 1;
+        z-index: 5;
       }
       @media (prefers-reduced-motion: reduce) {
         .ai-lorenz-canvas { display: none; }
@@ -1373,7 +1374,7 @@ body {
             const cx = w / 2, cy = h / 2;
 
             // 半透明覆盖：拖尾衰减
-            ctx.fillStyle = 'rgba(10, 10, 14, 0.06)';
+            ctx.fillStyle = 'rgba(10, 10, 14, 0.03)';
             ctx.fillRect(0, 0, w, h);
 
             // 视角缓慢旋转（绕 Y 轴）
@@ -1390,7 +1391,7 @@ body {
               }
 
               // 投影 + 绘制
-              ctx.lineWidth = 1.2;
+              ctx.lineWidth = 1.6;
               ctx.beginPath();
               for (let i = 0; i < trail.points.length; i++) {
                 const p = trail.points[i];
@@ -1407,11 +1408,11 @@ body {
                 // 沿轨迹分段着色，越靠后越亮
                 if (i % 8 === 0 && i > 0) {
                   const ratio = i / trail.points.length;
-                  const alpha = ratio * 0.7;
+                  const alpha = 0.3 + ratio * 0.6;
                   // 三条轨迹用略微不同的金色调
-                  const r = 184 + t * 10;
-                  const g = 149 - t * 5;
-                  const b = 106 + t * 8;
+                  const r = 212 - t * 10;
+                  const g = 184 - t * 15;
+                  const b = 150 - t * 20;
                   ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
                   ctx.stroke();
                   ctx.beginPath();
