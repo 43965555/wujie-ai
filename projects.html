@@ -1008,6 +1008,36 @@ body.ai-modal-open { overflow: hidden; }
         mask-position: center;
         background-color: currentColor;
       }
+
+      /* ============================================================
+         Curl Noise 粒子云 — 无散度噪声场驱动的湍流粒子
+         数千粒子沿 curl noise 场流动，鼠标推开形成空洞
+         ============================================================ */
+      .ai-curl-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.55;
+        mix-blend-mode: screen;
+        z-index: 0;
+      }
+      .ai-curl-mask {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        background:
+          radial-gradient(ellipse 70% 50% at 30% 40%, transparent 0%, var(--ai-background) 70%),
+          linear-gradient(180deg, var(--ai-background) 0%, transparent 12%, transparent 88%, var(--ai-background) 100%);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .ai-curl-canvas { display: none; }
+      }
+      @media (max-width: 768px) {
+        .ai-curl-canvas { opacity: 0.35; }
+      }
     </style>
 </head>
 <body class="min-h-screen font-sans antialiased">
@@ -1049,8 +1079,12 @@ body.ai-modal-open { overflow: hidden; }
       <div class="pt-16">
 
         <!-- Section 1: Editorial page header -->
-        <section class="py-28 md:py-36">
-          <div class="mx-auto max-w-7xl px-6 ai-reveal">
+        <section class="relative overflow-hidden py-28 md:py-36">
+          <!-- Curl Noise 粒子云背景层 -->
+          <canvas id="curlCanvas" class="ai-curl-canvas" aria-hidden="true"></canvas>
+          <div class="ai-curl-mask" aria-hidden="true"></div>
+
+          <div class="relative mx-auto max-w-7xl px-6 ai-reveal" style="z-index: 2;">
             <span class="ai-eyebrow" data-reveal-self>// 02 — 项目案例 · PROJECTS</span>
             <h1 class="mt-6 ai-serif ai-blur-in text-6xl md:text-7xl font-medium leading-[1.05] tracking-tight text-[color:var(--ai-foreground)]">
               落地<span class="ai-gradient-text italic">项目</span>
@@ -1921,6 +1955,212 @@ body.ai-modal-open { overflow: hidden; }
       </div>
     </main>
     <script>
+      // ============================================================
+      // Curl Noise 粒子云 — 无散度噪声场驱动的湍流粒子
+      // 粒子沿 curl(simplex noise) 场流动，形成类流体湍动
+      // 鼠标位置产生排斥力，粒子被推开形成空洞
+      // ============================================================
+      (function initCurlNoise() {
+        const canvas = document.getElementById('curlCanvas');
+        if (!canvas) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (window.matchMedia('(pointer: coarse)').matches) return;
+
+        const ctx = canvas.getContext('2d', { alpha: true });
+        if (!ctx) return;
+
+        // ---- 配置参数 ----
+        const CURL = {
+          PARTICLE_COUNT: 1800,           // 粒子数量
+          NOISE_SCALE: 0.0015,            // 噪声场缩放（值越小，斑图越大）
+          FLOW_SPEED: 0.8,                // 粒子流动速度
+          NOISE_TIME_STEP: 0.0008,        // 噪声时间步进（场演化速度）
+          PARTICLE_LIFE: 200,             // 粒子寿命（帧）
+          TRAIL_FADE: 0.04,               // 拖尾衰减（越小拖尾越长）
+          MOUSE_REPEL_RADIUS: 120,        // 鼠标排斥半径(px)
+          MOUSE_REPEL_STRENGTH: 0.8,      // 鼠标排斥强度
+          DPR_MAX: 2,                     // 最大设备像素比
+        };
+
+        // ---- 简化 Simplex 2D Noise ----
+        // 基于 Stefan Gustavson 的实现，足够流畅且无依赖
+        const F2 = 0.5 * (Math.sqrt(3) - 1);
+        const G2 = (3 - Math.sqrt(3)) / 6;
+        const grad3 = [[1,1],[-1,1],[1,-1],[-1,-1],[1,0],[-1,0],[1,0],[-1,0],[0,1],[0,-1],[0,1],[0,-1]];
+        const perm = new Uint8Array(512);
+        (function initPerm() {
+          const p = new Uint8Array(256);
+          for (let i = 0; i < 256; i++) p[i] = i;
+          // Fisher-Yates shuffle
+          for (let i = 255; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [p[i], p[j]] = [p[j], p[i]];
+          }
+          for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
+        })();
+
+        function noise2D(xin, yin) {
+          let n0, n1, n2;
+          const s = (xin + yin) * F2;
+          const i = Math.floor(xin + s);
+          const j = Math.floor(yin + s);
+          const t = (i + j) * G2;
+          const X0 = i - t, Y0 = j - t;
+          const x0 = xin - X0, y0 = yin - Y0;
+          let i1, j1;
+          if (x0 > y0) { i1 = 1; j1 = 0; } else { i1 = 0; j1 = 1; }
+          const x1 = x0 - i1 + G2, y1 = y0 - j1 + G2;
+          const x2 = x0 - 1 + 2 * G2, y2 = y0 - 1 + 2 * G2;
+          const ii = i & 255, jj = j & 255;
+          const gi0 = perm[ii + perm[jj]] % 12;
+          const gi1 = perm[ii + i1 + perm[jj + j1]] % 12;
+          const gi2 = perm[ii + 1 + perm[jj + 1]] % 12;
+          let t0 = 0.5 - x0 * x0 - y0 * y0;
+          if (t0 < 0) n0 = 0; else { t0 *= t0; n0 = t0 * t0 * (grad3[gi0][0] * x0 + grad3[gi0][1] * y0); }
+          let t1 = 0.5 - x1 * x1 - y1 * y1;
+          if (t1 < 0) n1 = 0; else { t1 *= t1; n1 = t1 * t1 * (grad3[gi1][0] * x1 + grad3[gi1][1] * y1); }
+          let t2 = 0.5 - x2 * x2 - y2 * y2;
+          if (t2 < 0) n2 = 0; else { t2 *= t2; n2 = t2 * t2 * (grad3[gi2][0] * x2 + grad3[gi2][1] * y2); }
+          return 70 * (n0 + n1 + n2);
+        }
+
+        // ---- Curl Noise：取噪声场旋度，得到无散度向量场 ----
+        // curl(psi) = (∂ψ/∂y, -∂ψ/∂x)
+        function curl(x, y, t) {
+          const eps = 1.0;
+          const n1 = noise2D(x, y + eps, t);
+          const n2 = noise2D(x, y - eps, t);
+          const n3 = noise2D(x + eps, y, t);
+          const n4 = noise2D(x - eps, y, t);
+          return {
+            x: (n1 - n2) / (2 * eps),
+            y: -(n3 - n4) / (2 * eps),
+          };
+        }
+
+        // ---- 粒子系统 ----
+        let particles = [];
+        let mouse = { x: -9999, y: -9999, active: false };
+
+        function spawnParticle(p) {
+          p.x = Math.random() * canvas.width;
+          p.y = Math.random() * canvas.height;
+          p.vx = 0;
+          p.vy = 0;
+          p.life = Math.random() * CURL.PARTICLE_LIFE;
+          p.maxLife = CURL.PARTICLE_LIFE * (0.5 + Math.random() * 0.5);
+          return p;
+        }
+
+        function initParticles() {
+          particles = [];
+          for (let i = 0; i < CURL.PARTICLE_COUNT; i++) {
+            particles.push(spawnParticle({}));
+          }
+        }
+
+        // ---- 尺寸适配 ----
+        const heroSection = canvas.parentElement;
+        function resize() {
+          const dpr = Math.min(window.devicePixelRatio, CURL.DPR_MAX);
+          const w = heroSection.clientWidth, h = heroSection.clientHeight;
+          canvas.width = w * dpr;
+          canvas.height = h * dpr;
+          canvas.style.width = w + 'px';
+          canvas.style.height = h + 'px';
+          ctx.scale(dpr, dpr);
+        }
+        resize();
+        initParticles();
+        window.addEventListener('resize', () => { resize(); initParticles(); });
+
+        // ---- 鼠标交互 ----
+        heroSection.addEventListener('mousemove', (e) => {
+          const r = heroSection.getBoundingClientRect();
+          mouse.x = e.clientX - r.left;
+          mouse.y = e.clientY - r.top;
+          mouse.active = true;
+        });
+        heroSection.addEventListener('mouseleave', () => { mouse.active = false; });
+
+        // ---- 渲染循环 ----
+        let time = 0;
+        let running = true;
+        const io = new IntersectionObserver(([entry]) => {
+          running = entry.isIntersecting;
+        }, { threshold: 0 });
+        io.observe(heroSection);
+
+        function frame() {
+          if (running) {
+            const dpr = Math.min(window.devicePixelRatio, CURL.DPR_MAX);
+            const w = canvas.width / dpr, h = canvas.height / dpr;
+
+            // 拖尾衰减：半透明黑色覆盖
+            ctx.fillStyle = `rgba(10, 10, 14, ${CURL.TRAIL_FADE})`;
+            ctx.fillRect(0, 0, w, h);
+
+            time += CURL.NOISE_TIME_STEP;
+
+            ctx.lineWidth = 0.8;
+
+            for (let i = 0; i < particles.length; i++) {
+              const p = particles[i];
+
+              // Curl Noise 场
+              const cx = p.x * CURL.NOISE_SCALE;
+              const cy = p.y * CURL.NOISE_SCALE;
+              const flow = curl(cx, cy, time);
+
+              // 速度更新
+              p.vx = p.vx * 0.92 + flow.x * CURL.FLOW_SPEED * 8;
+              p.vy = p.vy * 0.92 + flow.y * CURL.FLOW_SPEED * 8;
+
+              // 鼠标排斥
+              if (mouse.active) {
+                const dx = p.x - mouse.x;
+                const dy = p.y - mouse.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < CURL.MOUSE_REPEL_RADIUS && dist > 0.1) {
+                  const force = (1 - dist / CURL.MOUSE_REPEL_RADIUS) * CURL.MOUSE_REPEL_STRENGTH * 8;
+                  p.vx += (dx / dist) * force;
+                  p.vy += (dy / dist) * force;
+                }
+              }
+
+              // 位置更新
+              p.x += p.vx;
+              p.y += p.vy;
+              p.life++;
+
+              // 边界 / 寿命重生
+              if (p.x < 0 || p.x > w || p.y < 0 || p.y > h || p.life > p.maxLife) {
+                spawnParticle(p);
+                continue;
+              }
+
+              // 绘制：金色粒子，寿命映射透明度
+              const lifeRatio = p.life / p.maxLife;
+              const alpha = Math.sin(lifeRatio * Math.PI) * 0.6;
+              const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+              const brightness = Math.min(1, speed / 3);
+              // 速度快的粒子更亮
+              const r = Math.round(184 + (212 - 184) * brightness);
+              const g = Math.round(149 + (184 - 149) * brightness);
+              const b = Math.round(106 + (150 - 106) * brightness);
+              ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+              ctx.beginPath();
+              ctx.moveTo(p.x - p.vx, p.y - p.vy);
+              ctx.lineTo(p.x, p.y);
+              ctx.stroke();
+            }
+          }
+          requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      })();
+
+
       // ============================================================
       // 全局配置常量 — 集中管理魔法数字，便于后续维护
       // ============================================================

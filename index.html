@@ -953,6 +953,37 @@ body {
         mask-position: center;
         background-color: currentColor;
       }
+
+      /* ============================================================
+         Reaction-Diffusion 背景 — Gray-Scott 图灵斑图
+         低分辨率模拟 → CSS 放大 + 模糊 → 与品牌金黑调融合
+         ============================================================ */
+      .ai-rd-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.28;
+        mix-blend-mode: screen;
+        filter: blur(1.5px) contrast(1.15) saturate(1.1);
+        z-index: 0;
+      }
+      .ai-rd-mask {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        background:
+          radial-gradient(ellipse 80% 60% at 30% 40%, transparent 0%, var(--ai-background) 75%),
+          linear-gradient(180deg, var(--ai-background) 0%, transparent 15%, transparent 85%, var(--ai-background) 100%);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .ai-rd-canvas { display: none; }
+      }
+      @media (max-width: 768px) {
+        .ai-rd-canvas { opacity: 0.18; }
+      }
     </style>
 </head>
 <body class="min-h-screen font-sans antialiased">
@@ -988,8 +1019,12 @@ body {
 
       <div class="pt-16">
         <!-- ============ HERO — Editorial magazine split ============ -->
-        <section class="relative">
-          <div class="relative mx-auto max-w-7xl px-6 py-20 lg:py-28">
+        <section class="relative overflow-hidden">
+          <!-- Reaction-Diffusion 背景层：Gray-Scott 图灵斑图 -->
+          <canvas id="rdCanvas" class="ai-rd-canvas" aria-hidden="true"></canvas>
+          <div class="ai-rd-mask" aria-hidden="true"></div>
+
+          <div class="relative mx-auto max-w-7xl px-6 py-20 lg:py-28" style="z-index: 2;">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-start">
               <!-- Left: col-span-7 — Editorial text column -->
               <div class="md:col-span-7 space-y-9 pt-4">
@@ -1548,6 +1583,289 @@ body {
       </footer>
     </main>
     <script>
+      // ============================================================
+      // Reaction-Diffusion 背景 — Gray-Scott 图灵斑图
+      // 在 Hero 区渲染 Turing 1952 年提出的形态发生场
+      // 鼠标移动时向该位置注入激活剂，斑图随交互生长
+      // ============================================================
+      (function initReactionDiffusion() {
+        const canvas = document.getElementById('rdCanvas');
+        if (!canvas) return;
+        // 降级：减少动效偏好 / 移动端触屏 / 不支持 WebGL2
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (window.matchMedia('(pointer: coarse)').matches) return;
+
+        const gl = canvas.getContext('webgl2', { alpha: true, antialias: false, powerPreference: 'low-power' });
+        if (!gl) return;
+
+        // ---- 配置参数 ----
+        const RD = {
+          SIM_SIZE: 256,                  // 模拟分辨率（低分辨率迭代，CSS 放大显示）
+          ITERATIONS: 8,                  // 每帧迭代步数
+          FEED: 0.0545,                   // f — 供给率（控制斑图形态）
+          KILL: 0.062,                    // k — 消除率
+          DU: 0.2097,                     // 抑制剂扩散率
+          DV: 0.105,                      // 激活剂扩散率
+          DT: 1.0,                        // 时间步长
+          MOUSE_RADIUS: 0.025,            // 鼠标播种半径（UV 空间）
+          MOUSE_STRENGTH: 0.5,            // 鼠标播种强度
+          AUTO_SEED_INTERVAL: 5000,       // 自动随机播种间隔(ms)
+        };
+
+        // ---- Shader 源码 ----
+        const VERT = `#version 300 es
+          in vec2 aPos;
+          out vec2 vUv;
+          void main() {
+            vUv = aPos * 0.5 + 0.5;
+            gl_Position = vec4(aPos, 0.0, 1.0);
+          }`;
+
+        // 模拟着色器：Gray-Scott 方程 + 9 点拉普拉斯算子
+        const SIM_FRAG = `#version 300 es
+          precision highp float;
+          in vec2 vUv;
+          out vec2 outState;
+          uniform sampler2D uState;
+          uniform vec2 uTexel;
+          uniform float uFeed, uKill, uDu, uDv, uDt;
+          uniform vec2 uMouse;
+          uniform float uMouseStrength;
+
+          void main() {
+            vec2 c = texture(uState, vUv).rg;
+            // 9 点拉普拉斯算子（加权 3x3 卷积）
+            vec2 lap = vec2(0.0);
+            lap += texture(uState, vUv + uTexel * vec2(-1, -1)).rg * 0.05;
+            lap += texture(uState, vUv + uTexel * vec2( 0, -1)).rg * 0.20;
+            lap += texture(uState, vUv + uTexel * vec2( 1, -1)).rg * 0.05;
+            lap += texture(uState, vUv + uTexel * vec2(-1,  0)).rg * 0.20;
+            lap += texture(uState, vUv + uTexel * vec2( 0,  0)).rg * -1.0;
+            lap += texture(uState, vUv + uTexel * vec2( 1,  0)).rg * 0.20;
+            lap += texture(uState, vUv + uTexel * vec2(-1,  1)).rg * 0.05;
+            lap += texture(uState, vUv + uTexel * vec2( 0,  1)).rg * 0.20;
+            lap += texture(uState, vUv + uTexel * vec2( 1,  1)).rg * 0.05;
+
+            float u = c.r, v = c.g;
+            // Gray-Scott 方程
+            float du = uDu * lap.r - u * v * v + uFeed * (1.0 - u);
+            float dv = uDv * lap.g + u * v * v - (uKill + uFeed) * v;
+            u += du * uDt;
+            v += dv * uDt;
+
+            // 鼠标播种：在鼠标位置注入激活剂
+            float d = distance(vUv, uMouse);
+            float seed = exp(-pow(d / 0.025, 2.0)) * uMouseStrength;
+            v += seed * 0.5;
+            u -= seed * 0.2;
+
+            outState = vec2(clamp(u, 0.0, 1.0), clamp(v, 0.0, 1.0));
+          }`;
+
+        // 渲染着色器：把 v 值映射为金黑色调
+        const RENDER_FRAG = `#version 300 es
+          precision highp float;
+          in vec2 vUv;
+          out vec4 fragColor;
+          uniform sampler2D uState;
+
+          void main() {
+            vec2 s = texture(uState, vUv).rg;
+            float v = s.g;
+            // 金黑映射：深背景 → 暗金 → 高光金
+            vec3 bg = vec3(0.04, 0.04, 0.05);
+            vec3 mid = vec3(0.45, 0.36, 0.25);
+            vec3 gold = vec3(0.72, 0.58, 0.42);
+            float t = smoothstep(0.0, 0.5, v);
+            vec3 color = mix(bg, mid, t);
+            color = mix(color, gold, smoothstep(0.3, 0.8, v));
+            // 边缘衰减，融入背景
+            float vignette = smoothstep(1.0, 0.4, length(vUv - 0.5) * 1.4);
+            color *= vignette;
+            fragColor = vec4(color, 1.0);
+          }`;
+
+        // ---- Shader 编译辅助 ----
+        function compile(type, src) {
+          const sh = gl.createShader(type);
+          gl.shaderSource(sh, src);
+          gl.compileShader(sh);
+          if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+            console.error('RD shader compile failed:', gl.getShaderInfoLog(sh));
+            return null;
+          }
+          return sh;
+        }
+        function program(vs, fs) {
+          const p = gl.createProgram();
+          gl.attachShader(p, compile(gl.VERTEX_SHADER, vs));
+          gl.attachShader(p, compile(gl.FRAGMENT_SHADER, fs));
+          gl.linkProgram(p);
+          return p;
+        }
+
+        const simProg = program(VERT, SIM_FRAG);
+        const renderProg = program(VERT, RENDER_FRAG);
+        if (!simProg || !renderProg) return;
+
+        // ---- 全屏四边形 ----
+        const vao = gl.createVertexArray();
+        gl.bindVertexArray(vao);
+        const buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+        const aPos = gl.getAttribLocation(simProg, 'aPos');
+        gl.enableVertexAttribArray(aPos);
+        gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+        // ---- Ping-pong framebuffers ----
+        function createFBO() {
+          const tex = gl.createTexture();
+          gl.bindTexture(gl.TEXTURE_2D, tex);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RG16F, RD.SIM_SIZE, RD.SIM_SIZE, 0, gl.RG, gl.HALF_FLOAT, null);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
+          const fbo = gl.createFramebuffer();
+          gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+          gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+          return { tex, fbo };
+        }
+        const A = createFBO();
+        const B = createFBO();
+
+        // ---- 初始状态：u=1, v=0，中心播种 ----
+        function seedInitialState() {
+          const data = new Uint16Array(RD.SIM_SIZE * RD.SIM_SIZE * 2);
+          const f2h = (f) => {
+            // float → half-float 简易转换（足够精度）
+            const buf = new ArrayBuffer(4);
+            new Float32Array(buf)[0] = f;
+            const bits = new Uint32Array(buf)[0];
+            const sign = (bits >> 16) & 0x8000;
+            const exp = ((bits >> 23) & 0xff) - 127 + 15;
+            const mant = (bits >> 13) & 0x3ff;
+            return sign | ((exp < 0 ? 0 : exp > 31 ? 31 : exp) << 10) | mant;
+          };
+          for (let i = 0; i < RD.SIM_SIZE * RD.SIM_SIZE; i++) {
+            data[i * 2] = f2h(1.0);
+            data[i * 2 + 1] = f2h(0.0);
+          }
+          // 中心区域播种 v
+          const cx = RD.SIM_SIZE / 2, cy = RD.SIM_SIZE / 2;
+          for (let y = 0; y < RD.SIM_SIZE; y++) {
+            for (let x = 0; x < RD.SIM_SIZE; x++) {
+              const dx = x - cx, dy = y - cy;
+              if (dx * dx + dy * dy < 64) {
+                data[(y * RD.SIM_SIZE + x) * 2 + 1] = f2h(0.9);
+              }
+              // 随机散点播种，制造非对称斑图
+              if (Math.random() < 0.0008) {
+                data[(y * RD.SIM_SIZE + x) * 2 + 1] = f2h(0.8 + Math.random() * 0.2);
+              }
+            }
+          }
+          gl.bindTexture(gl.TEXTURE_2D, A.tex);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RG16F, RD.SIM_SIZE, RD.SIM_SIZE, 0, gl.RG, gl.HALF_FLOAT, data);
+        }
+        seedInitialState();
+
+        // ---- Uniform 位置缓存 ----
+        const simU = {
+          uState: gl.getUniformLocation(simProg, 'uState'),
+          uTexel: gl.getUniformLocation(simProg, 'uTexel'),
+          uFeed: gl.getUniformLocation(simProg, 'uFeed'),
+          uKill: gl.getUniformLocation(simProg, 'uKill'),
+          uDu: gl.getUniformLocation(simProg, 'uDu'),
+         uDv: gl.getUniformLocation(simProg, 'uDv'),
+          uDt: gl.getUniformLocation(simProg, 'uDt'),
+          uMouse: gl.getUniformLocation(simProg, 'uMouse'),
+          uMouseStrength: gl.getUniformLocation(simProg, 'uMouseStrength'),
+        };
+        const renderU = {
+          uState: gl.getUniformLocation(renderProg, 'uState'),
+        };
+
+        // ---- 鼠标交互 ----
+        let mouse = { x: 0.5, y: 0.5, strength: 0 };
+        const heroSection = canvas.parentElement;
+        heroSection.addEventListener('mousemove', (e) => {
+          const r = heroSection.getBoundingClientRect();
+          mouse.x = (e.clientX - r.left) / r.width;
+          mouse.y = 1.0 - (e.clientY - r.top) / r.height; // 翻转 Y
+          mouse.strength = RD.MOUSE_STRENGTH;
+        });
+        heroSection.addEventListener('mouseleave', () => { mouse.strength = 0; });
+
+        // ---- 自动随机播种（避免静止） ----
+        setInterval(() => {
+          if (mouse.strength > 0) return;
+          mouse.x = Math.random();
+          mouse.y = Math.random();
+          mouse.strength = RD.MOUSE_STRENGTH * 0.6;
+          setTimeout(() => { mouse.strength = 0; }, 200);
+        }, RD.AUTO_SEED_INTERVAL);
+
+        // ---- 尺寸适配 ----
+        function resize() {
+          const dpr = Math.min(window.devicePixelRatio, 2);
+          const w = heroSection.clientWidth, h = heroSection.clientHeight;
+          canvas.width = w * dpr;
+          canvas.height = h * dpr;
+          canvas.style.width = w + 'px';
+          canvas.style.height = h + 'px';
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        // ---- 渲染循环 ----
+        let readFBO = A, writeFBO = B;
+        let running = true;
+
+        // 视口外暂停（性能优化）
+        const io = new IntersectionObserver(([entry]) => {
+          running = entry.isIntersecting;
+        }, { threshold: 0 });
+        io.observe(heroSection);
+
+        function frame() {
+          if (running) {
+            // 模拟迭代
+            gl.useProgram(simProg);
+            gl.uniform2f(simU.uTexel, 1.0 / RD.SIM_SIZE, 1.0 / RD.SIM_SIZE);
+            gl.uniform1f(simU.uFeed, RD.FEED);
+            gl.uniform1f(simU.uKill, RD.KILL);
+            gl.uniform1f(simU.uDu, RD.DU);
+            gl.uniform1f(simU.uDv, RD.DV);
+            gl.uniform1f(simU.uDt, RD.DT);
+            gl.uniform2f(simU.uMouse, mouse.x, mouse.y);
+            gl.uniform1f(simU.uMouseStrength, mouse.strength);
+            gl.viewport(0, 0, RD.SIM_SIZE, RD.SIM_SIZE);
+
+            for (let i = 0; i < RD.ITERATIONS; i++) {
+              gl.bindFramebuffer(gl.FRAMEBUFFER, writeFBO.fbo);
+              gl.activeTexture(gl.TEXTURE0);
+              gl.bindTexture(gl.TEXTURE_2D, readFBO.tex);
+              gl.uniform1i(simU.uState, 0);
+              gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+              [readFBO, writeFBO] = [writeFBO, readFBO];
+            }
+
+            // 渲染到屏幕
+            gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+            gl.useProgram(renderProg);
+            gl.viewport(0, 0, canvas.width, canvas.height);
+            gl.activeTexture(gl.TEXTURE0);
+            gl.bindTexture(gl.TEXTURE_2D, readFBO.tex);
+            gl.uniform1i(renderU.uState, 0);
+            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+          }
+          requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      })();
+
       // ============================================================
       // 全局配置常量 — 集中管理魔法数字，便于后续维护
       // ============================================================
