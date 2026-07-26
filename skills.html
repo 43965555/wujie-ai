@@ -970,9 +970,9 @@ body {
             </div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-px md:gap-px bg-[color:var(--ai-border)]/50 md:bg-transparent ai-reveal-stagger">
-            <!-- CAP-01: 大模型预训练与对齐 -->
-            <div class="relative p-8 md:p-10 md:col-span-7 md:row-span-2 bg-[color:var(--ai-background)] md:border md:border-[color:var(--ai-border)] md:rounded-none overflow-hidden">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-px bg-[color:var(--ai-border)]/50 border border-[color:var(--ai-border)]/50 ai-reveal-stagger">
+            <!-- CAP-01: 大模型预训练与对齐 (Hero card) -->
+            <div class="relative p-8 md:p-10 md:col-span-7 md:row-span-2 bg-[color:var(--ai-background)] overflow-hidden">
               <span class="ai-section-number-bg text-[120px] md:text-[180px] -top-4 -right-2 md:-top-8 md:-right-4">01</span>
               <div class="relative z-10 h-full flex flex-col">
                 <div class="flex items-center gap-3">
@@ -1010,14 +1010,14 @@ body {
             </div>
 
             <!-- CAP-02: 推理优化与高并发服务 -->
-            <div class="relative p-8 md:p-8 md:col-span-5 bg-[color:var(--ai-background)] md:border md:border-[color:var(--ai-border)] md:rounded-none overflow-hidden md:border-l-0">
+            <div class="relative p-8 md:p-10 md:col-span-5 bg-[color:var(--ai-background)] overflow-hidden">
               <span class="ai-section-number-bg text-[90px] md:text-[120px] -top-2 -right-1 md:-top-4 md:-right-2">02</span>
-              <div class="relative z-10">
+              <div class="relative z-10 h-full flex flex-col">
                 <div class="flex items-center gap-3">
-                  <i data-lucide="gauge-circle" class="w-4 h-4 text-[color:var(--ai-primary)]"></i>
-                  <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-02 · INFERENCE</span>
+                  <i data-lucide="gauge-circle" class="w-5 h-5 text-[color:var(--ai-primary)]"></i>
+                  <span class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-02 · INFERENCE</span>
                 </div>
-                <h3 class="ai-serif text-2xl md:text-2xl font-medium mt-5 text-[color:var(--ai-foreground)]">推理优化与高并发服务</h3>
+                <h3 class="ai-serif text-2xl md:text-[28px] font-medium mt-5 text-[color:var(--ai-foreground)]">推理优化与高并发服务</h3>
                 <p class="text-[12.5px] text-[color:var(--ai-muted-foreground)] mt-3.5 leading-[1.85] tracking-[0.005em]">
                   vLLM 0.10+ PagedAttention 2.0 + Continuous Batching 把吞吐抬 5-8×；FP8 / INT4 (GPTQ/AWQ) 量化在 H100/B200 上保持 PPL 损失 &lt;0.5%。Speculative Decoding 2.0 在长上下文场景把首 token 延迟砍到 80ms。
                 </p>
@@ -1031,7 +1031,7 @@ body {
                     <span>FP8 / W4A16 / W8A8 量化 · Speculative Decoding 2.0 · Medusa Head</span>
                   </div>
                 </div>
-                <div class="mt-6">
+                <div class="mt-auto pt-6">
                   <div class="flex items-center justify-between mb-1.5">
                     <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-widest uppercase">Proficiency</span>
                     <span class="ai-serif text-lg text-[color:var(--ai-primary)] font-medium">95%</span>
@@ -1044,14 +1044,14 @@ body {
             </div>
 
             <!-- CAP-03: 多模态与 Agent 编排 -->
-            <div class="relative p-8 md:p-8 md:col-span-5 bg-[color:var(--ai-background)] md:border md:border-[color:var(--ai-border)] md:rounded-none overflow-hidden md:border-l-0 md:border-t-0">
+            <div class="relative p-8 md:p-10 md:col-span-5 bg-[color:var(--ai-background)] overflow-hidden">
               <span class="ai-section-number-bg text-[90px] md:text-[120px] -top-2 -right-1 md:-top-4 md:-right-2">03</span>
-              <div class="relative z-10">
+              <div class="relative z-10 h-full flex flex-col">
                 <div class="flex items-center gap-3">
-                  <i data-lucide="layers" class="w-4 h-4 text-[color:var(--ai-primary)]"></i>
-                  <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-03 · MULTIMODAL & AGENT</span>
+                  <i data-lucide="layers" class="w-5 h-5 text-[color:var(--ai-primary)]"></i>
+                  <span class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-03 · MULTIMODAL & AGENT</span>
                 </div>
-                <h3 class="ai-serif text-2xl md:text-2xl font-medium mt-5 text-[color:var(--ai-foreground)]">多模态与 Agent 编排</h3>
+                <h3 class="ai-serif text-2xl md:text-[28px] font-medium mt-5 text-[color:var(--ai-foreground)]">多模态与 Agent 编排</h3>
                 <p class="text-[12.5px] text-[color:var(--ai-muted-foreground)] mt-3.5 leading-[1.85] tracking-[0.005em]">
                   CLIP / SigLIP 视觉对齐 + Q-Former Adapter 跨模态融合；基于 LangGraph 0.3+ / AutoGen 0.4 (AG2) 构建 DAG-based 多智能体编排，支持 ReAct / Reflexion / Plan-and-Execute 三类 reasoning pattern 与 MCP（Model Context Protocol）工具沙箱。
                 </p>
@@ -1065,7 +1065,7 @@ body {
                     <span>ReAct · Reflexion · Tree-of-Thought · GraphRAG · HyDE</span>
                   </div>
                 </div>
-                <div class="mt-6">
+                <div class="mt-auto pt-6">
                   <div class="flex items-center justify-between mb-1.5">
                     <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-widest uppercase">Proficiency</span>
                     <span class="ai-serif text-lg text-[color:var(--ai-primary)] font-medium">88%</span>
@@ -1078,67 +1078,62 @@ body {
             </div>
 
             <!-- CAP-04: 数据与训练基础设施 -->
-            <div class="relative p-8 md:p-8 md:col-span-7 bg-[color:var(--ai-background)] md:border md:border-[color:var(--ai-border)] md:rounded-none overflow-hidden md:border-t-0">
+            <div class="relative p-8 md:p-10 md:col-span-4 bg-[color:var(--ai-background)] overflow-hidden">
               <span class="ai-section-number-bg text-[90px] md:text-[120px] -top-2 -right-1 md:-top-4 md:-right-2">04</span>
-              <div class="relative z-10">
+              <div class="relative z-10 h-full flex flex-col">
                 <div class="flex items-center gap-3">
-                  <i data-lucide="database" class="w-4 h-4 text-[color:var(--ai-primary)]"></i>
-                  <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-04 · INFRA & DATA</span>
+                  <i data-lucide="database" class="w-5 h-5 text-[color:var(--ai-primary)]"></i>
+                  <span class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-04 · INFRA & DATA</span>
                 </div>
-                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mt-5">
-                  <div class="md:max-w-md">
-                    <h3 class="ai-serif text-2xl md:text-2xl font-medium text-[color:var(--ai-foreground)]">数据与训练基础设施</h3>
-                    <p class="text-[12.5px] text-[color:var(--ai-muted-foreground)] mt-3.5 leading-[1.85] tracking-[0.005em]">
-                      Ray Data + Spark 3.5 构建日吞吐 50TB 的去重 / 质量过滤 / 分布式 tokenize 管道；K8s 1.32+ + Volcano 调度千卡训练任务，支持抢占式实例恢复与 NCCL/RDMA 网络拓扑感知。
-                    </p>
-                    <div class="mt-4 space-y-1.5">
-                      <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
-                        <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
-                        <span>MinHash LSH · SimHash 去重 · Quality Classifier · PII 脱敏</span>
-                      </div>
-                      <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
-                        <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
-                        <span>NCCL / RDMA / GPUDirect · Volcano · KubeRay · 镜像分层预热</span>
-                      </div>
-                    </div>
+                <h3 class="ai-serif text-2xl md:text-[28px] font-medium mt-5 text-[color:var(--ai-foreground)]">数据与训练基础设施</h3>
+                <p class="text-[12.5px] text-[color:var(--ai-muted-foreground)] mt-3.5 leading-[1.85] tracking-[0.005em]">
+                  Ray Data + Spark 3.5 构建日吞吐 50TB 的去重 / 质量过滤 / 分布式 tokenize 管道；K8s 1.32+ + Volcano 调度千卡训练任务，支持抢占式实例恢复与 NCCL/RDMA 网络拓扑感知。
+                </p>
+                <div class="mt-4 space-y-1.5">
+                  <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
+                    <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
+                    <span>MinHash LSH · SimHash 去重 · Quality Classifier · PII 脱敏</span>
                   </div>
-                  <div class="md:text-right md:min-w-[200px]">
-                    <div class="flex items-center justify-between md:justify-end gap-3">
-                      <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-widest uppercase md:order-2">Proficiency</span>
-                      <span class="ai-serif text-lg text-[color:var(--ai-primary)] font-medium md:order-1 md:mr-2">90%</span>
-                    </div>
-                    <div class="h-px bg-[color:var(--ai-muted)] overflow-hidden mt-1.5">
-                      <div class="w-[90%] h-full bg-[color:var(--ai-primary)]"></div>
-                    </div>
+                  <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
+                    <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
+                    <span>NCCL / RDMA / GPUDirect · Volcano · KubeRay · 镜像分层预热</span>
+                  </div>
+                </div>
+                <div class="mt-auto pt-6">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-widest uppercase">Proficiency</span>
+                    <span class="ai-serif text-lg text-[color:var(--ai-primary)] font-medium">90%</span>
+                  </div>
+                  <div class="h-px bg-[color:var(--ai-muted)] overflow-hidden">
+                    <div class="w-[90%] h-full bg-[color:var(--ai-primary)]"></div>
                   </div>
                 </div>
               </div>
             </div>
 
-          </div>
-
-          <!-- Second row: CAP-05 + CAP-06 (full width split) -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-[color:var(--ai-border)]/50 md:bg-transparent mt-px ai-reveal-stagger">
             <!-- CAP-05: 评估对齐与安全 -->
-            <div class="relative p-8 md:p-10 bg-[color:var(--ai-background)] md:border md:border-[color:var(--ai-border)] overflow-hidden">
-              <span class="ai-section-number-bg text-[100px] md:text-[140px] -top-2 -right-1 md:-top-4 md:-right-2">05</span>
-              <div class="relative z-10">
+            <div class="relative p-8 md:p-10 md:col-span-4 bg-[color:var(--ai-background)] overflow-hidden">
+              <span class="ai-section-number-bg text-[90px] md:text-[120px] -top-2 -right-1 md:-top-4 md:-right-2">05</span>
+              <div class="relative z-10 h-full flex flex-col">
                 <div class="flex items-center gap-3">
-                  <i data-lucide="shield-check" class="w-4 h-4 text-[color:var(--ai-primary)]"></i>
-                  <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-05 · EVAL & SAFETY</span>
+                  <i data-lucide="shield-check" class="w-5 h-5 text-[color:var(--ai-primary)]"></i>
+                  <span class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-05 · EVAL & SAFETY</span>
                 </div>
                 <h3 class="ai-serif text-2xl md:text-[28px] font-medium mt-5 text-[color:var(--ai-foreground)]">评估对齐与安全</h3>
-                <p class="text-[12px] text-[color:var(--ai-muted-foreground)] mt-3 leading-[1.8]">
+                <p class="text-[12.5px] text-[color:var(--ai-muted-foreground)] mt-3.5 leading-[1.85] tracking-[0.005em]">
                   自研 <span class="text-[color:var(--ai-primary)]">Arena-评测平台</span> 覆盖 MMLU / C-Eval / GSM8K / HumanEval / MATH 等 60+ benchmark；红队测试集成 AdvBench / JailbreakBench，支持自动 + 人工双层对抗，越狱攻击拦截率 96.4%。
                 </p>
-                <div class="mt-4 flex flex-wrap gap-2 text-[11px] ai-mono">
-                  <span class="px-2 py-1 border border-[color:var(--ai-border)] text-[color:var(--ai-foreground)]/80">MMLU</span>
-                  <span class="px-2 py-1 border border-[color:var(--ai-border)] text-[color:var(--ai-foreground)]/80">GSM8K</span>
-                  <span class="px-2 py-1 border border-[color:var(--ai-border)] text-[color:var(--ai-foreground)]/80">HumanEval</span>
-                  <span class="px-2 py-1 border border-[color:var(--ai-border)] text-[color:var(--ai-foreground)]/80">MT-Bench</span>
-                  <span class="px-2 py-1 border border-[color:var(--ai-primary)]/40 text-[color:var(--ai-primary)]">Red Team</span>
+                <div class="mt-4 space-y-1.5">
+                  <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
+                    <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
+                    <span>MMLU · C-Eval · GSM8K · HumanEval · MATH · MT-Bench</span>
+                  </div>
+                  <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
+                    <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
+                    <span>AdvBench · JailbreakBench · Red Team · Constitutional AI</span>
+                  </div>
                 </div>
-                <div class="mt-6">
+                <div class="mt-auto pt-6">
                   <div class="flex items-center justify-between mb-1.5">
                     <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-widest uppercase">Proficiency</span>
                     <span class="ai-serif text-lg text-[color:var(--ai-primary)] font-medium">87%</span>
@@ -1150,16 +1145,16 @@ body {
               </div>
             </div>
 
-            <!-- CAP-06: 系统架构与选型 -->
-            <div class="relative p-8 md:p-10 bg-[color:var(--ai-background)] md:border md:border-[color:var(--ai-border)] md:border-l-0 overflow-hidden">
-              <span class="ai-section-number-bg text-[100px] md:text-[140px] -top-2 -right-1 md:-top-4 md:-right-2">06</span>
-              <div class="relative z-10">
+            <!-- CAP-06: 系统架构与技术选型 -->
+            <div class="relative p-8 md:p-10 md:col-span-4 bg-[color:var(--ai-background)] overflow-hidden">
+              <span class="ai-section-number-bg text-[90px] md:text-[120px] -top-2 -right-1 md:-top-4 md:-right-2">06</span>
+              <div class="relative z-10 h-full flex flex-col">
                 <div class="flex items-center gap-3">
-                  <i data-lucide="git-branch" class="w-4 h-4 text-[color:var(--ai-primary)]"></i>
-                  <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-06 · ARCHITECTURE</span>
+                  <i data-lucide="git-branch" class="w-5 h-5 text-[color:var(--ai-primary)]"></i>
+                  <span class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-06 · ARCHITECTURE</span>
                 </div>
                 <h3 class="ai-serif text-2xl md:text-[28px] font-medium mt-5 text-[color:var(--ai-foreground)]">系统架构与技术选型</h3>
-                <p class="text-[12px] text-[color:var(--ai-muted-foreground)] mt-3 leading-[1.8]">
+                <p class="text-[12.5px] text-[color:var(--ai-muted-foreground)] mt-3.5 leading-[1.85] tracking-[0.005em]">
                   从 0 设计 <span class="text-[color:var(--ai-primary)]">多活推理网关</span>——按模型路由 + Locality-aware 亲和调度；ID-Hash 一致性保证会话粘连；冷热流量分离，热路径走 vLLM 0.10+，冷路径走 Serverless GPU（Ray Serve 2.x on K8s HPA）。
                 </p>
                 <div class="mt-4 space-y-1.5">
@@ -1169,10 +1164,10 @@ body {
                   </div>
                   <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
                     <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
-                    <span>OTel · Prometheus · Grafana · Loki · Langfuse 3 · 全链路 Trace / Token 级审计</span>
+                    <span>OTel · Prometheus · Grafana · Loki · Langfuse 3 · 全链路 Trace</span>
                   </div>
                 </div>
-                <div class="mt-6">
+                <div class="mt-auto pt-6">
                   <div class="flex items-center justify-between mb-1.5">
                     <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-widest uppercase">Proficiency</span>
                     <span class="ai-serif text-lg text-[color:var(--ai-primary)] font-medium">91%</span>
