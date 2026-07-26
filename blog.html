@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>博客与联系 — 无界智源 · AI 科技公司</title>
+    <meta name="description" content="博客与联系 — AI 工程师吴杰的思考笔记与联系方式。涵盖技术深度文章、行业洞察，提供邮件、微信、电话多渠道沟通。">
+    <link rel="canonical" href="https://43965555.github.io/wujie-ai/blog.html">
+    <meta property="og:title" content="博客与联系 — 无界智源">
+    <meta property="og:description" content="博客与联系 — AI 工程师吴杰的思考笔记与联系方式。涵盖技术深度文章、行业洞察，提供邮件、微信、电话多渠道沟通。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://43965555.github.io/wujie-ai/blog.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="博客与联系 — 无界智源">
+    <meta name="twitter:description" content="博客与联系 — AI 工程师吴杰的思考笔记与联系方式。涵盖技术深度文章、行业洞察，提供邮件、微信、电话多渠道沟通。">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <style id="theme-vars">
 /* ============================================================
    AI Engineer Portfolio — European Luxury Light Theme (Elevated)
@@ -1134,20 +1144,20 @@ body {
                   </div>
 
                   <!-- Form — underline style -->
-                  <form id="contactForm" onsubmit="return false" class="mt-14 space-y-8">
+                  <form id="contactForm" novalidate class="mt-14 space-y-8">
                     <div class="grid sm:grid-cols-2 gap-8">
                       <div>
-                        <label class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wider block mb-2">姓名</label>
-                        <input type="text" class="ai-input-underline" placeholder="您的称呼">
+                        <label for="contactName" class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wider block mb-2">姓名</label>
+                        <input id="contactName" name="name" type="text" class="ai-input-underline" placeholder="您的称呼" required aria-required="true">
                       </div>
                       <div>
-                        <label class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wider block mb-2">邮箱</label>
-                        <input type="email" class="ai-input-underline" placeholder="your@email.com">
+                        <label for="contactEmail" class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wider block mb-2">邮箱</label>
+                        <input id="contactEmail" name="email" type="email" class="ai-input-underline" placeholder="your@email.com" required aria-required="true">
                       </div>
                     </div>
                     <div>
-                      <label class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wider block mb-2">想说点什么</label>
-                      <textarea rows="4" class="ai-input-underline resize-none" placeholder="聊聊你的想法..."></textarea>
+                      <label for="contactMessage" class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wider block mb-2">想说点什么</label>
+                      <textarea id="contactMessage" name="message" rows="4" class="ai-input-underline resize-none" placeholder="聊聊你的想法..." required aria-required="true"></textarea>
                     </div>
                     <button type="submit" id="contactSubmit" class="inline-flex items-center gap-2 ai-btn-gold text-xs">发送消息 <i data-lucide="send" class="w-4 h-4"></i></button>
                   </form>
@@ -1433,13 +1443,35 @@ body {
       if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
           e.preventDefault();
-          const inputs = contactForm.querySelectorAll('input, textarea');
-          let hasContent = false;
-          inputs.forEach(i => { if (i.value.trim()) hasContent = true; });
-          if (!hasContent) {
-            alert('请至少填写一项内容再发送。');
+          const nameEl = document.getElementById('contactName');
+          const emailEl = document.getElementById('contactEmail');
+          const messageEl = document.getElementById('contactMessage');
+          const inputs = [nameEl, emailEl, messageEl].filter(Boolean);
+
+          // Validate required fields
+          if (nameEl && !nameEl.value.trim()) {
+            showToast('请填写姓名后再发送。');
+            nameEl && nameEl.focus();
             return;
           }
+          if (emailEl && !emailEl.value.trim()) {
+            showToast('请填写邮箱后再发送。');
+            emailEl && emailEl.focus();
+            return;
+          }
+          // Email format check
+          const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (emailEl && !emailRe.test(emailEl.value.trim())) {
+            showToast('邮箱格式不正确，请检查后再发送。');
+            emailEl.focus();
+            return;
+          }
+          if (messageEl && !messageEl.value.trim()) {
+            showToast('请填写留言内容后再发送。');
+            messageEl && messageEl.focus();
+            return;
+          }
+
           // Visual confirmation
           const submitBtn = document.getElementById('contactSubmit');
           const originalHTML = submitBtn.innerHTML;
@@ -1447,6 +1479,7 @@ body {
           submitBtn.disabled = true;
           submitBtn.style.opacity = '0.7';
           inputs.forEach(i => { i.value = ''; });
+          showToast('留言已收到，感谢您的联系');
           setTimeout(() => {
             submitBtn.innerHTML = originalHTML;
             submitBtn.disabled = false;
@@ -1465,7 +1498,7 @@ body {
           const title = (a.getAttribute('title') || '').trim();
           if (title) {
             e.preventDefault();
-            alert(title);
+            showToast(title);
           }
         });
       });
@@ -1503,6 +1536,15 @@ body {
       if (wechatRow) wechatRow.addEventListener('click', copyWechat);
       const footerWechatBtn = document.getElementById('footer-wechat-btn');
       if (footerWechatBtn) footerWechatBtn.addEventListener('click', copyWechat);
+    // Toast notification helper — replaces alert() for non-blocking UX
+    function showToast(msg, duration = 2500) {
+      const toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.style.opacity = '1';
+      setTimeout(() => { toast.style.opacity = '0'; }, duration);
+    }
     </script>
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] px-5 py-3 rounded-lg bg-[color:var(--ai-foreground)] text-[color:var(--ai-background)] text-sm shadow-lg opacity-0 pointer-events-none transition-opacity duration-300" role="status" aria-live="polite"></div>
 </body>
 </html>

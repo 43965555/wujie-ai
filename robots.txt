@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://43965555.github.io/wujie-ai/sitemap.xml

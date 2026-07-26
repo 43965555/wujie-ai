@@ -12,3 +12,5 @@ node_modules/
 pages/
 runtime-*.json
 validation-report.json
+*.design
+/scripts/
