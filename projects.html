@@ -522,10 +522,6 @@ body {
     0 12px 30px -20px rgba(26, 26, 31, 0.08);
 }
 
-.ai-editorial-row { transition: background-color 0.25s ease; }
-.ai-editorial-row:hover { background-color: rgba(184, 149, 106, 0.04); }
-.ai-editorial-row:hover .ai-editorial-title { color: var(--ai-primary); }
-.ai-editorial-title { transition: color 0.3s var(--ai-ease-out); }
 
 .ai-input-underline {
   background: transparent; border: none;
@@ -2217,7 +2213,7 @@ body.ai-modal-open { overflow: hidden; }
             chip.setAttribute('aria-label', `查看 ${f.title} 详情`);
             chip.addEventListener('click', e => {
               e.stopPropagation();
-              openModal(card);
+              openModal({ id, title, desc, featuresHTML, metricsHTML });
             });
             chipsDiv.appendChild(chip);
           });
@@ -2264,6 +2260,7 @@ body.ai-modal-open { overflow: hidden; }
         // 为新增按钮 + 模态框关闭按钮渲染 lucide 图标
         if (window.lucide) lucide.createIcons();
        } catch (err) {
+         if (window.console) console.warn('项目模态框初始化失败:', err);
        }
       })();
     // Toast 提示工具函数 — 替代 alert()，提供非阻塞的轻量反馈
