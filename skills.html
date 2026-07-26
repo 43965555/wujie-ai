@@ -125,8 +125,6 @@ body {
     0 30px 60px -30px rgba(184, 149, 106, 0.2);
 }
 
-.ai-hairline { border: 1px solid var(--ai-border); }
-
 .ai-glass {
   background: #FFFFFF;
   border: 1px solid var(--ai-border);
@@ -170,11 +168,6 @@ body {
   0% { transform: scale(1); opacity: 0.5; }
   50% { transform: scale(1.6); opacity: 0; }
   100% { transform: scale(1); opacity: 0; }
-}
-
-.ai-scanline {
-  background: linear-gradient(90deg, transparent, var(--ai-primary), transparent);
-  height: 1px; opacity: 0.3;
 }
 
 .ai-card-hover {
@@ -274,30 +267,6 @@ body {
 }
 .ai-btn-ghost:hover { color: var(--ai-primary); }
 .ai-btn-ghost:hover::after { background: var(--ai-primary); }
-
-.ai-v-divider {
-  width: 1px;
-  background: linear-gradient(180deg, transparent, var(--ai-primary), transparent);
-  opacity: 0.3;
-}
-
-.ai-section-num {
-  font-family: var(--ai-font-serif);
-  font-size: clamp(6rem, 12vw, 12rem);
-  font-weight: 300; line-height: 1;
-  color: var(--ai-primary); opacity: 0.08;
-  letter-spacing: -0.04em;
-  user-select: none; pointer-events: none;
-}
-
-.ai-dropcap::first-letter {
-  font-family: var(--ai-font-serif);
-  font-size: 3.5em; font-weight: 500;
-  float: left; line-height: 0.85;
-  padding-right: 0.15em; padding-top: 0.1em;
-  color: var(--ai-primary);
-  font-feature-settings: "swsh", "liga";
-}
 
 /* Scroll-reveal */
 .ai-reveal {
@@ -619,14 +588,6 @@ body {
   box-shadow: 0 0 0 1px rgba(184,149,106,0.18) inset;
 }
 
-.ai-reveal-mask { display: inline-block; overflow: hidden; vertical-align: bottom; }
-.ai-reveal-mask > span {
-  display: inline-block;
-  transform: translateY(110%);
-  transition: transform 1s var(--ai-ease-out);
-}
-.ai-reveal-mask.is-visible > span { transform: translateY(0); }
-
 .ai-rule-grow {
   transform: scaleX(0);
   transform-origin: left center;
@@ -700,18 +661,6 @@ body {
   animation: ai-pan-slow 18s ease-in-out infinite;
 }
 
-/* Ink-bleed reveal for large section numbers (01/02/03) */
-.ai-ink-bleed {
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.18);
-  transition: -webkit-text-stroke 1.2s var(--ai-ease-out),
-    color 1.2s var(--ai-ease-out);
-}
-.ai-ink-bleed.is-visible {
-  color: rgba(255,255,255,0.10);
-  -webkit-text-stroke: 1px rgba(255,255,255,0.05);
-}
-
 /* Soft pulse glow ring on the status dot */
 @keyframes ai-ring-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(184,149,106,0.4); }
@@ -759,20 +708,6 @@ body {
 .ai-blur-in.is-visible {
   filter: blur(0); opacity: 1; transform: translateY(0);
 }
-
-/* Section number — serif italic with refined glow */
-.ai-serif-num {
-  font-family: var(--ai-font-serif);
-  font-style: italic;
-  font-weight: 300;
-  color: var(--ai-primary);
-  opacity: 0.12;
-  letter-spacing: -0.04em;
-  line-height: 0.85;
-  user-select: none; pointer-events: none;
-  transition: opacity 0.8s var(--ai-ease-out);
-}
-.ai-serif-num.is-visible { opacity: 0.18; }
 
 /* Subtle drifting orbs — slow rotation variant */
 @keyframes ai-rotate-slow {
@@ -1922,7 +1857,7 @@ body {
             <span class="ai-serif text-lg font-medium text-[color:var(--ai-foreground)]">无界智源</span>
           </div>
           <p class="text-xs text-[color:var(--ai-muted-foreground)] font-light">AI 科技公司 · 用工程化方式让智能落地</p>
-          <p class="text-[11px] text-[color:var(--ai-muted-foreground)]/60 ai-mono">© 2026 无界智源. 占位内容，请替换为真实信息。</p>
+          <p class="text-[11px] text-[color:var(--ai-muted-foreground)]/60 ai-mono">© 2026 无界智源 · AI 科技公司</p>
         </div>
         <div class="flex items-center gap-1">
             <a href="https://github.com/wujiezhiyuan" target="_blank" rel="noopener" class="flex h-10 w-10 items-center justify-center text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-primary)] transition-colors"><i data-lucide="github" class="w-4 h-4"></i></a>
@@ -1980,7 +1915,7 @@ body {
       onScroll();
 
       // 滚动揭示 — 基于 IntersectionObserver
-      const revealSelectors = '.ai-reveal, .ai-reveal-stagger, .ai-reveal-img, .ai-reveal-line, .ai-rule-grow, .ai-reveal-mask, .ai-eyebrow, .ai-blur-in, .ai-word-reveal, .ai-ink-bleed, .ai-serif-num';
+      const revealSelectors = '.ai-reveal, .ai-reveal-stagger, .ai-reveal-img, .ai-reveal-line, .ai-rule-grow, .ai-eyebrow, .ai-blur-in, .ai-word-reveal';
       const revealEls = document.querySelectorAll(revealSelectors);
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {
