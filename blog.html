@@ -931,40 +931,159 @@ body {
 
         <div class="pt-16">
 
-          <!-- ============ Section 1: Editorial Page Header + Banner ============ -->
-          <section class="relative py-24 md:py-32">
+          <!-- ============ Section 1: Hero + 联系方式合并 ============ -->
+          <section id="contact" class="relative py-20 md:py-28 scroll-mt-16">
             <div class="mx-auto max-w-7xl px-6 ai-reveal">
-              <div class="grid md:grid-cols-12 gap-8 items-start">
-                <div class="md:col-span-7 md:col-start-1">
+              <div class="grid md:grid-cols-12 gap-10 md:gap-12 items-start">
+
+                <!-- 左侧：标题 + 副标题 + 邀请 + CTA + 直接联系方式 -->
+                <div class="md:col-span-7">
                   <span class="ai-eyebrow" data-reveal-self>// 03 — 写作 &amp; 演讲 · WRITING &amp; TALKS</span>
                   <h1 class="mt-6 text-6xl md:text-7xl ai-serif font-medium tracking-tight text-[color:var(--ai-foreground)] leading-[0.95] ai-blur-in">博客与<span class="ai-gradient-text italic">联系</span></h1>
                   <div class="mt-8 ai-gold-rule ai-rule-grow w-24 md:w-32"></div>
                   <p class="mt-8 max-w-xl text-base md:text-[17px] text-[color:var(--ai-muted-foreground)] leading-[1.9] font-light tracking-[0.005em]">记录大模型工程实践，偶尔分享一线思考。也欢迎一起做事。</p>
                   <p class="text-sm text-[color:var(--ai-primary)] mt-4 ai-mono tracking-wider">无界智源 · 团队博客 &amp; 演讲</p>
-                </div>
-              </div>
 
-              <!-- Editorial banner image — asymmetric position -->
-              <div class="mt-16 md:mt-20 grid md:grid-cols-12 gap-4">
-                <div class="md:col-span-8 md:col-start-5 relative ai-reveal-img">
-                  <div class="relative overflow-hidden aspect-[16/10] bg-gradient-to-br from-[#1A1A1F] via-[#252018] to-[#B8956A]">
-                    <div class="absolute inset-0 opacity-50 ai-pan-slow" style="background:
-                      radial-gradient(ellipse at 25% 30%, rgba(212,184,150,0.35) 0%, transparent 50%),
-                      radial-gradient(ellipse at 75% 70%, rgba(184,149,106,0.25) 0%, transparent 55%)"></div>
-                    <div class="absolute inset-0 opacity-20" style="background-image:
-                      linear-gradient(rgba(184,149,106,0.25) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(184,149,106,0.25) 1px, transparent 1px);
-                      background-size: 44px 44px;"></div>
-                    <div class="absolute top-1/4 left-1/4 w-40 h-40 rounded-full border border-white/10 ai-float-slow" data-parallax="0.12"></div>
-                    <div class="absolute bottom-1/3 right-1/3 w-56 h-56 rounded-full border border-white/5 ai-float" data-parallax="0.18"></div>
-                    <!-- Large serif "03" number overlay -->
-                    <div class="absolute bottom-4 right-6 ai-serif text-[120px] md:text-[180px] font-medium text-white/10 leading-none pointer-events-none select-none ai-num-glow">03</div>
+                  <!-- 邀请文字 + CTA -->
+                  <p class="mt-10 text-[15px] text-[color:var(--ai-foreground)]/80 leading-[1.85] max-w-xl">
+                    无论是工程合作、技术顾问，还是单纯想聊聊大模型落地的可能性——欢迎留言，无界智源团队通常 48 小时内回复。
+                  </p>
+                  <div class="mt-6">
+                    <a data-dom-id="cta-projects" href="projects.html" class="inline-flex items-center gap-2 ai-btn-gold text-xs">看看我们的项目 <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
                   </div>
-                  <!-- Figure caption -->
-                  <div class="mt-3 text-right">
-                    <span class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)]/70 tracking-wider">FIG. 03 — 思想现场 · 2026</span>
+
+                  <!-- 直接联系方式 — 紧凑双列卡片 -->
+                  <div class="mt-10 pt-8 border-t border-[color:var(--ai-border)]/60">
+                    <div class="flex items-center justify-between mb-5">
+                      <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wider">直接联系方式</span>
+                      <span class="inline-flex items-center gap-2">
+                        <span class="ai-status-dot"></span>
+                        <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">当前可接洽</span>
+                      </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 divide-y divide-[color:var(--ai-border)]/40 sm:divide-y-0">
+
+                      <!-- 电话 1 -->
+                      <a href="tel:13798699236" class="ai-editorial-row group py-3 flex items-center gap-3 hover:bg-[color:var(--ai-primary-soft)]/40 -mx-2 px-2 transition-colors sm:border-b sm:border-[color:var(--ai-border)]/40">
+                        <span class="flex h-7 w-7 shrink-0 items-center justify-center text-[color:var(--ai-primary)]">
+                          <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+                        </span>
+                        <div class="min-w-0 flex-1">
+                          <div class="ai-mono text-[9px] text-[color:var(--ai-muted-foreground)] tracking-wider uppercase">电话 · 主</div>
+                          <div class="ai-mono text-[13px] text-[color:var(--ai-foreground)] mt-0.5 tracking-wide group-hover:text-[color:var(--ai-primary)] transition-colors">13798699236</div>
+                        </div>
+                      </a>
+
+                      <!-- 电话 2 -->
+                      <a href="tel:17718269040" class="ai-editorial-row group py-3 flex items-center gap-3 hover:bg-[color:var(--ai-primary-soft)]/40 -mx-2 px-2 transition-colors sm:border-b sm:border-[color:var(--ai-border)]/40">
+                        <span class="flex h-7 w-7 shrink-0 items-center justify-center text-[color:var(--ai-primary)]">
+                          <i data-lucide="phone-call" class="w-3.5 h-3.5"></i>
+                        </span>
+                        <div class="min-w-0 flex-1">
+                          <div class="ai-mono text-[9px] text-[color:var(--ai-muted-foreground)] tracking-wider uppercase">电话 · 备</div>
+                          <div class="ai-mono text-[13px] text-[color:var(--ai-foreground)] mt-0.5 tracking-wide group-hover:text-[color:var(--ai-primary)] transition-colors">17718269040</div>
+                        </div>
+                      </a>
+
+                      <!-- 微信 -->
+                      <div class="ai-editorial-row group py-3 flex items-center gap-3 cursor-pointer" id="wechat-row" title="点击复制微信号">
+                        <span class="flex h-7 w-7 shrink-0 items-center justify-center text-[color:var(--ai-primary)]">
+                          <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                        </span>
+                        <div class="min-w-0 flex-1">
+                          <div class="ai-mono text-[9px] text-[color:var(--ai-muted-foreground)] tracking-wider uppercase">微信</div>
+                          <div class="ai-mono text-[13px] text-[color:var(--ai-foreground)] mt-0.5 tracking-wide group-hover:text-[color:var(--ai-primary)] transition-colors">Hdoudoucity</div>
+                        </div>
+                        <i data-lucide="copy" class="w-3 h-3 text-[color:var(--ai-muted-foreground)] opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                      </div>
+
+                      <!-- 邮箱 -->
+                      <a href="mailto:hello@wujiezhiyuan.ai" class="ai-editorial-row group py-3 flex items-center gap-3 hover:bg-[color:var(--ai-primary-soft)]/40 -mx-2 px-2 transition-colors sm:border-b sm:border-[color:var(--ai-border)]/40">
+                        <span class="flex h-7 w-7 shrink-0 items-center justify-center text-[color:var(--ai-primary)]">
+                          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+                        </span>
+                        <div class="min-w-0 flex-1">
+                          <div class="ai-mono text-[9px] text-[color:var(--ai-muted-foreground)] tracking-wider uppercase">邮箱</div>
+                          <div class="text-[13px] text-[color:var(--ai-foreground)] truncate mt-0.5 group-hover:text-[color:var(--ai-primary)] transition-colors">hello@wujiezhiyuan.ai</div>
+                        </div>
+                      </a>
+
+                      <!-- 知乎 -->
+                      <a href="https://www.zhihu.com/people/dian-dian-di-di-dou-dou-87/posts" target="_blank" rel="noopener" class="ai-editorial-row group py-3 flex items-center gap-3 hover:bg-[color:var(--ai-primary-soft)]/40 -mx-2 px-2 transition-colors sm:border-b sm:border-[color:var(--ai-border)]/40">
+                        <span class="flex h-7 w-7 shrink-0 items-center justify-center text-[color:var(--ai-primary)]">
+                          <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+                        </span>
+                        <div class="min-w-0 flex-1">
+                          <div class="ai-mono text-[9px] text-[color:var(--ai-muted-foreground)] tracking-wider uppercase">知乎 · 长文</div>
+                          <div class="text-[13px] text-[color:var(--ai-foreground)] truncate mt-0.5 group-hover:text-[color:var(--ai-primary)] transition-colors">点点滴滴豆豆</div>
+                        </div>
+                      </a>
+
+                      <!-- 办公地址 -->
+                      <div class="ai-editorial-row py-3 flex items-start gap-3">
+                        <span class="flex h-7 w-7 shrink-0 items-center justify-center text-[color:var(--ai-primary)] mt-0.5">
+                          <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                        </span>
+                        <div class="min-w-0 flex-1">
+                          <div class="ai-mono text-[9px] text-[color:var(--ai-muted-foreground)] tracking-wider uppercase">办公地址</div>
+                          <div class="text-[12px] text-[color:var(--ai-foreground)] mt-0.5 leading-relaxed">佛山南海 · 桂城人才中心<br>广州琶洲 · OPC 社区</div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <p class="text-[11px] text-[color:var(--ai-muted-foreground)]/70 mt-4 leading-relaxed">
+                      电话 / 微信为最快联系方式，工作时间 09:00-21:00 内通常即时响应。
+                    </p>
                   </div>
                 </div>
+
+                <!-- 右侧：Banner 图 + 留言表单 -->
+                <div class="md:col-span-5 space-y-8">
+                  <!-- Editorial banner image -->
+                  <div class="relative ai-reveal-img">
+                    <div class="relative overflow-hidden aspect-[4/3] bg-gradient-to-br from-[#1A1A1F] via-[#252018] to-[#B8956A]">
+                      <div class="absolute inset-0 opacity-50 ai-pan-slow" style="background:
+                        radial-gradient(ellipse at 25% 30%, rgba(212,184,150,0.35) 0%, transparent 50%),
+                        radial-gradient(ellipse at 75% 70%, rgba(184,149,106,0.25) 0%, transparent 55%)"></div>
+                      <div class="absolute inset-0 opacity-20" style="background-image:
+                        linear-gradient(rgba(184,149,106,0.25) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(184,149,106,0.25) 1px, transparent 1px);
+                        background-size: 44px 44px;"></div>
+                      <div class="absolute top-1/4 left-1/4 w-28 h-28 rounded-full border border-white/10 ai-float-slow" data-parallax="0.12"></div>
+                      <div class="absolute bottom-1/3 right-1/3 w-40 h-40 rounded-full border border-white/5 ai-float" data-parallax="0.18"></div>
+                      <div class="absolute bottom-4 right-5 ai-serif text-[80px] md:text-[110px] font-medium text-white/10 leading-none pointer-events-none select-none ai-num-glow">03</div>
+                    </div>
+                    <div class="mt-3 text-right">
+                      <span class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)]/70 tracking-wider">FIG. 03 — 思想现场 · 2026</span>
+                    </div>
+                  </div>
+
+                  <!-- 留言表单 — 紧凑版 -->
+                  <div class="border border-[color:var(--ai-border)] bg-[color:var(--ai-card)] p-6 md:p-7 ai-reveal">
+                    <div class="flex items-center justify-between mb-5">
+                      <h3 class="ai-serif text-lg font-medium text-[color:var(--ai-foreground)]">留言 · MESSAGE</h3>
+                      <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider uppercase">48h 内回复</span>
+                    </div>
+                    <form id="contactForm" novalidate class="space-y-5">
+                      <div>
+                        <label for="contactName" class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider block mb-1.5">姓名</label>
+                        <input id="contactName" name="name" type="text" class="ai-input-underline" placeholder="您的称呼" required aria-required="true">
+                      </div>
+                      <div>
+                        <label for="contactEmail" class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider block mb-1.5">邮箱</label>
+                        <input id="contactEmail" name="email" type="email" class="ai-input-underline" placeholder="your@email.com" required aria-required="true">
+                      </div>
+                      <div>
+                        <label for="contactMessage" class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider block mb-1.5">想说点什么</label>
+                        <textarea id="contactMessage" name="message" rows="3" class="ai-input-underline resize-none" placeholder="聊聊你的想法..." required aria-required="true"></textarea>
+                      </div>
+                      <button type="submit" id="contactSubmit" class="inline-flex items-center gap-2 ai-btn-gold text-xs">发送消息 <i data-lucide="send" class="w-3.5 h-3.5"></i></button>
+                    </form>
+                  </div>
+                </div>
+
               </div>
             </div>
           </section>
@@ -1116,155 +1235,6 @@ body {
                 <span class="h-px w-10 bg-[color:var(--ai-primary)]/30"></span>
                 <span class="ai-mono text-[10px] tracking-[0.2em] uppercase">5 篇文章 · 2 场演讲 · 2026</span>
                 <span class="h-px w-10 bg-[color:var(--ai-primary)]/30"></span>
-              </div>
-            </div>
-          </section>
-
-          <!-- ============ Section 4: Editorial Contact ============ -->
-          <section id="contact" class="py-24 md:py-32 scroll-mt-16">
-            <div class="mx-auto max-w-7xl px-6 ai-reveal">
-              <!-- Section header -->
-              <div class="mb-12">
-                <span class="ai-eyebrow" data-reveal-self>// 联系 · CONTACT</span>
-                <h2 class="mt-3 text-3xl md:text-4xl ai-serif font-medium tracking-tight text-[color:var(--ai-foreground)] ai-blur-in">一起做点有意思的事</h2>
-                <div class="mt-6 ai-gold-rule ai-rule-grow"></div>
-              </div>
-
-              <!-- Asymmetric editorial layout -->
-              <div class="grid md:grid-cols-12 gap-12">
-
-                <!-- Left: Invitation + CTA + Form -->
-                <div class="md:col-span-7">
-                  <p class="text-base text-[color:var(--ai-foreground)]/80 leading-[1.9] max-w-xl">
-                    无论是工程合作、技术顾问，还是单纯想聊聊大模型落地的可能性——欢迎留言，无界智源团队通常 48 小时内回复。
-                  </p>
-
-                  <div class="mt-8">
-                    <a data-dom-id="cta-projects" href="projects.html" class="inline-flex items-center gap-2 ai-btn-gold text-xs">看看我们的项目 <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
-                  </div>
-
-                  <!-- Form — underline style -->
-                  <form id="contactForm" novalidate class="mt-14 space-y-8">
-                    <div class="grid sm:grid-cols-2 gap-8">
-                      <div>
-                        <label for="contactName" class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wider block mb-2">姓名</label>
-                        <input id="contactName" name="name" type="text" class="ai-input-underline" placeholder="您的称呼" required aria-required="true">
-                      </div>
-                      <div>
-                        <label for="contactEmail" class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wider block mb-2">邮箱</label>
-                        <input id="contactEmail" name="email" type="email" class="ai-input-underline" placeholder="your@email.com" required aria-required="true">
-                      </div>
-                    </div>
-                    <div>
-                      <label for="contactMessage" class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wider block mb-2">想说点什么</label>
-                      <textarea id="contactMessage" name="message" rows="4" class="ai-input-underline resize-none" placeholder="聊聊你的想法..." required aria-required="true"></textarea>
-                    </div>
-                    <button type="submit" id="contactSubmit" class="inline-flex items-center gap-2 ai-btn-gold text-xs">发送消息 <i data-lucide="send" class="w-4 h-4"></i></button>
-                  </form>
-                </div>
-
-                <!-- Right: Contact info -->
-                <div class="md:col-span-4 md:col-start-9">
-                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wider">直接联系方式</span>
-
-                  <div class="mt-6 divide-y divide-[color:var(--ai-border)]/50">
-
-                    <!-- 电话 1 -->
-                    <a href="tel:13798699236" class="ai-editorial-row group py-4 flex items-center gap-4 hover:bg-[color:var(--ai-primary-soft)]/40 -mx-2 px-2 transition-colors">
-                      <span class="flex h-8 w-8 shrink-0 items-center justify-center text-[color:var(--ai-primary)]">
-                        <i data-lucide="phone" class="w-4 h-4"></i>
-                      </span>
-                      <div class="min-w-0 flex-1">
-                        <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider uppercase">电话 · 主</div>
-                        <div class="ai-mono text-sm text-[color:var(--ai-foreground)] mt-0.5 tracking-wide group-hover:text-[color:var(--ai-primary)] transition-colors">13798699236</div>
-                      </div>
-                      <i data-lucide="arrow-up-right" class="w-3 h-3 text-[color:var(--ai-muted-foreground)] opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </a>
-
-                    <!-- 电话 2 -->
-                    <a href="tel:17718269040" class="ai-editorial-row group py-4 flex items-center gap-4 hover:bg-[color:var(--ai-primary-soft)]/40 -mx-2 px-2 transition-colors">
-                      <span class="flex h-8 w-8 shrink-0 items-center justify-center text-[color:var(--ai-primary)]">
-                        <i data-lucide="phone-call" class="w-4 h-4"></i>
-                      </span>
-                      <div class="min-w-0 flex-1">
-                        <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider uppercase">电话 · 备</div>
-                        <div class="ai-mono text-sm text-[color:var(--ai-foreground)] mt-0.5 tracking-wide group-hover:text-[color:var(--ai-primary)] transition-colors">17718269040</div>
-                      </div>
-                      <i data-lucide="arrow-up-right" class="w-3 h-3 text-[color:var(--ai-muted-foreground)] opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </a>
-
-                    <!-- 微信 -->
-                    <div class="ai-editorial-row group py-4 flex items-center gap-4" id="wechat-row" title="点击复制微信号">
-                      <span class="flex h-8 w-8 shrink-0 items-center justify-center text-[color:var(--ai-primary)]">
-                        <i data-lucide="message-circle" class="w-4 h-4"></i>
-                      </span>
-                      <div class="min-w-0 flex-1">
-                        <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider uppercase">微信</div>
-                        <div class="ai-mono text-sm text-[color:var(--ai-foreground)] mt-0.5 tracking-wide group-hover:text-[color:var(--ai-primary)] transition-colors" id="wechat-id">Hdoudoucity</div>
-                      </div>
-                      <i data-lucide="copy" class="w-3 h-3 text-[color:var(--ai-muted-foreground)] opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-
-                    <!-- 知乎 -->
-                    <a href="https://www.zhihu.com/people/dian-dian-di-di-dou-dou-87/posts" target="_blank" rel="noopener" class="ai-editorial-row group py-4 flex items-center gap-4 hover:bg-[color:var(--ai-primary-soft)]/40 -mx-2 px-2 transition-colors">
-                      <span class="flex h-8 w-8 shrink-0 items-center justify-center text-[color:var(--ai-primary)]">
-                        <i data-lucide="book-open" class="w-4 h-4"></i>
-                      </span>
-                      <div class="min-w-0 flex-1">
-                        <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider uppercase">知乎 · 长文</div>
-                        <div class="text-sm text-[color:var(--ai-foreground)] truncate mt-0.5 group-hover:text-[color:var(--ai-primary)] transition-colors">点点滴滴豆豆 · 文章专栏</div>
-                      </div>
-                      <i data-lucide="arrow-up-right" class="w-3 h-3 text-[color:var(--ai-muted-foreground)] opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </a>
-
-                    <!-- 邮箱 -->
-                    <a href="mailto:hello@wujiezhiyuan.ai" class="ai-editorial-row group py-4 flex items-center gap-4 hover:bg-[color:var(--ai-primary-soft)]/40 -mx-2 px-2 transition-colors">
-                      <span class="flex h-8 w-8 shrink-0 items-center justify-center text-[color:var(--ai-primary)]">
-                        <i data-lucide="mail" class="w-4 h-4"></i>
-                      </span>
-                      <div class="min-w-0 flex-1">
-                        <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider uppercase">邮箱</div>
-                        <div class="text-sm text-[color:var(--ai-foreground)] truncate mt-0.5 group-hover:text-[color:var(--ai-primary)] transition-colors">hello@wujiezhiyuan.ai</div>
-                      </div>
-                      <i data-lucide="arrow-up-right" class="w-3 h-3 text-[color:var(--ai-muted-foreground)] opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </a>
-
-                    <!-- 办公地址 1 · 佛山总部 -->
-                    <div class="ai-editorial-row py-4 flex items-start gap-4">
-                      <span class="flex h-8 w-8 shrink-0 items-center justify-center text-[color:var(--ai-primary)] mt-0.5">
-                        <i data-lucide="map-pin" class="w-4 h-4"></i>
-                      </span>
-                      <div class="min-w-0 flex-1">
-                        <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider uppercase">办公地址 · 佛山</div>
-                        <div class="text-sm text-[color:var(--ai-foreground)] mt-0.5 leading-relaxed">佛山市南海区桂城政府桂城人才中心</div>
-                      </div>
-                    </div>
-
-                    <!-- 办公地址 2 · 广州 -->
-                    <div class="ai-editorial-row py-4 flex items-start gap-4">
-                      <span class="flex h-8 w-8 shrink-0 items-center justify-center text-[color:var(--ai-primary)] mt-0.5">
-                        <i data-lucide="map-pin" class="w-4 h-4"></i>
-                      </span>
-                      <div class="min-w-0 flex-1">
-                        <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider uppercase">办公地址 · 广州</div>
-                        <div class="text-sm text-[color:var(--ai-foreground)] mt-0.5 leading-relaxed">广州市琶洲政府 OPC 社区</div>
-                      </div>
-                    </div>
-
-                  </div>
-
-                  <!-- Availability -->
-                  <div class="mt-8 pt-6 border-t border-[color:var(--ai-border)]/50">
-                    <div class="flex items-center gap-2.5">
-                      <span class="ai-status-dot"></span>
-                      <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">当前可接洽新项目</span>
-                    </div>
-                    <p class="text-[11px] text-[color:var(--ai-muted-foreground)]/70 mt-3 leading-relaxed">
-                      电话 / 微信为最快联系方式，工作时间 09:00-21:00 内通常即时响应。
-                    </p>
-                  </div>
-                </div>
-
               </div>
             </div>
           </section>
