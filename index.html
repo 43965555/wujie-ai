@@ -1598,6 +1598,15 @@ body {
         const gl = canvas.getContext('webgl2', { alpha: true, antialias: false, powerPreference: 'low-power' });
         if (!gl) return;
 
+        // ---- 启用浮点渲染目标扩展（RG16F 作为 FBO 颜色附件需要）----
+        // WebGL2 中浮点纹理默认可采样，但作为渲染目标需要此扩展
+        const ext = gl.getExtension('EXT_color_buffer_half_float');
+        if (!ext) {
+          // 不支持半浮点渲染目标，降级退出
+          console.warn('RD: EXT_color_buffer_half_float not supported, fallback disabled');
+          return;
+        }
+
         // ---- 配置参数 ----
         const RD = {
           SIM_SIZE: 256,                  // 模拟分辨率（低分辨率迭代，CSS 放大显示）
@@ -1614,6 +1623,7 @@ body {
 
         // ---- Shader 源码 ----
         const VERT = `#version 300 es
+          precision highp float;
           in vec2 aPos;
           out vec2 vUv;
           void main() {
@@ -1636,15 +1646,15 @@ body {
             vec2 c = texture(uState, vUv).rg;
             // 9 点拉普拉斯算子（加权 3x3 卷积）
             vec2 lap = vec2(0.0);
-            lap += texture(uState, vUv + uTexel * vec2(-1, -1)).rg * 0.05;
-            lap += texture(uState, vUv + uTexel * vec2( 0, -1)).rg * 0.20;
-            lap += texture(uState, vUv + uTexel * vec2( 1, -1)).rg * 0.05;
-            lap += texture(uState, vUv + uTexel * vec2(-1,  0)).rg * 0.20;
-            lap += texture(uState, vUv + uTexel * vec2( 0,  0)).rg * -1.0;
-            lap += texture(uState, vUv + uTexel * vec2( 1,  0)).rg * 0.20;
-            lap += texture(uState, vUv + uTexel * vec2(-1,  1)).rg * 0.05;
-            lap += texture(uState, vUv + uTexel * vec2( 0,  1)).rg * 0.20;
-            lap += texture(uState, vUv + uTexel * vec2( 1,  1)).rg * 0.05;
+            lap += texture(uState, vUv + uTexel * vec2(-1.0, -1.0)).rg * 0.05;
+            lap += texture(uState, vUv + uTexel * vec2( 0.0, -1.0)).rg * 0.20;
+            lap += texture(uState, vUv + uTexel * vec2( 1.0, -1.0)).rg * 0.05;
+            lap += texture(uState, vUv + uTexel * vec2(-1.0,  0.0)).rg * 0.20;
+            lap += texture(uState, vUv + uTexel * vec2( 0.0,  0.0)).rg * -1.0;
+            lap += texture(uState, vUv + uTexel * vec2( 1.0,  0.0)).rg * 0.20;
+            lap += texture(uState, vUv + uTexel * vec2(-1.0,  1.0)).rg * 0.05;
+            lap += texture(uState, vUv + uTexel * vec2( 0.0,  1.0)).rg * 0.20;
+            lap += texture(uState, vUv + uTexel * vec2( 1.0,  1.0)).rg * 0.05;
 
             float u = c.r, v = c.g;
             // Gray-Scott 方程
@@ -1700,9 +1710,18 @@ body {
         }
         function program(vs, fs) {
           const p = gl.createProgram();
-          gl.attachShader(p, compile(gl.VERTEX_SHADER, vs));
-          gl.attachShader(p, compile(gl.FRAGMENT_SHADER, fs));
+          const vsSh = compile(gl.VERTEX_SHADER, vs);
+          const fsSh = compile(gl.FRAGMENT_SHADER, fs);
+          if (!vsSh || !fsSh) return null;
+          gl.attachShader(p, vsSh);
+          gl.attachShader(p, fsSh);
+          // 强制 aPos 绑定到位置 0，确保两个 program 共用 VAO
+          gl.bindAttribLocation(p, 0, 'aPos');
           gl.linkProgram(p);
+          if (!gl.getProgramParameter(p, gl.LINK_STATUS)) {
+            console.error('RD program link failed:', gl.getProgramInfoLog(p));
+            return null;
+          }
           return p;
         }
 
@@ -1710,15 +1729,14 @@ body {
         const renderProg = program(VERT, RENDER_FRAG);
         if (!simProg || !renderProg) return;
 
-        // ---- 全屏四边形 ----
+        // ---- 全屏四边形（VAO 绑定 aPos 到位置 0）----
         const vao = gl.createVertexArray();
         gl.bindVertexArray(vao);
         const buf = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, buf);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
-        const aPos = gl.getAttribLocation(simProg, 'aPos');
-        gl.enableVertexAttribArray(aPos);
-        gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+        gl.enableVertexAttribArray(0);
+        gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
 
         // ---- Ping-pong framebuffers ----
         function createFBO() {
@@ -1732,24 +1750,46 @@ body {
           const fbo = gl.createFramebuffer();
           gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
           gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+          // 检查 framebuffer 完整性
+          const status = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
+          if (status !== gl.FRAMEBUFFER_COMPLETE) {
+            console.error('RD framebuffer incomplete:', status);
+            return null;
+          }
           return { tex, fbo };
         }
         const A = createFBO();
         const B = createFBO();
+        if (!A || !B) return;
+
+        // ---- float → half-float 转换（完整 IEEE 754 实现）----
+        function f2h(f) {
+          // 处理特殊值
+          if (f === 0) return 0;
+          if (Number.isNaN(f)) return 0x7e00;        // NaN
+          if (f === Infinity) return f > 0 ? 0x7c00 : 0xfc00; // ±Inf
+
+          const buf = new ArrayBuffer(4);
+          new Float32Array(buf)[0] = f;
+          const bits = new Uint32Array(buf)[0];
+          const sign = (bits >>> 16) & 0x8000;
+          const exp32 = (bits >>> 23) & 0xff;
+          const mant32 = bits & 0x7fffff;
+          let exp16 = exp32 - 127 + 15;
+
+          // 指数溢出 → Inf
+          if (exp16 >= 31) return sign | 0x7c00;
+          // 指数下溢 → 0（简化处理，未做非规格化）
+          if (exp16 <= 0) return sign;
+
+          // 尾数右移 13 位（23 位 → 10 位），四舍五入
+          const mant16 = mant32 >> 13;
+          return sign | (exp16 << 10) | mant16;
+        }
 
         // ---- 初始状态：u=1, v=0，中心播种 ----
         function seedInitialState() {
           const data = new Uint16Array(RD.SIM_SIZE * RD.SIM_SIZE * 2);
-          const f2h = (f) => {
-            // float → half-float 简易转换（足够精度）
-            const buf = new ArrayBuffer(4);
-            new Float32Array(buf)[0] = f;
-            const bits = new Uint32Array(buf)[0];
-            const sign = (bits >> 16) & 0x8000;
-            const exp = ((bits >> 23) & 0xff) - 127 + 15;
-            const mant = (bits >> 13) & 0x3ff;
-            return sign | ((exp < 0 ? 0 : exp > 31 ? 31 : exp) << 10) | mant;
-          };
           for (let i = 0; i < RD.SIM_SIZE * RD.SIM_SIZE; i++) {
             data[i * 2] = f2h(1.0);
             data[i * 2 + 1] = f2h(0.0);
@@ -1780,7 +1820,7 @@ body {
           uFeed: gl.getUniformLocation(simProg, 'uFeed'),
           uKill: gl.getUniformLocation(simProg, 'uKill'),
           uDu: gl.getUniformLocation(simProg, 'uDu'),
-         uDv: gl.getUniformLocation(simProg, 'uDv'),
+          uDv: gl.getUniformLocation(simProg, 'uDv'),
           uDt: gl.getUniformLocation(simProg, 'uDt'),
           uMouse: gl.getUniformLocation(simProg, 'uMouse'),
           uMouseStrength: gl.getUniformLocation(simProg, 'uMouseStrength'),
@@ -1789,18 +1829,22 @@ body {
           uState: gl.getUniformLocation(renderProg, 'uState'),
         };
 
-        // ---- 鼠标交互 ----
+        // ---- 鼠标交互（在 window 上监听，避免被遮罩层阻挡）----
         let mouse = { x: 0.5, y: 0.5, strength: 0 };
         const heroSection = canvas.parentElement;
-        heroSection.addEventListener('mousemove', (e) => {
+        window.addEventListener('mousemove', (e) => {
           const r = heroSection.getBoundingClientRect();
+          // 只在 Hero 区域内响应
+          if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) {
+            mouse.strength = 0;
+            return;
+          }
           mouse.x = (e.clientX - r.left) / r.width;
           mouse.y = 1.0 - (e.clientY - r.top) / r.height; // 翻转 Y
           mouse.strength = RD.MOUSE_STRENGTH;
         });
-        heroSection.addEventListener('mouseleave', () => { mouse.strength = 0; });
 
-        // ---- 自动随机播种（避免静止） ----
+        // ---- 自动随机播种（避免静止）----
         setInterval(() => {
           if (mouse.strength > 0) return;
           mouse.x = Math.random();
@@ -1833,6 +1877,9 @@ body {
 
         function frame() {
           if (running) {
+            // 确保 VAO 绑定（防止被其他 WebGL 代码干扰）
+            gl.bindVertexArray(vao);
+
             // 模拟迭代
             gl.useProgram(simProg);
             gl.uniform2f(simU.uTexel, 1.0 / RD.SIM_SIZE, 1.0 / RD.SIM_SIZE);
