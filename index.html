@@ -14,6 +14,33 @@
     <meta name="twitter:title" content="无界智源 · AI 科技公司">
     <meta name="twitter:description" content="无界智源 — AI 工程师吴杰的个人作品集。聚焦 AI 中台、智能客服、Agent 系统、工业视觉、外骨骼等 13 个落地项目，覆盖商业 CRM、品宣获客、高级技术、出海 4 大领域。">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "无界智源",
+          "alternateName": "Wujie AI",
+          "url": "https://43965555.github.io/wujie-ai/",
+          "description": "AI 工程师吴杰的个人作品集",
+          "founder": { "@type": "Person", "name": "吴杰", "jobTitle": "AI 工程师" }
+        },
+        {
+          "@type": "WebSite",
+          "name": "无界智源 · AI 科技公司",
+          "url": "https://43965555.github.io/wujie-ai/",
+          "inLanguage": "zh-CN"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://43965555.github.io/wujie-ai/" }
+          ]
+        }
+      ]
+    }
+    </script>
     <style id="theme-vars">
 /* ============================================================
    AI Engineer Portfolio — European Luxury Light Theme (Elevated)
@@ -1486,9 +1513,29 @@ body {
       </footer>
     </main>
     <script>
+      // ============================================================
+      // 全局配置常量 — 集中管理魔法数字，便于后续维护
+      // ============================================================
+      const CONFIG = {
+        // 滚动进度条 / 导航栏
+        NAV_SCROLL_THRESHOLD: 20,             // 导航栏触发 is-scrolled 状态的滚动阈值(px)
+        // 滚动揭示 IntersectionObserver
+        REVEAL_THRESHOLD: 0.12,               // 元素可见比例阈值
+        REVEAL_ROOT_MARGIN: '0px 0px -60px 0px', // 视口下沿提前量
+        // 磁吸按钮
+        MAGNETIC_STRENGTH: 0.25,              // 磁吸跟随强度(0~1)
+        // 3D 倾斜
+        TILT_PERSPECTIVE: 1000,               // 透视距离(px)
+        TILT_MAX_ANGLE: 6,                    // 最大旋转角度(deg)
+        TILT_LIFT: -4,                        // 倾斜时上抬量(px)
+        // 数字滚动动画
+        COUNTER_THRESHOLD: 0.4,               // 数字滚动触发可见比例
+        COUNTER_DURATION_DEFAULT: 1400,       // 默认动画时长(ms)
+      };
+
       lucide.createIcons();
 
-      // Scroll progress bar
+      // 滚动进度条
       const progressBar = document.getElementById('scrollProgress');
       const updateProgress = () => {
         const scrollTop = window.scrollY;
@@ -1499,10 +1546,10 @@ body {
       window.addEventListener('scroll', updateProgress, { passive: true });
       updateProgress();
 
-      // Nav scroll state
+      // 导航栏滚动状态
       const nav = document.querySelector('[data-global-nav="desktop"]');
       const onScroll = () => {
-        if (window.scrollY > 20) {
+        if (window.scrollY > CONFIG.NAV_SCROLL_THRESHOLD) {
           nav.classList.add('is-scrolled');
         } else {
           nav.classList.remove('is-scrolled');
@@ -1511,7 +1558,7 @@ body {
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
 
-      // Scroll reveal with IntersectionObserver
+      // 滚动揭示 — 基于 IntersectionObserver
       const revealSelectors = '.ai-reveal, .ai-reveal-stagger, .ai-reveal-img, .ai-reveal-line, .ai-rule-grow, .ai-reveal-mask, .ai-eyebrow, .ai-blur-in, .ai-word-reveal, .ai-ink-bleed, .ai-serif-num';
       const revealEls = document.querySelectorAll(revealSelectors);
       if ('IntersectionObserver' in window) {
@@ -1522,20 +1569,20 @@ body {
               io.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+        }, { threshold: CONFIG.REVEAL_THRESHOLD, rootMargin: CONFIG.REVEAL_ROOT_MARGIN });
         revealEls.forEach(el => io.observe(el));
       } else {
         revealEls.forEach(el => el.classList.add('is-visible'));
       }
 
       // ============================================================
-      // Advanced motion v2 — only on devices with fine pointer
+      // 高级动效 v2 — 仅在精细指针设备上启用
       // ============================================================
       const finePointer = window.matchMedia('(pointer: fine)').matches;
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       if (finePointer && !reducedMotion) {
-        // ---- Cursor spotlight ----
+        // ---- 光标聚光灯 ----
         const spotlight = document.getElementById('cursorSpotlight');
         if (spotlight) {
           let rafSpot = null, sx = 0, sy = 0;
@@ -1550,28 +1597,27 @@ body {
           document.addEventListener('mouseleave', () => spotlight.classList.remove('is-active'));
         }
 
-        // ---- Magnetic buttons ----
+        // ---- 磁吸按钮 ----
         document.querySelectorAll('.ai-btn-gold, .ai-magnetic').forEach(el => {
           el.addEventListener('mousemove', (e) => {
             const r = el.getBoundingClientRect();
             const x = e.clientX - (r.left + r.width / 2);
             const y = e.clientY - (r.top + r.height / 2);
-            const strength = 0.25;
-            el.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+            el.style.transform = `translate(${x * CONFIG.MAGNETIC_STRENGTH}px, ${y * CONFIG.MAGNETIC_STRENGTH}px)`;
           });
           el.addEventListener('mouseleave', () => {
             el.style.transform = '';
           });
         });
 
-        // ---- 3D tilt on cards ----
+        // ---- 卡片 3D 倾斜 ----
         document.querySelectorAll('.ai-card-hover, .ai-tilt').forEach(el => {
           el.addEventListener('mousemove', (e) => {
             const r = el.getBoundingClientRect();
             const x = (e.clientX - r.left) / r.width - 0.5;
             const y = (e.clientY - r.top) / r.height - 0.5;
             el.classList.add('is-tilting');
-            el.style.transform = `perspective(1000px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg) translateY(-4px)`;
+            el.style.transform = `perspective(${CONFIG.TILT_PERSPECTIVE}px) rotateX(${-y * CONFIG.TILT_MAX_ANGLE}deg) rotateY(${x * CONFIG.TILT_MAX_ANGLE}deg) translateY(${CONFIG.TILT_LIFT}px)`;
           });
           el.addEventListener('mouseleave', () => {
             el.classList.remove('is-tilting');
@@ -1579,7 +1625,7 @@ body {
           });
         });
 
-        // ---- Spotlight hover (per-card radial gradient) ----
+        // ---- 悬停聚光（卡片级径向渐变） ----
         document.querySelectorAll('.ai-spotlight').forEach(el => {
           el.addEventListener('mousemove', (e) => {
             const r = el.getBoundingClientRect();
@@ -1588,7 +1634,7 @@ body {
           });
         });
 
-        // ---- Parallax on hero decorations ----
+        // ---- 主视觉装饰视差 ----
         const parallaxEls = document.querySelectorAll('.ai-parallax');
         if (parallaxEls.length) {
           let rafPara = null;
@@ -1605,7 +1651,7 @@ body {
         }
       }
 
-      // ---- Number counter animation ----
+      // ---- 数字滚动动画 ----
       const counters = document.querySelectorAll('[data-counter]');
       if (counters.length && 'IntersectionObserver' in window) {
         const counterIO = new IntersectionObserver((entries) => {
@@ -1616,7 +1662,7 @@ body {
             const suffix = el.dataset.suffix || '';
             const prefix = el.dataset.prefix || '';
             const decimals = parseInt(el.dataset.decimals || '0', 10);
-            const duration = parseInt(el.dataset.duration || '1400', 10);
+            const duration = parseInt(el.dataset.duration || String(CONFIG.COUNTER_DURATION_DEFAULT), 10);
             const start = performance.now();
             const startVal = 0;
             const step = (t) => {
@@ -1630,7 +1676,7 @@ body {
             requestAnimationFrame(step);
             counterIO.unobserve(el);
           });
-        }, { threshold: 0.4 });
+        }, { threshold: CONFIG.COUNTER_THRESHOLD });
         counters.forEach(el => counterIO.observe(el));
       }
     </script>

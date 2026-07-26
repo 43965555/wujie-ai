@@ -1293,9 +1293,35 @@ body {
         </footer>
     </main>
     <script>
+      // ============================================================
+      // 全局配置常量 — 集中管理魔法数字，便于后续维护
+      // ============================================================
+      const CONFIG = {
+        // 滚动进度条 / 导航栏
+        NAV_SCROLL_THRESHOLD: 20,             // 导航栏触发 is-scrolled 状态的滚动阈值(px)
+        // 滚动揭示 IntersectionObserver
+        REVEAL_THRESHOLD: 0.12,               // 元素可见比例阈值
+        REVEAL_ROOT_MARGIN: '0px 0px -60px 0px', // 视口下沿提前量
+        // 磁吸按钮
+        MAGNETIC_STRENGTH: 0.25,              // 磁吸跟随强度(0~1)
+        // 3D 倾斜
+        TILT_PERSPECTIVE: 1000,               // 透视距离(px)
+        TILT_MAX_ANGLE: 6,                    // 最大旋转角度(deg)
+        TILT_LIFT: -4,                        // 倾斜时上抬量(px)
+        // 数字滚动动画
+        COUNTER_THRESHOLD: 0.4,               // 数字滚动触发可见比例
+        COUNTER_DURATION_DEFAULT: 1400,       // 默认动画时长(ms)
+        // 联系表单
+        FORM_RESET_DELAY: 2800,               // 提交按钮恢复可点击的延时(ms)
+        // 微信复制反馈
+        WECHAT_FEEDBACK_DELAY: 1500,          // 微信复制成功后图标恢复延时(ms)
+        // Toast 提示
+        TOAST_DURATION_DEFAULT: 2500,         // 默认显示时长(ms)
+      };
+
       lucide.createIcons();
 
-      // Scroll progress bar
+      // 滚动进度条
       const progressBar = document.getElementById('scrollProgress');
       const updateProgress = () => {
         const scrollTop = window.scrollY;
@@ -1306,10 +1332,10 @@ body {
       window.addEventListener('scroll', updateProgress, { passive: true });
       updateProgress();
 
-      // Nav scroll state
+      // 导航栏滚动状态
       const nav = document.querySelector('[data-global-nav="desktop"]');
       const onScroll = () => {
-        if (window.scrollY > 20) {
+        if (window.scrollY > CONFIG.NAV_SCROLL_THRESHOLD) {
           nav.classList.add('is-scrolled');
         } else {
           nav.classList.remove('is-scrolled');
@@ -1318,7 +1344,7 @@ body {
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
 
-      // Scroll reveal with IntersectionObserver
+      // 滚动揭示 — 基于 IntersectionObserver
       const revealSelectors = '.ai-reveal, .ai-reveal-stagger, .ai-reveal-img, .ai-reveal-line, .ai-rule-grow, .ai-reveal-mask, .ai-eyebrow, .ai-blur-in, .ai-word-reveal, .ai-ink-bleed, .ai-serif-num';
       const revealEls = document.querySelectorAll(revealSelectors);
       if ('IntersectionObserver' in window) {
@@ -1329,20 +1355,20 @@ body {
               io.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+        }, { threshold: CONFIG.REVEAL_THRESHOLD, rootMargin: CONFIG.REVEAL_ROOT_MARGIN });
         revealEls.forEach(el => io.observe(el));
       } else {
         revealEls.forEach(el => el.classList.add('is-visible'));
       }
 
       // ============================================================
-      // Advanced motion v2 — only on devices with fine pointer
+      // 高级动效 v2 — 仅在精细指针设备上启用
       // ============================================================
       const finePointer = window.matchMedia('(pointer: fine)').matches;
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       if (finePointer && !reducedMotion) {
-        // ---- Cursor spotlight ----
+        // ---- 光标聚光灯 ----
         const spotlight = document.getElementById('cursorSpotlight');
         if (spotlight) {
           let rafSpot = null, sx = 0, sy = 0;
@@ -1357,26 +1383,25 @@ body {
           document.addEventListener('mouseleave', () => spotlight.classList.remove('is-active'));
         }
 
-        // ---- Magnetic buttons ----
+        // ---- 磁吸按钮 ----
         document.querySelectorAll('.ai-btn-gold, .ai-magnetic').forEach(el => {
           el.addEventListener('mousemove', (e) => {
             const r = el.getBoundingClientRect();
             const x = e.clientX - (r.left + r.width / 2);
             const y = e.clientY - (r.top + r.height / 2);
-            const strength = 0.25;
-            el.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+            el.style.transform = `translate(${x * CONFIG.MAGNETIC_STRENGTH}px, ${y * CONFIG.MAGNETIC_STRENGTH}px)`;
           });
           el.addEventListener('mouseleave', () => { el.style.transform = ''; });
         });
 
-        // ---- 3D tilt on cards ----
+        // ---- 卡片 3D 倾斜 ----
         document.querySelectorAll('.ai-card-hover, .ai-tilt').forEach(el => {
           el.addEventListener('mousemove', (e) => {
             const r = el.getBoundingClientRect();
             const x = (e.clientX - r.left) / r.width - 0.5;
             const y = (e.clientY - r.top) / r.height - 0.5;
             el.classList.add('is-tilting');
-            el.style.transform = `perspective(1000px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg) translateY(-4px)`;
+            el.style.transform = `perspective(${CONFIG.TILT_PERSPECTIVE}px) rotateX(${-y * CONFIG.TILT_MAX_ANGLE}deg) rotateY(${x * CONFIG.TILT_MAX_ANGLE}deg) translateY(${CONFIG.TILT_LIFT}px)`;
           });
           el.addEventListener('mouseleave', () => {
             el.classList.remove('is-tilting');
@@ -1384,7 +1409,7 @@ body {
           });
         });
 
-        // ---- Spotlight hover (per-card radial gradient) ----
+        // ---- 悬停聚光（卡片级径向渐变） ----
         document.querySelectorAll('.ai-spotlight').forEach(el => {
           el.addEventListener('mousemove', (e) => {
             const r = el.getBoundingClientRect();
@@ -1393,7 +1418,7 @@ body {
           });
         });
 
-        // ---- Parallax on hero decorations ----
+        // ---- 主视觉装饰视差 ----
         const parallaxEls = document.querySelectorAll('.ai-parallax');
         if (parallaxEls.length) {
           let rafPara = null;
@@ -1410,7 +1435,7 @@ body {
         }
       }
 
-      // ---- Number counter animation ----
+      // ---- 数字滚动动画 ----
       const counters = document.querySelectorAll('[data-counter]');
       if (counters.length && 'IntersectionObserver' in window) {
         const counterIO = new IntersectionObserver((entries) => {
@@ -1421,7 +1446,7 @@ body {
             const suffix = el.dataset.suffix || '';
             const prefix = el.dataset.prefix || '';
             const decimals = parseInt(el.dataset.decimals || '0', 10);
-            const duration = parseInt(el.dataset.duration || '1400', 10);
+            const duration = parseInt(el.dataset.duration || String(CONFIG.COUNTER_DURATION_DEFAULT), 10);
             const start = performance.now();
             const step = (t) => {
               const p = Math.min(1, (t - start) / duration);
@@ -1434,11 +1459,11 @@ body {
             requestAnimationFrame(step);
             counterIO.unobserve(el);
           });
-        }, { threshold: 0.4 });
+        }, { threshold: CONFIG.COUNTER_THRESHOLD });
         counters.forEach(el => counterIO.observe(el));
       }
 
-      // Contact form — friendly inline feedback (no backend)
+      // 联系表单 — 友好的内联反馈（无后端）
       const contactForm = document.getElementById('contactForm');
       if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
@@ -1448,7 +1473,7 @@ body {
           const messageEl = document.getElementById('contactMessage');
           const inputs = [nameEl, emailEl, messageEl].filter(Boolean);
 
-          // Validate required fields
+          // 校验必填字段
           if (nameEl && !nameEl.value.trim()) {
             showToast('请填写姓名后再发送。');
             nameEl && nameEl.focus();
@@ -1459,7 +1484,7 @@ body {
             emailEl && emailEl.focus();
             return;
           }
-          // Email format check
+          // 邮箱格式校验
           const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (emailEl && !emailRe.test(emailEl.value.trim())) {
             showToast('邮箱格式不正确，请检查后再发送。');
@@ -1472,7 +1497,7 @@ body {
             return;
           }
 
-          // Visual confirmation
+          // 视觉确认反馈
           const submitBtn = document.getElementById('contactSubmit');
           const originalHTML = submitBtn.innerHTML;
           submitBtn.innerHTML = '已收到，感谢留言 ✓';
@@ -1485,16 +1510,16 @@ body {
             submitBtn.disabled = false;
             submitBtn.style.opacity = '';
             lucide.createIcons();
-          }, 2800);
+          }, CONFIG.FORM_RESET_DELAY);
         });
       }
 
-      // Intercept placeholder links (article index, VIEW ALL, project detail) — show hint instead of jumping to top
+      // 拦截占位链接（文章索引、VIEW ALL、项目详情等）— 若带 title 提示，则改用 toast 而非跳到页首
       document.querySelectorAll('a[href="#"]').forEach(a => {
-        // Skip ones with explicit target="_blank" (real external links) or rel="noopener"
+        // 跳过显式 target="_blank"（真实外链）或 rel="noopener" 的链接
         if (a.target === '_blank') return;
         a.addEventListener('click', (e) => {
-          // Only intercept those without a real target inside this page
+          // 仅拦截本页内无真实目标的占位链接
           const title = (a.getAttribute('title') || '').trim();
           if (title) {
             e.preventDefault();
@@ -1503,7 +1528,7 @@ body {
         });
       });
 
-      // WeChat ID copy — clicking the wechat row or footer wechat button copies the ID
+      // 微信号复制 — 点击微信行或页脚微信按钮即可复制微信号
       const wechatId = 'Hdoudoucity';
       const copyWechat = (e) => {
         e.preventDefault();
@@ -1522,7 +1547,7 @@ body {
         } else {
           fallbackCopy();
         }
-        // Visual feedback
+        // 视觉反馈
         const target = e.currentTarget;
         const originalHTML = target.innerHTML;
         target.innerHTML = '<i data-lucide="check" class="w-4 h-4"></i>';
@@ -1530,14 +1555,14 @@ body {
         setTimeout(() => {
           target.innerHTML = originalHTML;
           lucide.createIcons();
-        }, 1500);
+        }, CONFIG.WECHAT_FEEDBACK_DELAY);
       };
       const wechatRow = document.getElementById('wechat-row');
       if (wechatRow) wechatRow.addEventListener('click', copyWechat);
       const footerWechatBtn = document.getElementById('footer-wechat-btn');
       if (footerWechatBtn) footerWechatBtn.addEventListener('click', copyWechat);
-    // Toast notification helper — replaces alert() for non-blocking UX
-    function showToast(msg, duration = 2500) {
+    // Toast 提示工具函数 — 替代 alert()，提供非阻塞的轻量反馈
+    function showToast(msg, duration = CONFIG.TOAST_DURATION_DEFAULT) {
       const toast = document.getElementById('toast');
       if (!toast) return;
       toast.textContent = msg;
