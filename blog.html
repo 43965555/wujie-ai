@@ -125,8 +125,12 @@ body {
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
   transition: background-position 0.8s var(--ai-ease-out);
+  filter: drop-shadow(0 1px 2px rgba(184, 149, 106, 0.18));
 }
-.ai-gradient-text:hover { background-position: right center; }
+.ai-gradient-text:hover {
+  background-position: right center;
+  filter: drop-shadow(0 2px 6px rgba(184, 149, 106, 0.32));
+}
 
 .ai-glow {
   box-shadow:
@@ -170,8 +174,12 @@ body {
 
 .ai-status-dot {
   position: relative; display: inline-block; width: 8px; height: 8px;
-  border-radius: 9999px; background: var(--ai-primary);
-  box-shadow: 0 0 0 4px rgba(184, 149, 106, 0.12);
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, #D4B896, #B8956A 60%, #9C7A4E);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 0 0 4px rgba(184, 149, 106, 0.12),
+    0 0 12px rgba(184, 149, 106, 0.35);
 }
 .ai-status-dot::after {
   content: ""; position: absolute; inset: -4px; border-radius: 9999px;
@@ -244,6 +252,9 @@ body {
 }
 .ai-text-link:hover::after {
   transform: scaleX(1); transform-origin: left center;
+}
+.ai-text-link:hover {
+  text-shadow: 0 0 12px rgba(184, 149, 106, 0.35);
 }
 
 .ai-btn-gold {
@@ -341,12 +352,15 @@ body {
 /* Nav scroll state */
 .ai-nav-scroll { transition: all 0.5s var(--ai-ease-out); }
 .ai-nav-scroll.is-scrolled {
-  border-bottom-color: rgba(184, 149, 106, 0.15) !important;
-  background: rgba(247, 244, 239, 0.95) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 1px 0 rgba(184, 149, 106, 0.06),
-    0 8px 24px -16px rgba(26, 26, 31, 0.06);
+  border-bottom-color: rgba(184, 149, 106, 0.22) !important;
+  background: rgba(247, 244, 239, 0.92) !important;
+  backdrop-filter: blur(16px) saturate(1.1);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  box-shadow:
+    inset 0 1px 0 rgba(184, 149, 106, 0.18),
+    0 1px 0 rgba(184, 149, 106, 0.08),
+    0 12px 32px -16px rgba(26, 26, 31, 0.10),
+    0 24px 48px -24px rgba(184, 149, 106, 0.12);
 }
 
 /* Scroll progress bar */
