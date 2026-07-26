@@ -959,107 +959,153 @@ body {
             </div>
           </section>
 
-          <!-- ============ Section 2: Editorial Writing List ============ -->
+          <!-- ============ Section 2: Unified Editorial Index — Writing & Talks ============ -->
           <section class="py-20 md:py-28">
             <div class="mx-auto max-w-7xl px-6">
               <!-- Section header -->
-              <div class="flex items-end justify-between gap-4 mb-12 ai-reveal">
-                <div class="space-y-4">
-                  <span class="ai-eyebrow" data-reveal-self>// 写作 · WRITING</span>
-                  <h2 class="text-3xl md:text-4xl ai-serif font-medium tracking-tight text-[color:var(--ai-foreground)] ai-blur-in">近期文章</h2>
+              <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 ai-reveal">
+                <div class="space-y-5">
+                  <span class="ai-eyebrow" data-reveal-self>// 写作 &amp; 演讲 · WRITING &amp; TALKS</span>
+                  <h2 class="text-3xl md:text-4xl ai-serif font-medium tracking-tight text-[color:var(--ai-foreground)] ai-blur-in">近期内容</h2>
+                  <div class="ai-gold-rule ai-rule-grow w-24"></div>
+                  <p class="text-sm md:text-base text-[color:var(--ai-muted-foreground)] leading-[1.85] max-w-xl font-light pt-1">
+                    文章与演讲合在一起按时间排列——前者偏深度的工程实践，后者偏当下的现场思考。
+                  </p>
                 </div>
-                <a href="#" class="ai-mono text-xs text-[color:var(--ai-primary)] hover:text-[color:var(--ai-primary-strong)] transition-colors tracking-wider pb-2" title="更多文章建设中">VIEW ALL →</a>
+                <!-- Legend -->
+                <div class="flex items-center gap-4 pb-2 ai-reveal">
+                  <span class="inline-flex items-center gap-1.5 text-[11px] ai-mono tracking-wider uppercase text-[color:var(--ai-muted-foreground)]">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-sm bg-[color:var(--ai-primary)]/10 text-[color:var(--ai-primary)] border border-[color:var(--ai-primary)]/25">
+                      <i data-lucide="feather" class="w-2.5 h-2.5"></i>文章
+                    </span>
+                    写作
+                  </span>
+                  <span class="inline-flex items-center gap-1.5 text-[11px] ai-mono tracking-wider uppercase text-[color:var(--ai-muted-foreground)]">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-sm bg-[color:var(--ai-primary)]/15 text-[color:var(--ai-primary-strong)] border border-[color:var(--ai-primary)]/35">
+                      <i data-lucide="mic" class="w-2.5 h-2.5"></i>演讲
+                    </span>
+                    现场
+                  </span>
+                </div>
               </div>
 
               <!-- Gold divider -->
               <div class="h-px w-full bg-gradient-to-r from-[color:var(--ai-primary)]/40 via-[color:var(--ai-primary)]/10 to-transparent mb-3"></div>
 
-              <!-- Editorial article index -->
+              <!-- Unified editorial index — articles and talks merged by time -->
               <div class="divide-y divide-[color:var(--ai-border)]/60 ai-reveal-stagger">
 
+                <!-- 2026.06.18 · 文章 -->
                 <a href="#" title="文章详情页建设中" class="ai-editorial-row grid grid-cols-12 gap-4 py-7 px-2 -mx-2 items-center">
                   <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-2 col-span-12 tracking-wide">2026.06.18</span>
-                  <div class="ai-editorial-title ai-serif text-lg md:text-xl font-medium text-[color:var(--ai-foreground)] md:col-span-7 col-span-12 leading-snug">大模型推理优化的 5 个工程取舍</div>
+                  <span class="md:col-span-1 col-span-12">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[9px] ai-mono tracking-wider uppercase rounded-sm bg-[color:var(--ai-primary)]/10 text-[color:var(--ai-primary)] border border-[color:var(--ai-primary)]/25">
+                      <i data-lucide="feather" class="w-2.5 h-2.5"></i>文章
+                    </span>
+                  </span>
+                  <div class="ai-editorial-title ai-serif text-lg md:text-xl font-medium text-[color:var(--ai-foreground)] md:col-span-6 col-span-12 leading-snug">大模型推理优化的 5 个工程取舍</div>
                   <div class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-3 col-span-12 tracking-wide">
                     推理优化, 工程实践
                   </div>
                 </a>
 
+                <!-- 2026.05 · 演讲 QCon -->
+                <div class="ai-editorial-row grid grid-cols-12 gap-4 py-7 px-2 -mx-2 items-center">
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-2 col-span-12 tracking-wide">2026.05</span>
+                  <span class="md:col-span-1 col-span-12">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[9px] ai-mono tracking-wider uppercase rounded-sm bg-[color:var(--ai-primary)]/15 text-[color:var(--ai-primary-strong)] border border-[color:var(--ai-primary)]/35">
+                      <i data-lucide="mic" class="w-2.5 h-2.5"></i>演讲
+                    </span>
+                  </span>
+                  <div class="min-w-0 md:col-span-6 col-span-12">
+                    <div class="ai-editorial-title ai-serif text-lg md:text-xl font-medium text-[color:var(--ai-foreground)] leading-snug">大模型工程化的边界</div>
+                    <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)]/80 mt-1 tracking-wider">QCon · 2026</div>
+                  </div>
+                  <div class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-3 col-span-12 tracking-wide">
+                    北京 · 线上
+                  </div>
+                </div>
+
+                <!-- 2026.05.22 · 文章 -->
                 <a href="#" title="文章详情页建设中" class="ai-editorial-row grid grid-cols-12 gap-4 py-7 px-2 -mx-2 items-center">
                   <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-2 col-span-12 tracking-wide">2026.05.22</span>
-                  <div class="ai-editorial-title ai-serif text-lg md:text-xl font-medium text-[color:var(--ai-foreground)] md:col-span-7 col-span-12 leading-snug">RLHF 落地：从论文到线上系统的距离</div>
+                  <span class="md:col-span-1 col-span-12">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[9px] ai-mono tracking-wider uppercase rounded-sm bg-[color:var(--ai-primary)]/10 text-[color:var(--ai-primary)] border border-[color:var(--ai-primary)]/25">
+                      <i data-lucide="feather" class="w-2.5 h-2.5"></i>文章
+                    </span>
+                  </span>
+                  <div class="ai-editorial-title ai-serif text-lg md:text-xl font-medium text-[color:var(--ai-foreground)] md:col-span-6 col-span-12 leading-snug">RLHF 落地：从论文到线上系统的距离</div>
                   <div class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-3 col-span-12 tracking-wide">
                     RLHF, 训练对齐
                   </div>
                 </a>
 
+                <!-- 2026.04.30 · 文章 -->
                 <a href="#" title="文章详情页建设中" class="ai-editorial-row grid grid-cols-12 gap-4 py-7 px-2 -mx-2 items-center">
                   <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-2 col-span-12 tracking-wide">2026.04.30</span>
-                  <div class="ai-editorial-title ai-serif text-lg md:text-xl font-medium text-[color:var(--ai-foreground)] md:col-span-7 col-span-12 leading-snug">Agent 编排：工具调用与状态机实践</div>
+                  <span class="md:col-span-1 col-span-12">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[9px] ai-mono tracking-wider uppercase rounded-sm bg-[color:var(--ai-primary)]/10 text-[color:var(--ai-primary)] border border-[color:var(--ai-primary)]/25">
+                      <i data-lucide="feather" class="w-2.5 h-2.5"></i>文章
+                    </span>
+                  </span>
+                  <div class="ai-editorial-title ai-serif text-lg md:text-xl font-medium text-[color:var(--ai-foreground)] md:col-span-6 col-span-12 leading-snug">Agent 编排：工具调用与状态机实践</div>
                   <div class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-3 col-span-12 tracking-wide">
                     Agent, 架构
                   </div>
                 </a>
 
+                <!-- 2026.03 · 演讲 AICon -->
+                <div class="ai-editorial-row grid grid-cols-12 gap-4 py-7 px-2 -mx-2 items-center">
+                  <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-2 col-span-12 tracking-wide">2026.03</span>
+                  <span class="md:col-span-1 col-span-12">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[9px] ai-mono tracking-wider uppercase rounded-sm bg-[color:var(--ai-primary)]/15 text-[color:var(--ai-primary-strong)] border border-[color:var(--ai-primary)]/35">
+                      <i data-lucide="mic" class="w-2.5 h-2.5"></i>演讲
+                    </span>
+                  </span>
+                  <div class="min-w-0 md:col-span-6 col-span-12">
+                    <div class="ai-editorial-title ai-serif text-lg md:text-xl font-medium text-[color:var(--ai-foreground)] leading-snug">推理服务的高并发实践</div>
+                    <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)]/80 mt-1 tracking-wider">AICon · 2026</div>
+                  </div>
+                  <div class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-3 col-span-12 tracking-wide">
+                    上海
+                  </div>
+                </div>
+
+                <!-- 2026.03.12 · 文章 -->
                 <a href="#" title="文章详情页建设中" class="ai-editorial-row grid grid-cols-12 gap-4 py-7 px-2 -mx-2 items-center">
                   <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-2 col-span-12 tracking-wide">2026.03.12</span>
-                  <div class="ai-editorial-title ai-serif text-lg md:text-xl font-medium text-[color:var(--ai-foreground)] md:col-span-7 col-span-12 leading-snug">vLLM vs TensorRT-LLM：选型实测</div>
+                  <span class="md:col-span-1 col-span-12">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[9px] ai-mono tracking-wider uppercase rounded-sm bg-[color:var(--ai-primary)]/10 text-[color:var(--ai-primary)] border border-[color:var(--ai-primary)]/25">
+                      <i data-lucide="feather" class="w-2.5 h-2.5"></i>文章
+                    </span>
+                  </span>
+                  <div class="ai-editorial-title ai-serif text-lg md:text-xl font-medium text-[color:var(--ai-foreground)] md:col-span-6 col-span-12 leading-snug">vLLM vs TensorRT-LLM：选型实测</div>
                   <div class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-3 col-span-12 tracking-wide">
                     推理服务, 选型
                   </div>
                 </a>
 
+                <!-- 2026.02.05 · 文章 -->
                 <a href="#" title="文章详情页建设中" class="ai-editorial-row grid grid-cols-12 gap-4 py-7 px-2 -mx-2 items-center">
                   <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-2 col-span-12 tracking-wide">2026.02.05</span>
-                  <div class="ai-editorial-title ai-serif text-lg md:text-xl font-medium text-[color:var(--ai-foreground)] md:col-span-7 col-span-12 leading-snug">数据飞轮：让评估闭环跑起来</div>
+                  <span class="md:col-span-1 col-span-12">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[9px] ai-mono tracking-wider uppercase rounded-sm bg-[color:var(--ai-primary)]/10 text-[color:var(--ai-primary)] border border-[color:var(--ai-primary)]/25">
+                      <i data-lucide="feather" class="w-2.5 h-2.5"></i>文章
+                    </span>
+                  </span>
+                  <div class="ai-editorial-title ai-serif text-lg md:text-xl font-medium text-[color:var(--ai-foreground)] md:col-span-6 col-span-12 leading-snug">数据飞轮：让评估闭环跑起来</div>
                   <div class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-3 col-span-12 tracking-wide">
                     数据, 评估
                   </div>
                 </a>
 
               </div>
-            </div>
-          </section>
 
-          <!-- ============ Section 3: Editorial Talks List ============ -->
-          <section class="py-20 md:py-28">
-            <div class="mx-auto max-w-7xl px-6">
-              <!-- Section header -->
-              <div class="flex items-end justify-between gap-4 mb-10 ai-reveal">
-                <div>
-                  <span class="ai-eyebrow" data-reveal-self>// 演讲 · TALKS</span>
-                  <h2 class="mt-2 text-3xl ai-serif font-medium tracking-tight text-[color:var(--ai-foreground)] ai-blur-in">公开演讲</h2>
-                </div>
-              </div>
-
-              <!-- Gold divider -->
-              <div class="h-px w-full bg-gradient-to-r from-[color:var(--ai-primary)]/40 via-[color:var(--ai-primary)]/10 to-transparent mb-2"></div>
-
-              <!-- Editorial talks index -->
-              <div class="divide-y divide-[color:var(--ai-border)]/60 ai-reveal-stagger">
-
-                <div class="ai-editorial-row grid grid-cols-12 gap-4 py-6 px-2 -mx-2 items-center">
-                  <div class="md:col-span-3 col-span-12">
-                    <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide block">2026.05</span>
-                    <span class="ai-serif text-sm text-[color:var(--ai-foreground)]/80 mt-1 block">QCon</span>
-                  </div>
-                  <div class="ai-editorial-title ai-serif text-lg md:text-xl font-medium text-[color:var(--ai-foreground)] md:col-span-6 col-span-12 leading-snug">大模型工程化的边界</div>
-                  <div class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-3 col-span-12 tracking-wide">
-                    北京 · 线上
-                  </div>
-                </div>
-
-                <div class="ai-editorial-row grid grid-cols-12 gap-4 py-6 px-2 -mx-2 items-center">
-                  <div class="md:col-span-3 col-span-12">
-                    <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide block">2026.03</span>
-                    <span class="ai-serif text-sm text-[color:var(--ai-foreground)]/80 mt-1 block">AICon</span>
-                  </div>
-                  <div class="ai-editorial-title ai-serif text-lg md:text-xl font-medium text-[color:var(--ai-foreground)] md:col-span-6 col-span-12 leading-snug">推理服务的高并发实践</div>
-                  <div class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] md:text-right md:col-span-3 col-span-12 tracking-wide">
-                    上海
-                  </div>
-                </div>
-
+              <!-- Bottom hint -->
+              <div class="mt-10 flex items-center justify-center gap-3 text-[color:var(--ai-muted-foreground)]/70 ai-reveal">
+                <span class="h-px w-10 bg-[color:var(--ai-primary)]/30"></span>
+                <span class="ai-mono text-[10px] tracking-[0.2em] uppercase">5 篇文章 · 2 场演讲 · 2026</span>
+                <span class="h-px w-10 bg-[color:var(--ai-primary)]/30"></span>
               </div>
             </div>
           </section>
