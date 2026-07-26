@@ -1,0 +1,1121 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无界智源 · AI 科技公司</title>
+    <style id="theme-vars">
+/* ============================================================
+   AI Engineer Portfolio — European Luxury Light Theme (Elevated)
+   Brand prefix: ai  |  Single primary hue: warm gold (#B8956A)
+   ============================================================ */
+
+:root {
+  --ai-background: #F7F4EF;
+  --ai-background-2: #EFEAE2;
+  --ai-foreground: #1A1A1F;
+  --ai-card: #FFFFFF;
+  --ai-card-foreground: #1A1A1F;
+  --ai-popover: #FFFFFF;
+  --ai-popover-foreground: #1A1A1F;
+  --ai-primary: #B8956A;
+  --ai-primary-strong: #9C7A4E;
+  --ai-primary-light: #D4B896;
+  --ai-primary-foreground: #FFFFFF;
+  --ai-primary-glow: rgba(184, 149, 106, 0.18);
+  --ai-primary-soft: rgba(184, 149, 106, 0.08);
+  --ai-muted: #E8E3D9;
+  --ai-muted-foreground: #6B6B6B;
+  --ai-border: #E0D9CD;
+  --ai-border-strong: #C8BFAE;
+  --ai-input: #F2EFE8;
+  --ai-ring: #B8956A;
+  --ai-success: #4A7C59;
+  --ai-warning: #B8860B;
+  --ai-error: #8B3A3A;
+  --ai-radius-sm: 2px;
+  --ai-radius-md: 4px;
+  --ai-radius-lg: 6px;
+  --ai-radius-xl: 8px;
+  --ai-font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  --ai-font-serif: "Playfair Display", "Cormorant Garamond", "Noto Serif SC",
+    "Songti SC", "STSong", Georgia, serif;
+  --ai-font-mono: "JetBrains Mono", "SF Mono", "Cascadia Code", "Fira Code",
+    Consolas, "Courier New", monospace;
+  --ai-nav-bg: rgba(247, 244, 239, 0.85);
+  --ai-card-translucent: rgba(255, 255, 255, 0.7);
+  --ai-scrim: rgba(26, 26, 31, 0.4);
+  --ai-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ai-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ai-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ai-font-sans);
+  background-color: var(--ai-background);
+  color: var(--ai-foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv01", "kern";
+  text-rendering: optimizeLegibility;
+}
+
+.ai-body-backdrop {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(800px 500px at 30% -10%, rgba(184, 149, 106, 0.10), transparent 55%),
+    radial-gradient(500px 400px at 95% 110%, rgba(184, 149, 106, 0.06), transparent 50%),
+    linear-gradient(180deg, #F7F4EF 0%, #F0EBE2 50%, #F3EEE7 100%);
+}
+.ai-body-backdrop::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+}
+
+.ai-grid-bg {
+  background-image:
+    linear-gradient(rgba(184, 149, 106, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 149, 106, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: -1px -1px;
+}
+
+.ai-dot-bg {
+  background-image: radial-gradient(rgba(107, 107, 107, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.ai-gradient-text {
+  background: linear-gradient(100deg, #9C7A4E 0%, #B8956A 35%, #D4B896 50%, #B8956A 65%, #9C7A4E 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  transition: background-position 0.8s var(--ai-ease-out);
+}
+.ai-gradient-text:hover { background-position: right center; }
+
+.ai-glow {
+  box-shadow: 0 0 0 1px rgba(184, 149, 106, 0.12),
+    0 30px 60px -30px rgba(184, 149, 106, 0.2);
+}
+
+.ai-hairline { border: 1px solid var(--ai-border); }
+
+.ai-glass {
+  background: #FFFFFF;
+  border: 1px solid var(--ai-border);
+  box-shadow: 0 1px 2px rgba(26, 26, 31, 0.03),
+    0 8px 24px -12px rgba(26, 26, 31, 0.08);
+}
+
+.ai-serif {
+  font-family: var(--ai-font-serif);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  font-feature-settings: "liga", "dlig";
+}
+
+.ai-serif-display {
+  font-family: var(--ai-font-serif);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-feature-settings: "liga", "dlig", "swsh";
+  line-height: 1.05;
+}
+
+.ai-mono {
+  font-family: var(--ai-font-mono);
+  font-feature-settings: "ss01", "cv01", "tnum";
+  letter-spacing: 0.02em;
+}
+
+.ai-status-dot {
+  position: relative; display: inline-block; width: 8px; height: 8px;
+  border-radius: 9999px; background: var(--ai-primary);
+  box-shadow: 0 0 0 4px rgba(184, 149, 106, 0.12);
+}
+.ai-status-dot::after {
+  content: ""; position: absolute; inset: -4px; border-radius: 9999px;
+  background: rgba(184, 149, 106, 0.18);
+  animation: ai-pulse 2.4s ease-out infinite;
+}
+
+@keyframes ai-pulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+.ai-scanline {
+  background: linear-gradient(90deg, transparent, var(--ai-primary), transparent);
+  height: 1px; opacity: 0.3;
+}
+
+.ai-card-hover {
+  transition: transform 0.5s var(--ai-ease-out),
+    border-color 0.5s var(--ai-ease-out),
+    box-shadow 0.5s var(--ai-ease-out);
+}
+.ai-card-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(184, 149, 106, 0.3);
+  box-shadow: 0 8px 16px rgba(26, 26, 31, 0.04),
+    0 30px 50px -30px rgba(184, 149, 106, 0.25);
+}
+
+.ai-img-reveal { overflow: hidden; position: relative; }
+.ai-img-reveal img {
+  transition: transform 1.2s var(--ai-ease-out),
+    filter 0.8s var(--ai-ease-out);
+  filter: saturate(0.92) contrast(1.02);
+}
+.ai-img-reveal:hover img {
+  transform: scale(1.04);
+  filter: saturate(1) contrast(1.04);
+}
+
+.ai-gold-corners { position: relative; }
+.ai-gold-corners::before,
+.ai-gold-corners::after {
+  content: ""; position: absolute; width: 24px; height: 24px;
+  border: 1px solid var(--ai-primary); opacity: 0.6;
+  transition: opacity 0.4s var(--ai-ease-out),
+    width 0.4s var(--ai-ease-out),
+    height 0.4s var(--ai-ease-out);
+}
+.ai-gold-corners::before {
+  top: -1px; left: -1px; border-right: none; border-bottom: none;
+}
+.ai-gold-corners::after {
+  bottom: -1px; right: -1px; border-left: none; border-top: none;
+}
+.ai-gold-corners:hover::before,
+.ai-gold-corners:hover::after {
+  opacity: 1; width: 32px; height: 32px;
+}
+
+.ai-text-link {
+  position: relative; display: inline-block;
+  color: var(--ai-primary); text-decoration: none;
+  transition: color 0.3s var(--ai-ease-out);
+}
+.ai-text-link::after {
+  content: ""; position: absolute; bottom: -2px; left: 0;
+  width: 100%; height: 1px; background: var(--ai-primary);
+  transform: scaleX(0); transform-origin: right center;
+  transition: transform 0.5s var(--ai-ease-out);
+}
+.ai-text-link:hover::after {
+  transform: scaleX(1); transform-origin: left center;
+}
+
+.ai-btn-gold {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--ai-primary); color: var(--ai-primary-foreground);
+  border-radius: var(--ai-radius-sm);
+  font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em;
+  position: relative; overflow: hidden;
+  transition: all 0.4s var(--ai-ease-out);
+  box-shadow: 0 4px 12px rgba(184, 149, 106, 0.15);
+}
+.ai-btn-gold::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.25) 50%, transparent 80%);
+  transform: translateX(-100%);
+  transition: transform 0.8s var(--ai-ease-out);
+}
+.ai-btn-gold:hover {
+  background: var(--ai-primary-strong);
+  box-shadow: 0 8px 20px rgba(184, 149, 106, 0.25);
+  transform: translateY(-1px);
+}
+.ai-btn-gold:hover::before { transform: translateX(100%); }
+.ai-btn-gold:active { transform: translateY(0); }
+
+.ai-btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 0;
+  color: var(--ai-foreground);
+  font-size: 0.875rem; font-weight: 500;
+  position: relative;
+  transition: color 0.4s var(--ai-ease-out);
+}
+.ai-btn-ghost::after {
+  content: ""; position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 1px; background: var(--ai-border-strong);
+  transition: background 0.4s var(--ai-ease-out);
+}
+.ai-btn-ghost:hover { color: var(--ai-primary); }
+.ai-btn-ghost:hover::after { background: var(--ai-primary); }
+
+.ai-v-divider {
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--ai-primary), transparent);
+  opacity: 0.3;
+}
+
+.ai-section-num {
+  font-family: var(--ai-font-serif);
+  font-size: clamp(6rem, 12vw, 12rem);
+  font-weight: 300; line-height: 1;
+  color: var(--ai-primary); opacity: 0.08;
+  letter-spacing: -0.04em;
+  user-select: none; pointer-events: none;
+}
+
+.ai-dropcap::first-letter {
+  font-family: var(--ai-font-serif);
+  font-size: 3.5em; font-weight: 500;
+  float: left; line-height: 0.85;
+  padding-right: 0.15em; padding-top: 0.1em;
+  color: var(--ai-primary);
+  font-feature-settings: "swsh", "liga";
+}
+
+/* Scroll-reveal */
+.ai-reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.9s var(--ai-ease-out),
+    transform 0.9s var(--ai-ease-out);
+  will-change: opacity, transform;
+}
+.ai-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+.ai-reveal-stagger > * {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.8s var(--ai-ease-out),
+    transform 0.8s var(--ai-ease-out);
+  will-change: opacity, transform;
+}
+.ai-reveal-stagger.is-visible > * { opacity: 1; transform: translateY(0); }
+.ai-reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+.ai-reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.12s; }
+.ai-reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.19s; }
+.ai-reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.26s; }
+.ai-reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.33s; }
+.ai-reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.40s; }
+.ai-reveal-stagger.is-visible > *:nth-child(7) { transition-delay: 0.47s; }
+.ai-reveal-stagger.is-visible > *:nth-child(8) { transition-delay: 0.54s; }
+
+.ai-reveal-img {
+  opacity: 0; clip-path: inset(0 0 100% 0);
+  transition: opacity 0.3s ease,
+    clip-path 1.2s var(--ai-ease-out);
+  will-change: clip-path, opacity;
+}
+.ai-reveal-img.is-visible {
+  opacity: 1; clip-path: inset(0 0 0 0);
+}
+
+.ai-reveal-line {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.2s var(--ai-ease-out);
+  will-change: transform;
+}
+.ai-reveal-line.is-visible { transform: scaleX(1); }
+
+/* Nav scroll state */
+.ai-nav-scroll { transition: all 0.5s var(--ai-ease-out); }
+.ai-nav-scroll.is-scrolled {
+  border-bottom-color: rgba(184, 149, 106, 0.15) !important;
+  background: rgba(247, 244, 239, 0.95) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(184, 149, 106, 0.06),
+    0 8px 24px -16px rgba(26, 26, 31, 0.06);
+}
+
+/* Scroll progress bar */
+.ai-scroll-progress {
+  position: fixed; top: 0; left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--ai-primary), var(--ai-primary-light), var(--ai-primary));
+  z-index: 100;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* Custom scrollbar (refined gold) */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(184, 149, 106, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(184, 149, 106, 0.4); }
+
+::selection {
+  background: rgba(184, 149, 106, 0.2);
+  color: #1A1A1F;
+}
+
+/* ============================================================
+   Page-specific editorial additions
+   ============================================================ */
+
+.ai-corner-tl::before {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 28px; height: 28px;
+  border-top: 1px solid var(--ai-primary);
+  border-left: 1px solid var(--ai-primary);
+  opacity: 0.6;
+}
+.ai-corner-br::after {
+  content: ""; position: absolute; bottom: 0; right: 0;
+  width: 28px; height: 28px;
+  border-bottom: 1px solid var(--ai-primary);
+  border-right: 1px solid var(--ai-primary);
+  opacity: 0.6;
+}
+
+.ai-project-card .ai-project-img {
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.8s var(--ai-ease-out);
+  filter: saturate(0.92) contrast(1.02);
+}
+.ai-project-card:hover .ai-project-img {
+  transform: scale(1.04);
+  filter: saturate(1) contrast(1.04);
+}
+.ai-project-card:hover h3 { color: var(--ai-primary); }
+.ai-project-card h3 { transition: color 0.4s var(--ai-ease-out); }
+
+.ai-drop-cap::first-letter {
+  float: left;
+  font-family: var(--ai-font-serif);
+  font-size: 4.5em; line-height: 0.85;
+  padding-right: 0.12em; padding-top: 0.08em;
+  background: linear-gradient(135deg, #B8956A 0%, #D4B896 50%, #9C7A4E 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  font-weight: 600;
+}
+
+.ai-section-number-bg {
+  position: absolute;
+  font-family: var(--ai-font-serif);
+  font-weight: 400;
+  color: var(--ai-primary); opacity: 0.08;
+  line-height: 1; pointer-events: none; user-select: none;
+}
+
+.ai-gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, var(--ai-primary) 0%, rgba(184, 149, 106, 0.3) 70%, transparent 100%);
+}
+.ai-gold-rule-center {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ai-primary), transparent);
+}
+
+.ai-cat-line { position: relative; }
+.ai-cat-line::after {
+  content: ""; position: absolute;
+  right: 0; top: 50%;
+  width: 40px; height: 1px;
+  background: var(--ai-primary); opacity: 0.4;
+}
+
+.ai-timeline-line {
+  position: absolute; left: 28px; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(184, 149, 106, 0.1) 0%, rgba(184, 149, 106, 0.5) 20%, rgba(184, 149, 106, 0.5) 80%, rgba(184, 149, 106, 0.1) 100%);
+}
+@media (min-width: 768px) { .ai-timeline-line { left: 40px; } }
+
+.ai-project-num {
+  font-family: var(--ai-font-serif);
+  font-weight: 400; font-style: italic;
+  line-height: 0.85; letter-spacing: -0.04em;
+  color: rgba(184, 149, 106, 0.25);
+  text-shadow: 0 2px 40px rgba(0,0,0,0.1);
+  pointer-events: none; user-select: none;
+}
+
+.ai-vert-divider {
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(184, 149, 106, 0.3), transparent);
+}
+
+.ai-editorial-img { position: relative; overflow: hidden; }
+.ai-editorial-img img {
+  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.8s var(--ai-ease-out);
+  filter: saturate(0.92) contrast(1.02);
+}
+.ai-editorial-img:hover img {
+  transform: scale(1.03);
+  filter: saturate(1) contrast(1.04);
+}
+
+.ai-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(26, 26, 31, 0.15) 100%);
+  pointer-events: none;
+}
+
+.ai-nav-editorial {
+  background: var(--ai-nav-bg);
+  border-bottom: 1px solid rgba(184, 149, 106, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.5s var(--ai-ease-out);
+}
+.ai-nav-editorial.is-scrolled {
+  background: rgba(247, 244, 239, 0.97) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(184, 149, 106, 0.08),
+    0 12px 30px -20px rgba(26, 26, 31, 0.08);
+}
+
+.ai-editorial-row { transition: background-color 0.25s ease; }
+.ai-editorial-row:hover { background-color: rgba(184, 149, 106, 0.04); }
+.ai-editorial-row:hover .ai-editorial-title { color: var(--ai-primary); }
+.ai-editorial-title { transition: color 0.3s var(--ai-ease-out); }
+
+.ai-input-underline {
+  background: transparent; border: none;
+  border-bottom: 1px solid var(--ai-border);
+  border-radius: 0; padding: 0.6rem 0;
+  font-size: 0.95rem; color: var(--ai-foreground);
+  transition: border-color 0.3s var(--ai-ease-out);
+  width: 100%; outline: none;
+}
+.ai-input-underline:focus { border-bottom-color: var(--ai-primary); }
+.ai-input-underline::placeholder { color: rgba(107, 107, 107, 0.4); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--ai-background);
+    --color-foreground: var(--ai-foreground);
+    --color-card: var(--ai-card);
+    --color-card-foreground: var(--ai-card-foreground);
+    --color-popover: var(--ai-popover);
+    --color-popover-foreground: var(--ai-popover-foreground);
+    --color-primary: var(--ai-primary);
+    --color-primary-foreground: var(--ai-primary-foreground);
+    --color-muted: var(--ai-muted);
+    --color-muted-foreground: var(--ai-muted-foreground);
+    --color-border: var(--ai-border);
+    --color-input: var(--ai-input);
+    --color-ring: var(--ai-ring);
+    --radius-sm: var(--ai-radius-sm);
+    --radius-md: var(--ai-radius-md);
+    --radius-lg: var(--ai-radius-lg);
+    --radius-xl: var(--ai-radius-xl);
+  }
+  @layer base {
+    body { background: var(--ai-background); color: var(--ai-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--ai-background); }
+      .text-background { color: var(--ai-background); }
+      .border-background { border-color: var(--ai-background); }
+      .ring-background { --tw-ring-color: var(--ai-background); }
+      .bg-foreground { background-color: var(--ai-foreground); }
+      .text-foreground { color: var(--ai-foreground); }
+      .border-foreground { border-color: var(--ai-foreground); }
+      .ring-foreground { --tw-ring-color: var(--ai-foreground); }
+      .bg-card { background-color: var(--ai-card); }
+      .text-card { color: var(--ai-card); }
+      .border-card { border-color: var(--ai-card); }
+      .ring-card { --tw-ring-color: var(--ai-card); }
+      .bg-card-foreground { background-color: var(--ai-card-foreground); }
+      .text-card-foreground { color: var(--ai-card-foreground); }
+      .border-card-foreground { border-color: var(--ai-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--ai-card-foreground); }
+      .bg-popover { background-color: var(--ai-popover); }
+      .text-popover { color: var(--ai-popover); }
+      .border-popover { border-color: var(--ai-popover); }
+      .ring-popover { --tw-ring-color: var(--ai-popover); }
+      .bg-popover-foreground { background-color: var(--ai-popover-foreground); }
+      .text-popover-foreground { color: var(--ai-popover-foreground); }
+      .border-popover-foreground { border-color: var(--ai-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--ai-popover-foreground); }
+      .bg-primary { background-color: var(--ai-primary); }
+      .text-primary { color: var(--ai-primary); }
+      .border-primary { border-color: var(--ai-primary); }
+      .ring-primary { --tw-ring-color: var(--ai-primary); }
+      .bg-primary-foreground { background-color: var(--ai-primary-foreground); }
+      .text-primary-foreground { color: var(--ai-primary-foreground); }
+      .border-primary-foreground { border-color: var(--ai-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--ai-primary-foreground); }
+      .bg-muted { background-color: var(--ai-muted); }
+      .text-muted { color: var(--ai-muted); }
+      .border-muted { border-color: var(--ai-muted); }
+      .ring-muted { --tw-ring-color: var(--ai-muted); }
+      .bg-muted-foreground { background-color: var(--ai-muted-foreground); }
+      .text-muted-foreground { color: var(--ai-muted-foreground); }
+      .border-muted-foreground { border-color: var(--ai-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--ai-muted-foreground); }
+      .bg-border { background-color: var(--ai-border); }
+      .text-border { color: var(--ai-border); }
+      .border-border { border-color: var(--ai-border); }
+      .ring-border { --tw-ring-color: var(--ai-border); }
+      .bg-input { background-color: var(--ai-input); }
+      .text-input { color: var(--ai-input); }
+      .border-input { border-color: var(--ai-input); }
+      .ring-input { --tw-ring-color: var(--ai-input); }
+      .bg-ring { background-color: var(--ai-ring); }
+      .text-ring { color: var(--ai-ring); }
+      .border-ring { border-color: var(--ai-ring); }
+      .ring-ring { --tw-ring-color: var(--ai-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <div class="ai-scroll-progress" id="scrollProgress"></div>
+    <main>
+      <div class="ai-body-backdrop"></div>
+
+      <header data-global-nav="desktop" class="ai-nav-scroll fixed top-0 inset-x-0 z-50 h-16 border-b border-[color:var(--ai-border)] bg-[color:var(--ai-background)]/90 backdrop-blur-sm">
+        <div class="mx-auto max-w-7xl px-6 h-full flex items-center justify-between gap-6">
+          <a href="index.html" class="flex items-center gap-2.5">
+            <span class="relative flex h-8 w-8 items-center justify-center">
+              <span class="ai-mono text-[13px] font-bold text-[color:var(--ai-primary)] tracking-wider">无界</span>
+            </span>
+            <span class="ai-serif text-[17px] font-medium tracking-tight text-[color:var(--ai-foreground)]">无界<span class="text-[color:var(--ai-primary)]/70">智源</span></span>
+          </a>
+          <nav class="hidden md:flex items-center gap-1">
+            <a data-dom-id="nav-home" data-nav-key="home" href="index.html" class="px-3.5 py-2 text-sm text-[color:var(--ai-primary)] ai-mono tracking-wide">首页</a>
+            <a data-dom-id="nav-skills" data-nav-key="skills" href="skills.html" class="px-3.5 py-2 text-sm text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-foreground)] transition-colors">专业技能</a>
+            <a data-dom-id="nav-projects" data-nav-key="projects" href="projects.html" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium text-[color:var(--ai-primary)] bg-[color:var(--ai-primary-soft)] ring-1 ring-[color:var(--ai-primary)]/20 hover:bg-[color:var(--ai-primary)]/12 transition-colors">
+              <span class="relative flex h-1.5 w-1.5">
+                <span class="absolute inline-flex h-full w-full rounded-full bg-[color:var(--ai-primary)] opacity-60 animate-ping"></span>
+                <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-[color:var(--ai-primary)]"></span>
+              </span>
+              项目案例
+            </a>
+            <a data-dom-id="nav-blog" data-nav-key="blog" href="blog.html" class="px-3.5 py-2 text-sm text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-foreground)] transition-colors">博客与联系</a>
+          </nav>
+          <a data-dom-id="nav-cta" href="blog.html" class="hidden sm:inline-flex items-center gap-1.5 ai-btn-gold text-xs"><i data-lucide="send" class="w-3.5 h-3.5"></i> 联系我们</a>
+        </div>
+      </header>
+
+      <div class="pt-16">
+        <!-- ============ HERO — Editorial magazine split ============ -->
+        <section class="relative">
+          <div class="relative mx-auto max-w-7xl px-6 py-20 lg:py-28">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-start">
+              <!-- Left: col-span-7 — Editorial text column -->
+              <div class="md:col-span-7 space-y-8 pt-4 ai-reveal">
+                <!-- Eyebrow with hairline -->
+                <div class="flex items-center gap-4">
+                  <span class="ai-mono text-[11px] tracking-[0.2em] text-[color:var(--ai-primary)] uppercase whitespace-nowrap">// AI 科技公司</span>
+                  <div class="flex-1 h-px bg-gradient-to-r from-[color:var(--ai-primary)]/50 to-transparent"></div>
+                </div>
+
+                <!-- Massive display serif H1 -->
+                <h1 class="ai-serif text-6xl md:text-7xl lg:text-8xl font-medium leading-[0.95] tracking-tight text-[color:var(--ai-foreground)]">
+                  让智能，<br><span class="ai-gradient-text italic">工程化</span>落地
+                </h1>
+
+                <!-- Subtitle — smaller sans, wider measure -->
+                <p class="text-base md:text-[17px] leading-[1.8] text-[color:var(--ai-muted-foreground)] max-w-lg font-light">
+                  无界智源深耕大模型研发与 MLOps，把前沿算法变成可上线、可扩展、可度量的产品能力，让 AI 真正落地到业务。
+                </p>
+
+                <!-- CTA row -->
+                <div class="flex flex-wrap items-center gap-6 pt-2">
+                  <a data-dom-id="cta-projects" href="projects.html" class="group inline-flex items-center gap-2.5 ai-btn-gold text-xs relative">
+                    <span class="relative flex h-1.5 w-1.5">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[color:var(--ai-primary-foreground)] opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[color:var(--ai-primary-foreground)]"></span>
+                    </span>
+                    查看项目案例 <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"></i>
+                  </a>
+                  <a data-dom-id="cta-skills" href="skills.html" class="ai-text-link text-xs ai-mono tracking-wider">
+                    了解技术能力 <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                  </a>
+                </div>
+
+                <!-- Sub-eyebrow: direction cue pointing down to categories -->
+                <div class="flex items-center gap-3 pt-6 text-[color:var(--ai-muted-foreground)]/70">
+                  <span class="ai-mono text-[10px] tracking-[0.2em] uppercase">向下浏览</span>
+                  <span class="h-px w-12 bg-[color:var(--ai-primary)]/40"></span>
+                  <span class="ai-mono text-[10px] tracking-wider">10 个项目 · 3 大方向</span>
+                  <i data-lucide="arrow-down" class="w-3 h-3 text-[color:var(--ai-primary)]/70 animate-bounce"></i>
+                </div>
+              </div>
+
+              <!-- Right: col-span-5 — Hero visual with decorative corners -->
+              <div class="md:col-span-5 relative pt-8 md:pt-12 ai-reveal-img">
+                <div class="relative ai-corner-tl ai-corner-br p-5">
+                  <div class="relative overflow-hidden ai-img-reveal aspect-[4/3] bg-gradient-to-br from-[#1A1A1F] via-[#2A2520] to-[#B8956A]">
+                    <div class="absolute inset-0 opacity-40" style="background:
+                      radial-gradient(ellipse at 30% 20%, rgba(212,184,150,0.4) 0%, transparent 50%),
+                      radial-gradient(ellipse at 70% 80%, rgba(184,149,106,0.3) 0%, transparent 50%),
+                      linear-gradient(135deg, transparent 40%, rgba(184,149,106,0.15) 50%, transparent 60%)"></div>
+                    <div class="absolute inset-0 opacity-20" style="background-image:
+                      linear-gradient(rgba(184,149,106,0.2) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(184,149,106,0.2) 1px, transparent 1px);
+                      background-size: 40px 40px;"></div>
+                    <div class="absolute top-1/3 left-1/4 w-32 h-32 rounded-full border border-[color:var(--ai-primary)]/30"></div>
+                    <div class="absolute top-1/2 right-1/4 w-48 h-48 rounded-full border border-[color:var(--ai-primary)]/20"></div>
+                    <div class="absolute bottom-1/4 left-1/3 w-20 h-20 rounded-full bg-[color:var(--ai-primary)]/20 blur-xl"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <div class="text-center">
+                        <div class="ai-serif text-6xl md:text-7xl font-light text-white/90 tracking-tight leading-none">WUJIE</div>
+                        <div class="ai-mono text-[10px] tracking-[0.3em] text-[color:var(--ai-primary-light)]/80 mt-3 tracking-widest">INTELLIGENCE</div>
+                        <div class="w-16 h-px bg-[color:var(--ai-primary)]/50 mx-auto mt-4"></div>
+                      </div>
+                    </div>
+                    <!-- Floating mono label top-right -->
+                    <div class="absolute top-4 right-4 ai-mono text-[10px] tracking-[0.15em] text-white/90 bg-black/20 backdrop-blur-sm px-2.5 py-1 rounded-sm">
+                      WUJIE · 2026
+                    </div>
+                  </div>
+                </div>
+                <!-- Status + date inline below image -->
+                <div class="flex items-center justify-between mt-4 px-5">
+                  <div class="flex items-center gap-2">
+                    <span class="ai-status-dot" style="width:6px;height:6px;"></span>
+                    <span class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wide">可接洽</span>
+                  </div>
+                  <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)]/70 tracking-wider">2026 · ISSUE 01</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ TRUST BAR — Refined typographic row ============ -->
+        <section class="relative ai-reveal">
+          <div class="mx-auto max-w-7xl px-6">
+            <!-- Thin gold hairline top -->
+            <div class="h-px bg-gradient-to-r from-transparent via-[color:var(--ai-primary)]/30 to-transparent"></div>
+            <div class="py-8 flex flex-col md:flex-row md:items-center gap-3 md:gap-8">
+              <span class="ai-mono text-[10px] tracking-[0.2em] text-[color:var(--ai-primary)] uppercase shrink-0">技术栈</span>
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Python</span>
+                <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">PyTorch</span>
+                <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">TensorFlow</span>
+                <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">CUDA</span>
+                <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Ray</span>
+                <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">vLLM</span>
+                <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Kubernetes</span>
+                <span class="text-[color:var(--ai-primary)]/40 text-xs">·</span>
+                <span class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] tracking-wide">Triton</span>
+              </div>
+            </div>
+            <!-- Thin gold hairline bottom -->
+            <div class="h-px bg-gradient-to-r from-transparent via-[color:var(--ai-primary)]/30 to-transparent"></div>
+          </div>
+        </section>
+
+        <!-- ============ ABOUT SNAPSHOT — Asymmetric editorial feature ============ -->
+        <section class="mx-auto max-w-7xl px-6 py-24 md:py-32">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+            <!-- Image: col-span-5, offset lower -->
+            <div class="md:col-span-5 pt-16 md:pt-24 order-2 md:order-1 ai-reveal-img">
+              <div class="relative">
+                <div class="aspect-[4/3] bg-gradient-to-br from-[color:var(--ai-primary-soft)] via-[color:var(--ai-background-2)] to-[color:var(--ai-primary-soft)] border border-[color:var(--ai-border)] relative overflow-hidden">
+                  <div class="absolute inset-0 opacity-60" style="background:
+                    radial-gradient(ellipse at 20% 30%, rgba(184,149,106,0.15) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 70%, rgba(212,184,150,0.2) 0%, transparent 50%)"></div>
+                  <div class="absolute inset-0" style="background-image:
+                    linear-gradient(rgba(184,149,106,0.08) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(184,149,106,0.08) 1px, transparent 1px);
+                    background-size: 32px 32px;"></div>
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center space-y-6">
+                      <div class="ai-serif text-7xl md:text-8xl font-light ai-gradient-text leading-none">∞</div>
+                      <div class="space-y-2">
+                        <div class="ai-mono text-[10px] tracking-[0.25em] text-[color:var(--ai-primary)] uppercase">MLOps Pipeline</div>
+                        <div class="flex items-center gap-3 justify-center">
+                          <span class="w-8 h-px bg-[color:var(--ai-primary)]/40"></span>
+                          <span class="ai-mono text-[9px] text-[color:var(--ai-muted-foreground)] tracking-wider">TRAIN → DEPLOY → MONITOR</span>
+                          <span class="w-8 h-px bg-[color:var(--ai-primary)]/40"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="absolute top-6 left-6 ai-mono text-[10px] text-[color:var(--ai-primary)]/60 tracking-wider">FIG. 01</div>
+                  <div class="absolute bottom-6 right-6 ai-mono text-[10px] text-[color:var(--ai-muted-foreground)]/60 tracking-wider">v2.0</div>
+                </div>
+                <!-- Caption line below image -->
+                <div class="mt-3 flex items-center gap-3">
+                  <div class="flex-1 h-px bg-[color:var(--ai-primary)]/30"></div>
+                  <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-[0.15em] whitespace-nowrap">FIG. 01 — 工程化链路</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Text: col-span-6 col-start-7 -->
+            <div class="md:col-span-6 md:col-start-7 space-y-7 order-1 md:order-2 ai-reveal">
+              <span class="ai-mono text-[11px] tracking-[0.2em] text-[color:var(--ai-primary)] uppercase">// 关于我们</span>
+
+              <h2 class="ai-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.15] tracking-tight text-[color:var(--ai-foreground)]">
+                把研究论文，<br>变成线上系统
+              </h2>
+
+              <div class="space-y-5 text-base leading-[1.9] text-[color:var(--ai-muted-foreground)] font-light">
+                <p>
+                  无界智源是一家专注于大语言模型与 MLOps 的 AI 科技公司。团队在搜索、对话与多模态方向主导过 20 余个模型的研发与上线，关注的不只是算法指标，更是从训练、推理到监控的整条工程链路。
+                </p>
+                <p>
+                  我们相信好的 AI 产品 = 前沿算法 × 工程化能力 × 可度量结果。这里记录我们如何把论文里的想法，一步步变成稳定运行的生产系统。
+                </p>
+              </div>
+
+              <a href="skills.html" class="ai-text-link text-xs ai-mono tracking-wider pt-2">
+                查看完整能力 <i data-lucide="arrow-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ PROJECT CATEGORIES — Three navigation cards ============ -->
+        <section class="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
+          <!-- Section header -->
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 ai-reveal">
+            <div class="space-y-4">
+              <span class="ai-mono text-[11px] tracking-[0.2em] text-[color:var(--ai-primary)] uppercase">// 项目案例 · 三大方向</span>
+              <h2 class="ai-serif text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-[color:var(--ai-foreground)]">
+                10 个真实落地项目<br><span class="ai-gradient-text italic">分属三大系统</span>
+              </h2>
+              <p class="text-sm md:text-base text-[color:var(--ai-muted-foreground)] leading-relaxed max-w-xl font-light pt-2">
+                从企业内部效率，到市场获客增长，再到前沿技术基建——选一个方向，进入对应案例。
+              </p>
+            </div>
+            <a href="projects.html" class="ai-text-link text-xs ai-mono tracking-wider shrink-0 self-start md:self-end">
+              查看全部 <i data-lucide="arrow-right" class="w-3 h-3"></i>
+            </a>
+          </div>
+
+          <!-- 3 category navigation cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 ai-reveal-stagger">
+
+            <!-- Card 01 — 公司内部 AI 系统 -->
+            <a href="projects.html#category-internal-ai" class="group relative block ai-card-hover ai-gold-corners bg-[color:var(--ai-card)] border border-[color:var(--ai-border)] overflow-hidden">
+              <!-- Visual -->
+              <div class="relative overflow-hidden aspect-[4/3] bg-gradient-to-br from-[#1A1A1F] via-[#2A2520] to-[#3A3025]">
+                <div class="absolute inset-0 opacity-30" style="background:
+                  radial-gradient(ellipse at 70% 30%, rgba(212,184,150,0.25) 0%, transparent 55%),
+                  radial-gradient(ellipse at 20% 80%, rgba(184,149,106,0.2) 0%, transparent 50%)"></div>
+                <div class="absolute inset-0 opacity-15" style="background-image:
+                  linear-gradient(rgba(184,149,106,0.3) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(184,149,106,0.3) 1px, transparent 1px);
+                  background-size: 36px 36px;"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="ai-serif text-[140px] md:text-[160px] font-light text-white/10 leading-none select-none">01</div>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <!-- Number badge -->
+                <div class="absolute top-4 left-4 ai-mono text-[10px] tracking-[0.2em] text-white/95 bg-black/30 backdrop-blur-sm px-2.5 py-1 rounded-sm border border-white/15">
+                  01 · 分类
+                </div>
+                <!-- Project count -->
+                <div class="absolute bottom-4 right-4 ai-mono text-[10px] tracking-wider text-white/95 bg-black/30 backdrop-blur-sm px-2.5 py-1 rounded-sm">
+                  3 个项目
+                </div>
+                <!-- Category label -->
+                <div class="absolute bottom-4 left-4">
+                  <div class="ai-serif text-xl md:text-2xl font-medium text-white/95 leading-none">内部系统</div>
+                  <div class="ai-mono text-[9px] text-[color:var(--ai-primary-light)]/80 tracking-wider mt-1">INTERNAL AI</div>
+                </div>
+              </div>
+              <!-- Body -->
+              <div class="p-6 md:p-7 space-y-4">
+                <h3 class="ai-serif text-2xl md:text-[26px] font-medium leading-[1.15] tracking-tight text-[color:var(--ai-foreground)] group-hover:text-[color:var(--ai-primary)] transition-colors">
+                  公司内部<br><span class="ai-gradient-text italic">AI 系统</span>
+                </h3>
+                <p class="text-[13px] text-[color:var(--ai-muted-foreground)] leading-[1.75]">
+                  知识管理、流程自动化、数据治理——把大模型能力嵌入员工日常工作工具链。
+                </p>
+                <!-- Project tags -->
+                <div class="pt-2 space-y-1.5">
+                  <div class="flex items-center gap-2 text-[12px] text-[color:var(--ai-foreground)]/75">
+                    <span class="h-1 w-1 rounded-full bg-[color:var(--ai-primary)]"></span>
+                    <span>AI-CRM 系统</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-[12px] text-[color:var(--ai-foreground)]/75">
+                    <span class="h-1 w-1 rounded-full bg-[color:var(--ai-primary)]"></span>
+                    <span>AI-知识库系统</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-[12px] text-[color:var(--ai-foreground)]/75">
+                    <span class="h-1 w-1 rounded-full bg-[color:var(--ai-primary)]"></span>
+                    <span>AI-数字员工系统</span>
+                  </div>
+                </div>
+                <!-- CTA line -->
+                <div class="pt-4 mt-2 border-t border-[color:var(--ai-border)]/60 flex items-center justify-between">
+                  <span class="ai-mono text-[11px] tracking-wider text-[color:var(--ai-primary)]">查看分类详情</span>
+                  <i data-lucide="arrow-up-right" class="w-4 h-4 text-[color:var(--ai-primary)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+                </div>
+              </div>
+            </a>
+
+            <!-- Card 02 — AI 品宣获客系统 -->
+            <a href="projects.html#category-marketing-ai" class="group relative block ai-card-hover ai-gold-corners bg-[color:var(--ai-card)] border border-[color:var(--ai-border)] overflow-hidden md:mt-8">
+              <!-- Visual -->
+              <div class="relative overflow-hidden aspect-[4/3] bg-gradient-to-br from-[#2A2015] via-[#3A2E1F] to-[#B8956A]">
+                <div class="absolute inset-0 opacity-40" style="background:
+                  radial-gradient(ellipse at 50% 50%, rgba(212,184,150,0.3) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 20%, rgba(255,220,180,0.15) 0%, transparent 40%)"></div>
+                <div class="absolute inset-0 opacity-20" style="background-image:
+                  repeating-linear-gradient(45deg, rgba(184,149,106,0.15) 0, rgba(184,149,106,0.15) 1px, transparent 1px, transparent 20px);"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="ai-serif text-[140px] md:text-[160px] font-light text-white/10 leading-none select-none">02</div>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div class="absolute top-4 left-4 ai-mono text-[10px] tracking-[0.2em] text-white/95 bg-black/30 backdrop-blur-sm px-2.5 py-1 rounded-sm border border-white/15">
+                  02 · 分类
+                </div>
+                <div class="absolute bottom-4 right-4 ai-mono text-[10px] tracking-wider text-white/95 bg-black/30 backdrop-blur-sm px-2.5 py-1 rounded-sm">
+                  3 个项目
+                </div>
+                <div class="absolute bottom-4 left-4">
+                  <div class="ai-serif text-xl md:text-2xl font-medium text-white/95 leading-none">品宣获客</div>
+                  <div class="ai-mono text-[9px] text-[color:var(--ai-primary-light)]/80 tracking-wider mt-1">MARKETING AI</div>
+                </div>
+              </div>
+              <div class="p-6 md:p-7 space-y-4">
+                <h3 class="ai-serif text-2xl md:text-[26px] font-medium leading-[1.15] tracking-tight text-[color:var(--ai-foreground)] group-hover:text-[color:var(--ai-primary)] transition-colors">
+                  AI 品宣<br><span class="ai-gradient-text italic">获客系统</span>
+                </h3>
+                <p class="text-[13px] text-[color:var(--ai-muted-foreground)] leading-[1.75]">
+                  内容生产、智能营销、用户洞察、获客转化——让品宣可量化、获客可归因。
+                </p>
+                <div class="pt-2 space-y-1.5">
+                  <div class="flex items-center gap-2 text-[12px] text-[color:var(--ai-foreground)]/75">
+                    <span class="h-1 w-1 rounded-full bg-[color:var(--ai-primary)]"></span>
+                    <span>AI-GEO 系统</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-[12px] text-[color:var(--ai-foreground)]/75">
+                    <span class="h-1 w-1 rounded-full bg-[color:var(--ai-primary)]"></span>
+                    <span>AI-智能外呼获客系统</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-[12px] text-[color:var(--ai-foreground)]/75">
+                    <span class="h-1 w-1 rounded-full bg-[color:var(--ai-primary)]"></span>
+                    <span>AI-内容营销系统</span>
+                  </div>
+                </div>
+                <div class="pt-4 mt-2 border-t border-[color:var(--ai-border)]/60 flex items-center justify-between">
+                  <span class="ai-mono text-[11px] tracking-wider text-[color:var(--ai-primary)]">查看分类详情</span>
+                  <i data-lucide="arrow-up-right" class="w-4 h-4 text-[color:var(--ai-primary)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+                </div>
+              </div>
+            </a>
+
+            <!-- Card 03 — AI 高级技术系统 -->
+            <a href="projects.html#category-advanced-tech" class="group relative block ai-card-hover ai-gold-corners bg-[color:var(--ai-card)] border border-[color:var(--ai-border)] overflow-hidden md:mt-16">
+              <!-- Visual -->
+              <div class="relative overflow-hidden aspect-[4/3] bg-gradient-to-br from-[#151820] via-[#1F2430] to-[#2A3040]">
+                <div class="absolute inset-0 opacity-40" style="background:
+                  radial-gradient(ellipse at 60% 40%, rgba(184,149,106,0.25) 0%, transparent 55%),
+                  radial-gradient(ellipse at 30% 70%, rgba(212,184,150,0.15) 0%, transparent 50%)"></div>
+                <div class="absolute inset-0 opacity-25">
+                  <svg class="w-full h-full" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" fill="none">
+                    <circle cx="200" cy="150" r="80" stroke="rgba(184,149,106,0.2)" stroke-width="1"/>
+                    <circle cx="200" cy="150" r="120" stroke="rgba(184,149,106,0.15)" stroke-width="1"/>
+                    <circle cx="200" cy="150" r="160" stroke="rgba(184,149,106,0.1)" stroke-width="1"/>
+                    <line x1="40" y1="150" x2="360" y2="150" stroke="rgba(184,149,106,0.15)" stroke-width="1"/>
+                    <line x1="200" y1="0" x2="200" y2="300" stroke="rgba(184,149,106,0.15)" stroke-width="1"/>
+                  </svg>
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="ai-serif text-[140px] md:text-[160px] font-light text-white/10 leading-none select-none">03</div>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div class="absolute top-4 left-4 ai-mono text-[10px] tracking-[0.2em] text-white/95 bg-black/30 backdrop-blur-sm px-2.5 py-1 rounded-sm border border-white/15">
+                  03 · 分类
+                </div>
+                <div class="absolute bottom-4 right-4 ai-mono text-[10px] tracking-wider text-white/95 bg-black/30 backdrop-blur-sm px-2.5 py-1 rounded-sm">
+                  4 个项目
+                </div>
+                <div class="absolute bottom-4 left-4">
+                  <div class="ai-serif text-xl md:text-2xl font-medium text-white/95 leading-none">高级技术</div>
+                  <div class="ai-mono text-[9px] text-[color:var(--ai-primary-light)]/80 tracking-wider mt-1">ADVANCED AI</div>
+                </div>
+              </div>
+              <div class="p-6 md:p-7 space-y-4">
+                <h3 class="ai-serif text-2xl md:text-[26px] font-medium leading-[1.15] tracking-tight text-[color:var(--ai-foreground)] group-hover:text-[color:var(--ai-primary)] transition-colors">
+                  AI 高级<br><span class="ai-gradient-text italic">技术系统</span>
+                </h3>
+                <p class="text-[13px] text-[color:var(--ai-muted-foreground)] leading-[1.75]">
+                  多智能体编排、推理加速、训练对齐、自定义模型——前沿研究的工程化沉淀。
+                </p>
+                <div class="pt-2 space-y-1.5">
+                  <div class="flex items-center gap-2 text-[12px] text-[color:var(--ai-foreground)]/75">
+                    <span class="h-1 w-1 rounded-full bg-[color:var(--ai-primary)]"></span>
+                    <span>AI-三维引擎系统</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-[12px] text-[color:var(--ai-foreground)]/75">
+                    <span class="h-1 w-1 rounded-full bg-[color:var(--ai-primary)]"></span>
+                    <span>AI-Agent 系统</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-[12px] text-[color:var(--ai-foreground)]/75">
+                    <span class="h-1 w-1 rounded-full bg-[color:var(--ai-primary)]"></span>
+                    <span>AI-工业视觉系统</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-[12px] text-[color:var(--ai-foreground)]/75">
+                    <span class="h-1 w-1 rounded-full bg-[color:var(--ai-primary)]"></span>
+                    <span>AI-无人机飞控系统</span>
+                  </div>
+                </div>
+                <div class="pt-4 mt-2 border-t border-[color:var(--ai-border)]/60 flex items-center justify-between">
+                  <span class="ai-mono text-[11px] tracking-wider text-[color:var(--ai-primary)]">查看分类详情</span>
+                  <i data-lucide="arrow-up-right" class="w-4 h-4 text-[color:var(--ai-primary)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+                </div>
+              </div>
+            </a>
+
+          </div>
+
+          <!-- Bottom hint: scroll-for-more -->
+          <div class="mt-16 flex items-center justify-center gap-3 text-[color:var(--ai-muted-foreground)]/70 ai-reveal">
+            <span class="h-px w-10 bg-[color:var(--ai-primary)]/30"></span>
+            <span class="ai-mono text-[10px] tracking-[0.2em] uppercase">点击任一卡片进入案例详情</span>
+            <span class="h-px w-10 bg-[color:var(--ai-primary)]/30"></span>
+          </div>
+        </section>
+
+        <!-- ============ CTA BAND — Minimal editorial quote-style ============ -->
+        <section class="mx-auto max-w-7xl px-6 py-28 md:py-36">
+          <div class="max-w-3xl mx-auto text-center space-y-8 ai-reveal">
+            <!-- Centered short gold rule -->
+            <div class="flex justify-center">
+              <div class="w-16 h-px bg-[color:var(--ai-primary)]/50"></div>
+            </div>
+
+            <!-- Eyebrow -->
+            <div class="flex items-center justify-center gap-3 text-[color:var(--ai-muted-foreground)]/80">
+              <span class="ai-mono text-[10px] tracking-[0.2em] uppercase">PROJECTS · NEXT</span>
+              <span class="h-px w-8 bg-[color:var(--ai-primary)]/40"></span>
+              <span class="ai-mono text-[10px] tracking-wider">还在看？</span>
+            </div>
+
+            <h2 class="ai-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.25] tracking-tight text-[color:var(--ai-foreground)]">
+              先看我们<span class="ai-gradient-text italic">做过什么</span>，<br>再决定要不要聊聊
+            </h2>
+
+            <p class="text-base leading-relaxed text-[color:var(--ai-muted-foreground)] max-w-lg mx-auto font-light">
+              10 个真实落地的 AI 系统案例，覆盖企业内部、品宣获客与前沿技术三大方向。每一个都附技术栈、量化指标与业务场景。
+            </p>
+
+            <!-- Primary CTA: projects; Secondary CTA: contact -->
+            <div class="pt-4 flex flex-wrap items-center justify-center gap-4 md:gap-6">
+              <a data-dom-id="cta-projects-band" href="projects.html" class="group inline-flex items-center gap-2.5 ai-btn-gold text-xs">
+                <span class="relative flex h-1.5 w-1.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[color:var(--ai-primary-foreground)] opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[color:var(--ai-primary-foreground)]"></span>
+                </span>
+                查看项目案例 <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"></i>
+              </a>
+              <a data-dom-id="cta-contact" href="blog.html" class="ai-text-link text-xs ai-mono tracking-wider">
+                或直接联系我们 <i data-lucide="arrow-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <footer data-global-footer="desktop" class="border-t border-[color:var(--ai-border)] bg-[color:var(--ai-background)]">
+        <div class="mx-auto max-w-7xl px-6 py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div class="space-y-3">
+            <div class="flex items-center gap-2.5">
+              <span class="ai-mono text-xs font-bold text-[color:var(--ai-primary)] tracking-wider">无界</span>
+              <span class="ai-serif text-lg font-medium text-[color:var(--ai-foreground)]">无界智源</span>
+            </div>
+            <p class="text-xs text-[color:var(--ai-muted-foreground)] font-light">AI 科技公司 · 用工程化方式让智能落地</p>
+            <p class="text-[11px] text-[color:var(--ai-muted-foreground)]/60 ai-mono">© 2026 无界智源. 占位内容，请替换为真实信息。</p>
+          </div>
+          <div class="flex items-center gap-1">
+            <a href="https://github.com/wujiezhiyuan" target="_blank" rel="noopener" class="flex h-10 w-10 items-center justify-center text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-primary)] transition-colors"><i data-lucide="github" class="w-4 h-4"></i></a>
+            <a href="https://www.linkedin.com/company/wujiezhiyuan" target="_blank" rel="noopener" class="flex h-10 w-10 items-center justify-center text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-primary)] transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+            <a href="https://twitter.com/wujiezhiyuan" target="_blank" rel="noopener" class="flex h-10 w-10 items-center justify-center text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-primary)] transition-colors"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+            <a href="mailto:hello@wujiezhiyuan.ai" class="flex h-10 w-10 items-center justify-center text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-primary)] transition-colors"><i data-lucide="mail" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+      </footer>
+    </main>
+    <script>
+      lucide.createIcons();
+
+      // Scroll progress bar
+      const progressBar = document.getElementById('scrollProgress');
+      const updateProgress = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        if (progressBar) progressBar.style.width = progress + '%';
+      };
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+
+      // Nav scroll state
+      const nav = document.querySelector('[data-global-nav="desktop"]');
+      const onScroll = () => {
+        if (window.scrollY > 20) {
+          nav.classList.add('is-scrolled');
+        } else {
+          nav.classList.remove('is-scrolled');
+        }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Scroll reveal with IntersectionObserver
+      const revealSelectors = '.ai-reveal, .ai-reveal-stagger, .ai-reveal-img, .ai-reveal-line';
+      const revealEls = document.querySelectorAll(revealSelectors);
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+        revealEls.forEach(el => io.observe(el));
+      } else {
+        revealEls.forEach(el => el.classList.add('is-visible'));
+      }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1678 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专业能力 — 无界智源 · AI 科技公司</title>
+    <style id="theme-vars">
+/* ============================================================
+   AI Engineer Portfolio — European Luxury Light Theme (Elevated)
+   Brand prefix: ai  |  Single primary hue: warm gold (#B8956A)
+   ============================================================ */
+
+:root {
+  --ai-background: #F7F4EF;
+  --ai-background-2: #EFEAE2;
+  --ai-foreground: #1A1A1F;
+  --ai-card: #FFFFFF;
+  --ai-card-foreground: #1A1A1F;
+  --ai-popover: #FFFFFF;
+  --ai-popover-foreground: #1A1A1F;
+  --ai-primary: #B8956A;
+  --ai-primary-strong: #9C7A4E;
+  --ai-primary-light: #D4B896;
+  --ai-primary-foreground: #FFFFFF;
+  --ai-primary-glow: rgba(184, 149, 106, 0.18);
+  --ai-primary-soft: rgba(184, 149, 106, 0.08);
+  --ai-muted: #E8E3D9;
+  --ai-muted-foreground: #6B6B6B;
+  --ai-border: #E0D9CD;
+  --ai-border-strong: #C8BFAE;
+  --ai-input: #F2EFE8;
+  --ai-ring: #B8956A;
+  --ai-success: #4A7C59;
+  --ai-warning: #B8860B;
+  --ai-error: #8B3A3A;
+  --ai-radius-sm: 2px;
+  --ai-radius-md: 4px;
+  --ai-radius-lg: 6px;
+  --ai-radius-xl: 8px;
+  --ai-font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  --ai-font-serif: "Playfair Display", "Cormorant Garamond", "Noto Serif SC",
+    "Songti SC", "STSong", Georgia, serif;
+  --ai-font-mono: "JetBrains Mono", "SF Mono", "Cascadia Code", "Fira Code",
+    Consolas, "Courier New", monospace;
+  --ai-nav-bg: rgba(247, 244, 239, 0.85);
+  --ai-card-translucent: rgba(255, 255, 255, 0.7);
+  --ai-scrim: rgba(26, 26, 31, 0.4);
+  --ai-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ai-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ai-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ai-font-sans);
+  background-color: var(--ai-background);
+  color: var(--ai-foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv01", "kern";
+  text-rendering: optimizeLegibility;
+}
+
+.ai-body-backdrop {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(800px 500px at 30% -10%, rgba(184, 149, 106, 0.10), transparent 55%),
+    radial-gradient(500px 400px at 95% 110%, rgba(184, 149, 106, 0.06), transparent 50%),
+    linear-gradient(180deg, #F7F4EF 0%, #F0EBE2 50%, #F3EEE7 100%);
+}
+.ai-body-backdrop::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+}
+
+.ai-grid-bg {
+  background-image:
+    linear-gradient(rgba(184, 149, 106, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 149, 106, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: -1px -1px;
+}
+
+.ai-dot-bg {
+  background-image: radial-gradient(rgba(107, 107, 107, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.ai-gradient-text {
+  background: linear-gradient(100deg, #9C7A4E 0%, #B8956A 35%, #D4B896 50%, #B8956A 65%, #9C7A4E 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  transition: background-position 0.8s var(--ai-ease-out);
+}
+.ai-gradient-text:hover { background-position: right center; }
+
+.ai-glow {
+  box-shadow: 0 0 0 1px rgba(184, 149, 106, 0.12),
+    0 30px 60px -30px rgba(184, 149, 106, 0.2);
+}
+
+.ai-hairline { border: 1px solid var(--ai-border); }
+
+.ai-glass {
+  background: #FFFFFF;
+  border: 1px solid var(--ai-border);
+  box-shadow: 0 1px 2px rgba(26, 26, 31, 0.03),
+    0 8px 24px -12px rgba(26, 26, 31, 0.08);
+}
+
+.ai-serif {
+  font-family: var(--ai-font-serif);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  font-feature-settings: "liga", "dlig";
+}
+
+.ai-serif-display {
+  font-family: var(--ai-font-serif);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-feature-settings: "liga", "dlig", "swsh";
+  line-height: 1.05;
+}
+
+.ai-mono {
+  font-family: var(--ai-font-mono);
+  font-feature-settings: "ss01", "cv01", "tnum";
+  letter-spacing: 0.02em;
+}
+
+.ai-status-dot {
+  position: relative; display: inline-block; width: 8px; height: 8px;
+  border-radius: 9999px; background: var(--ai-primary);
+  box-shadow: 0 0 0 4px rgba(184, 149, 106, 0.12);
+}
+.ai-status-dot::after {
+  content: ""; position: absolute; inset: -4px; border-radius: 9999px;
+  background: rgba(184, 149, 106, 0.18);
+  animation: ai-pulse 2.4s ease-out infinite;
+}
+
+@keyframes ai-pulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+.ai-scanline {
+  background: linear-gradient(90deg, transparent, var(--ai-primary), transparent);
+  height: 1px; opacity: 0.3;
+}
+
+.ai-card-hover {
+  transition: transform 0.5s var(--ai-ease-out),
+    border-color 0.5s var(--ai-ease-out),
+    box-shadow 0.5s var(--ai-ease-out);
+}
+.ai-card-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(184, 149, 106, 0.3);
+  box-shadow: 0 8px 16px rgba(26, 26, 31, 0.04),
+    0 30px 50px -30px rgba(184, 149, 106, 0.25);
+}
+
+.ai-img-reveal { overflow: hidden; position: relative; }
+.ai-img-reveal img {
+  transition: transform 1.2s var(--ai-ease-out),
+    filter 0.8s var(--ai-ease-out);
+  filter: saturate(0.92) contrast(1.02);
+}
+.ai-img-reveal:hover img {
+  transform: scale(1.04);
+  filter: saturate(1) contrast(1.04);
+}
+
+.ai-gold-corners { position: relative; }
+.ai-gold-corners::before,
+.ai-gold-corners::after {
+  content: ""; position: absolute; width: 24px; height: 24px;
+  border: 1px solid var(--ai-primary); opacity: 0.6;
+  transition: opacity 0.4s var(--ai-ease-out),
+    width 0.4s var(--ai-ease-out),
+    height 0.4s var(--ai-ease-out);
+}
+.ai-gold-corners::before {
+  top: -1px; left: -1px; border-right: none; border-bottom: none;
+}
+.ai-gold-corners::after {
+  bottom: -1px; right: -1px; border-left: none; border-top: none;
+}
+.ai-gold-corners:hover::before,
+.ai-gold-corners:hover::after {
+  opacity: 1; width: 32px; height: 32px;
+}
+
+.ai-text-link {
+  position: relative; display: inline-block;
+  color: var(--ai-primary); text-decoration: none;
+  transition: color 0.3s var(--ai-ease-out);
+}
+.ai-text-link::after {
+  content: ""; position: absolute; bottom: -2px; left: 0;
+  width: 100%; height: 1px; background: var(--ai-primary);
+  transform: scaleX(0); transform-origin: right center;
+  transition: transform 0.5s var(--ai-ease-out);
+}
+.ai-text-link:hover::after {
+  transform: scaleX(1); transform-origin: left center;
+}
+
+.ai-btn-gold {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--ai-primary); color: var(--ai-primary-foreground);
+  border-radius: var(--ai-radius-sm);
+  font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em;
+  position: relative; overflow: hidden;
+  transition: all 0.4s var(--ai-ease-out);
+  box-shadow: 0 4px 12px rgba(184, 149, 106, 0.15);
+}
+.ai-btn-gold::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.25) 50%, transparent 80%);
+  transform: translateX(-100%);
+  transition: transform 0.8s var(--ai-ease-out);
+}
+.ai-btn-gold:hover {
+  background: var(--ai-primary-strong);
+  box-shadow: 0 8px 20px rgba(184, 149, 106, 0.25);
+  transform: translateY(-1px);
+}
+.ai-btn-gold:hover::before { transform: translateX(100%); }
+.ai-btn-gold:active { transform: translateY(0); }
+
+.ai-btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 0;
+  color: var(--ai-foreground);
+  font-size: 0.875rem; font-weight: 500;
+  position: relative;
+  transition: color 0.4s var(--ai-ease-out);
+}
+.ai-btn-ghost::after {
+  content: ""; position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 1px; background: var(--ai-border-strong);
+  transition: background 0.4s var(--ai-ease-out);
+}
+.ai-btn-ghost:hover { color: var(--ai-primary); }
+.ai-btn-ghost:hover::after { background: var(--ai-primary); }
+
+.ai-v-divider {
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--ai-primary), transparent);
+  opacity: 0.3;
+}
+
+.ai-section-num {
+  font-family: var(--ai-font-serif);
+  font-size: clamp(6rem, 12vw, 12rem);
+  font-weight: 300; line-height: 1;
+  color: var(--ai-primary); opacity: 0.08;
+  letter-spacing: -0.04em;
+  user-select: none; pointer-events: none;
+}
+
+.ai-dropcap::first-letter {
+  font-family: var(--ai-font-serif);
+  font-size: 3.5em; font-weight: 500;
+  float: left; line-height: 0.85;
+  padding-right: 0.15em; padding-top: 0.1em;
+  color: var(--ai-primary);
+  font-feature-settings: "swsh", "liga";
+}
+
+/* Scroll-reveal */
+.ai-reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.9s var(--ai-ease-out),
+    transform 0.9s var(--ai-ease-out);
+  will-change: opacity, transform;
+}
+.ai-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+.ai-reveal-stagger > * {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.8s var(--ai-ease-out),
+    transform 0.8s var(--ai-ease-out);
+  will-change: opacity, transform;
+}
+.ai-reveal-stagger.is-visible > * { opacity: 1; transform: translateY(0); }
+.ai-reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+.ai-reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.12s; }
+.ai-reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.19s; }
+.ai-reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.26s; }
+.ai-reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.33s; }
+.ai-reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.40s; }
+.ai-reveal-stagger.is-visible > *:nth-child(7) { transition-delay: 0.47s; }
+.ai-reveal-stagger.is-visible > *:nth-child(8) { transition-delay: 0.54s; }
+
+.ai-reveal-img {
+  opacity: 0; clip-path: inset(0 0 100% 0);
+  transition: opacity 0.3s ease,
+    clip-path 1.2s var(--ai-ease-out);
+  will-change: clip-path, opacity;
+}
+.ai-reveal-img.is-visible {
+  opacity: 1; clip-path: inset(0 0 0 0);
+}
+
+.ai-reveal-line {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.2s var(--ai-ease-out);
+  will-change: transform;
+}
+.ai-reveal-line.is-visible { transform: scaleX(1); }
+
+/* Nav scroll state */
+.ai-nav-scroll { transition: all 0.5s var(--ai-ease-out); }
+.ai-nav-scroll.is-scrolled {
+  border-bottom-color: rgba(184, 149, 106, 0.15) !important;
+  background: rgba(247, 244, 239, 0.95) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(184, 149, 106, 0.06),
+    0 8px 24px -16px rgba(26, 26, 31, 0.06);
+}
+
+/* Scroll progress bar */
+.ai-scroll-progress {
+  position: fixed; top: 0; left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--ai-primary), var(--ai-primary-light), var(--ai-primary));
+  z-index: 100;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* Custom scrollbar (refined gold) */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(184, 149, 106, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(184, 149, 106, 0.4); }
+
+::selection {
+  background: rgba(184, 149, 106, 0.2);
+  color: #1A1A1F;
+}
+
+/* ============================================================
+   Page-specific editorial additions
+   ============================================================ */
+
+.ai-corner-tl::before {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 28px; height: 28px;
+  border-top: 1px solid var(--ai-primary);
+  border-left: 1px solid var(--ai-primary);
+  opacity: 0.6;
+}
+.ai-corner-br::after {
+  content: ""; position: absolute; bottom: 0; right: 0;
+  width: 28px; height: 28px;
+  border-bottom: 1px solid var(--ai-primary);
+  border-right: 1px solid var(--ai-primary);
+  opacity: 0.6;
+}
+
+.ai-project-card .ai-project-img {
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.8s var(--ai-ease-out);
+  filter: saturate(0.92) contrast(1.02);
+}
+.ai-project-card:hover .ai-project-img {
+  transform: scale(1.04);
+  filter: saturate(1) contrast(1.04);
+}
+.ai-project-card:hover h3 { color: var(--ai-primary); }
+.ai-project-card h3 { transition: color 0.4s var(--ai-ease-out); }
+
+.ai-drop-cap::first-letter {
+  float: left;
+  font-family: var(--ai-font-serif);
+  font-size: 4.5em; line-height: 0.85;
+  padding-right: 0.12em; padding-top: 0.08em;
+  background: linear-gradient(135deg, #B8956A 0%, #D4B896 50%, #9C7A4E 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  font-weight: 600;
+}
+
+.ai-section-number-bg {
+  position: absolute;
+  font-family: var(--ai-font-serif);
+  font-weight: 400;
+  color: var(--ai-primary); opacity: 0.08;
+  line-height: 1; pointer-events: none; user-select: none;
+}
+
+.ai-gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, var(--ai-primary) 0%, rgba(184, 149, 106, 0.3) 70%, transparent 100%);
+}
+.ai-gold-rule-center {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ai-primary), transparent);
+}
+
+.ai-cat-line { position: relative; }
+.ai-cat-line::after {
+  content: ""; position: absolute;
+  right: 0; top: 50%;
+  width: 40px; height: 1px;
+  background: var(--ai-primary); opacity: 0.4;
+}
+
+.ai-timeline-line {
+  position: absolute; left: 28px; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(184, 149, 106, 0.1) 0%, rgba(184, 149, 106, 0.5) 20%, rgba(184, 149, 106, 0.5) 80%, rgba(184, 149, 106, 0.1) 100%);
+}
+@media (min-width: 768px) { .ai-timeline-line { left: 40px; } }
+
+.ai-project-num {
+  font-family: var(--ai-font-serif);
+  font-weight: 400; font-style: italic;
+  line-height: 0.85; letter-spacing: -0.04em;
+  color: rgba(184, 149, 106, 0.25);
+  text-shadow: 0 2px 40px rgba(0,0,0,0.1);
+  pointer-events: none; user-select: none;
+}
+
+.ai-vert-divider {
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(184, 149, 106, 0.3), transparent);
+}
+
+.ai-editorial-img { position: relative; overflow: hidden; }
+.ai-editorial-img img {
+  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.8s var(--ai-ease-out);
+  filter: saturate(0.92) contrast(1.02);
+}
+.ai-editorial-img:hover img {
+  transform: scale(1.03);
+  filter: saturate(1) contrast(1.04);
+}
+
+.ai-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(26, 26, 31, 0.15) 100%);
+  pointer-events: none;
+}
+
+.ai-nav-editorial {
+  background: var(--ai-nav-bg);
+  border-bottom: 1px solid rgba(184, 149, 106, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.5s var(--ai-ease-out);
+}
+.ai-nav-editorial.is-scrolled {
+  background: rgba(247, 244, 239, 0.97) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(184, 149, 106, 0.08),
+    0 12px 30px -20px rgba(26, 26, 31, 0.08);
+}
+
+.ai-editorial-row { transition: background-color 0.25s ease; }
+.ai-editorial-row:hover { background-color: rgba(184, 149, 106, 0.04); }
+.ai-editorial-row:hover .ai-editorial-title { color: var(--ai-primary); }
+.ai-editorial-title { transition: color 0.3s var(--ai-ease-out); }
+
+.ai-input-underline {
+  background: transparent; border: none;
+  border-bottom: 1px solid var(--ai-border);
+  border-radius: 0; padding: 0.6rem 0;
+  font-size: 0.95rem; color: var(--ai-foreground);
+  transition: border-color 0.3s var(--ai-ease-out);
+  width: 100%; outline: none;
+}
+.ai-input-underline:focus { border-bottom-color: var(--ai-primary); }
+.ai-input-underline::placeholder { color: rgba(107, 107, 107, 0.4); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--ai-background);
+    --color-foreground: var(--ai-foreground);
+    --color-card: var(--ai-card);
+    --color-card-foreground: var(--ai-card-foreground);
+    --color-popover: var(--ai-popover);
+    --color-popover-foreground: var(--ai-popover-foreground);
+    --color-primary: var(--ai-primary);
+    --color-primary-foreground: var(--ai-primary-foreground);
+    --color-muted: var(--ai-muted);
+    --color-muted-foreground: var(--ai-muted-foreground);
+    --color-border: var(--ai-border);
+    --color-input: var(--ai-input);
+    --color-ring: var(--ai-ring);
+    --radius-sm: var(--ai-radius-sm);
+    --radius-md: var(--ai-radius-md);
+    --radius-lg: var(--ai-radius-lg);
+    --radius-xl: var(--ai-radius-xl);
+  }
+  @layer base {
+    body { background: var(--ai-background); color: var(--ai-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--ai-background); }
+      .text-background { color: var(--ai-background); }
+      .border-background { border-color: var(--ai-background); }
+      .ring-background { --tw-ring-color: var(--ai-background); }
+      .bg-foreground { background-color: var(--ai-foreground); }
+      .text-foreground { color: var(--ai-foreground); }
+      .border-foreground { border-color: var(--ai-foreground); }
+      .ring-foreground { --tw-ring-color: var(--ai-foreground); }
+      .bg-card { background-color: var(--ai-card); }
+      .text-card { color: var(--ai-card); }
+      .border-card { border-color: var(--ai-card); }
+      .ring-card { --tw-ring-color: var(--ai-card); }
+      .bg-card-foreground { background-color: var(--ai-card-foreground); }
+      .text-card-foreground { color: var(--ai-card-foreground); }
+      .border-card-foreground { border-color: var(--ai-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--ai-card-foreground); }
+      .bg-popover { background-color: var(--ai-popover); }
+      .text-popover { color: var(--ai-popover); }
+      .border-popover { border-color: var(--ai-popover); }
+      .ring-popover { --tw-ring-color: var(--ai-popover); }
+      .bg-popover-foreground { background-color: var(--ai-popover-foreground); }
+      .text-popover-foreground { color: var(--ai-popover-foreground); }
+      .border-popover-foreground { border-color: var(--ai-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--ai-popover-foreground); }
+      .bg-primary { background-color: var(--ai-primary); }
+      .text-primary { color: var(--ai-primary); }
+      .border-primary { border-color: var(--ai-primary); }
+      .ring-primary { --tw-ring-color: var(--ai-primary); }
+      .bg-primary-foreground { background-color: var(--ai-primary-foreground); }
+      .text-primary-foreground { color: var(--ai-primary-foreground); }
+      .border-primary-foreground { border-color: var(--ai-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--ai-primary-foreground); }
+      .bg-muted { background-color: var(--ai-muted); }
+      .text-muted { color: var(--ai-muted); }
+      .border-muted { border-color: var(--ai-muted); }
+      .ring-muted { --tw-ring-color: var(--ai-muted); }
+      .bg-muted-foreground { background-color: var(--ai-muted-foreground); }
+      .text-muted-foreground { color: var(--ai-muted-foreground); }
+      .border-muted-foreground { border-color: var(--ai-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--ai-muted-foreground); }
+      .bg-border { background-color: var(--ai-border); }
+      .text-border { color: var(--ai-border); }
+      .border-border { border-color: var(--ai-border); }
+      .ring-border { --tw-ring-color: var(--ai-border); }
+      .bg-input { background-color: var(--ai-input); }
+      .text-input { color: var(--ai-input); }
+      .border-input { border-color: var(--ai-input); }
+      .ring-input { --tw-ring-color: var(--ai-input); }
+      .bg-ring { background-color: var(--ai-ring); }
+      .text-ring { color: var(--ai-ring); }
+      .border-ring { border-color: var(--ai-ring); }
+      .ring-ring { --tw-ring-color: var(--ai-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <div class="ai-scroll-progress" id="scrollProgress"></div>
+    <div class="ai-body-backdrop"></div>
+
+    <header data-global-nav="desktop" class="ai-nav-scroll fixed top-0 inset-x-0 z-50 h-16 border-b border-[color:var(--ai-border)] bg-[color:var(--ai-background)]/90 backdrop-blur-sm">
+      <div class="mx-auto max-w-7xl px-6 h-full flex items-center justify-between gap-6">
+        <a href="index.html" class="flex items-center gap-2.5">
+          <span class="relative flex h-8 w-8 items-center justify-center">
+            <span class="ai-mono text-[13px] font-bold text-[color:var(--ai-primary)] tracking-wider">无界</span>
+          </span>
+          <span class="ai-serif text-[17px] font-medium tracking-tight text-[color:var(--ai-foreground)]">无界<span class="text-[color:var(--ai-primary)]/70">智源</span></span>
+        </a>
+        <nav class="hidden md:flex items-center gap-1">
+          <a data-dom-id="nav-home" data-nav-key="home" href="index.html" class="px-3.5 py-2 text-sm text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-foreground)] transition-colors">首页</a>
+          <a data-dom-id="nav-skills" data-nav-key="skills" href="skills.html" class="px-3.5 py-2 text-sm text-[color:var(--ai-primary)] ai-mono tracking-wide">专业技能</a>
+          <a data-dom-id="nav-projects" data-nav-key="projects" href="projects.html" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium text-[color:var(--ai-primary)] bg-[color:var(--ai-primary-soft)] ring-1 ring-[color:var(--ai-primary)]/20 hover:bg-[color:var(--ai-primary)]/12 transition-colors">
+              <span class="relative flex h-1.5 w-1.5">
+                <span class="absolute inline-flex h-full w-full rounded-full bg-[color:var(--ai-primary)] opacity-60 animate-ping"></span>
+                <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-[color:var(--ai-primary)]"></span>
+              </span>
+              项目案例
+            </a>
+          <a data-dom-id="nav-blog" data-nav-key="blog" href="blog.html" class="px-3.5 py-2 text-sm text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-foreground)] transition-colors">博客与联系</a>
+        </nav>
+        <a data-dom-id="nav-cta" href="blog.html" class="hidden sm:inline-flex items-center gap-1.5 ai-btn-gold text-xs"><i data-lucide="send" class="w-3.5 h-3.5"></i> 联系我们</a>
+      </div>
+    </header>
+
+    <div class="pt-16">
+      <!-- Section 1: Page Header — Editorial magazine section opener -->
+      <section class="relative py-24 md:py-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10 ai-reveal">
+          <div class="flex items-center gap-4">
+            <span class="ai-mono text-[11px] tracking-[0.25em] text-[color:var(--ai-primary)] uppercase whitespace-nowrap">// 00 — CAPABILITY MATRIX</span>
+            <div class="flex-1 h-px bg-gradient-to-r from-[color:var(--ai-primary)]/50 to-transparent"></div>
+          </div>
+          <h1 class="ai-serif text-6xl md:text-7xl lg:text-8xl font-medium tracking-tight mt-5 leading-[0.95]">
+            从论文到<br><span class="ai-gradient-text italic">生产系统</span>
+          </h1>
+          <div class="ai-gold-rule w-24 mt-8"></div>
+          <p class="text-base md:text-[17px] text-[color:var(--ai-muted-foreground)] mt-6 max-w-2xl leading-[1.8] font-light">
+            覆盖 Transformer 全家桶、3D 并行训练、PFV-quant 推理优化与多智能体编排——把研究级算法栈工程化为可调度、可观测、可归因的生产能力。
+          </p>
+          <!-- Metadata strip -->
+          <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--ai-border)]/40 border border-[color:var(--ai-border)]/40 max-w-3xl">
+            <div class="bg-[color:var(--ai-background)] px-5 py-4">
+              <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-[0.18em] uppercase">SCALE</div>
+              <div class="ai-serif text-2xl font-medium mt-1 text-[color:var(--ai-foreground)]">5PB<span class="text-[color:var(--ai-primary)] text-base ml-1">+</span></div>
+              <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-0.5">训练数据吞吐</div>
+            </div>
+            <div class="bg-[color:var(--ai-background)] px-5 py-4">
+              <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-[0.18em] uppercase">PARAMS</div>
+              <div class="ai-serif text-2xl font-medium mt-1 text-[color:var(--ai-foreground)]">175B<span class="text-[color:var(--ai-primary)] text-base ml-1"> trained</span></div>
+              <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-0.5">单模型最大参数</div>
+            </div>
+            <div class="bg-[color:var(--ai-background)] px-5 py-4">
+              <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-[0.18em] uppercase">QPS</div>
+              <div class="ai-serif text-2xl font-medium mt-1 text-[color:var(--ai-foreground)]">12K<span class="text-[color:var(--ai-primary)] text-base ml-1">/s</span></div>
+              <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-0.5">推理峰值吞吐</div>
+            </div>
+            <div class="bg-[color:var(--ai-background)] px-5 py-4">
+              <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-[0.18em] uppercase">LATENCY</div>
+              <div class="ai-serif text-2xl font-medium mt-1 text-[color:var(--ai-foreground)]">P99<span class="text-[color:var(--ai-primary)] text-base ml-1"> 180ms</span></div>
+              <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-0.5">对话场景尾延迟</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Capability Matrix — Asymmetric editorial grid -->
+      <section class="py-16 md:py-20">
+        <div class="max-w-7xl mx-auto px-6">
+          <!-- Section header -->
+          <div class="flex items-end justify-between gap-6 mb-12 ai-reveal">
+            <div class="space-y-3">
+              <span class="ai-mono text-[11px] tracking-[0.25em] text-[color:var(--ai-primary)] uppercase">// 01 — 能力矩阵</span>
+              <h2 class="ai-serif text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight">六轴能力栈</h2>
+            </div>
+            <div class="hidden md:block text-right max-w-sm">
+              <p class="text-[11px] ai-mono text-[color:var(--ai-muted-foreground)] tracking-wide">— 每一轴对应一条可独立交付的工程主线</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-px md:gap-px bg-[color:var(--ai-border)]/50 md:bg-transparent ai-reveal-stagger">
+            <!-- CAP-01: 大模型预训练与对齐 -->
+            <div class="relative p-8 md:p-10 md:col-span-7 md:row-span-2 bg-[color:var(--ai-background)] md:border md:border-[color:var(--ai-border)] md:rounded-none overflow-hidden">
+              <span class="ai-section-number-bg text-[120px] md:text-[180px] -top-4 -right-2 md:-top-8 md:-right-4">01</span>
+              <div class="relative z-10 h-full flex flex-col">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="brain-circuit" class="w-5 h-5 text-[color:var(--ai-primary)]"></i>
+                  <span class="ai-mono text-[11px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-01 · PRE-TRAINING & ALIGNMENT</span>
+                </div>
+                <h3 class="ai-serif text-3xl md:text-4xl font-medium mt-6 text-[color:var(--ai-foreground)]">大模型预训练与对齐</h3>
+                <p class="text-[13px] md:text-sm text-[color:var(--ai-muted-foreground)] mt-4 leading-[1.8] max-w-lg">
+                  从 Tokenizer 训练到 MoE 路由设计，覆盖 1B-175B 参数量级模型的预训练全链路。基于 <span class="text-[color:var(--ai-primary)]">3D 并行（DP+TP+PP）+ ZeRO-3</span> 在 1024 卡 H100 集群上稳定训练；对齐侧实现 PPO / DPO / KTO 三套 RLHF 变体，并支持过程奖励（PRM）+ 结果奖励（ORM）的双信号混合。
+                </p>
+                <div class="mt-6 space-y-2.5">
+                  <div class="flex items-start gap-3 text-[12px] text-[color:var(--ai-foreground)]/85">
+                    <span class="ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider mt-0.5 shrink-0">▸ ALGO</span>
+                    <span>RoPE-θ 外推 · GQA · SwiGLU · RMSNorm · FlashAttention-3 · MoE Top-k 路由</span>
+                  </div>
+                  <div class="flex items-start gap-3 text-[12px] text-[color:var(--ai-foreground)]/85">
+                    <span class="ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider mt-0.5 shrink-0">▸ STACK</span>
+                    <span>Megatron-LM · DeepSpeed ZeRO-3 · FSDP · Torchtitan · HF Transformers</span>
+                  </div>
+                  <div class="flex items-start gap-3 text-[12px] text-[color:var(--ai-foreground)]/85">
+                    <span class="ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider mt-0.5 shrink-0">▸ ALIGN</span>
+                    <span>RLHF (PPO) · DPO · KTO · ORPO · RLAIF · Constitutional AI · Process Supervision</span>
+                  </div>
+                </div>
+                <div class="mt-auto pt-10">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-widest uppercase">Proficiency · 论文复现率</span>
+                    <span class="ai-serif text-xl text-[color:var(--ai-primary)] font-medium">92%</span>
+                  </div>
+                  <div class="h-px bg-[color:var(--ai-muted)] overflow-hidden">
+                    <div class="w-[92%] h-full bg-[color:var(--ai-primary)]"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CAP-02: 推理优化与高并发服务 -->
+            <div class="relative p-8 md:p-8 md:col-span-5 bg-[color:var(--ai-background)] md:border md:border-[color:var(--ai-border)] md:rounded-none overflow-hidden md:border-l-0">
+              <span class="ai-section-number-bg text-[90px] md:text-[120px] -top-2 -right-1 md:-top-4 md:-right-2">02</span>
+              <div class="relative z-10">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="gauge-circle" class="w-4 h-4 text-[color:var(--ai-primary)]"></i>
+                  <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-02 · INFERENCE</span>
+                </div>
+                <h3 class="ai-serif text-2xl md:text-2xl font-medium mt-5 text-[color:var(--ai-foreground)]">推理优化与高并发服务</h3>
+                <p class="text-[12px] text-[color:var(--ai-muted-foreground)] mt-3 leading-[1.75]">
+                  vLLM PagedAttention + Continuous Batching 把吞吐抬 5-8×；FP8 / INT4 (GPTQ/AWQ) 量化在 A100/H100 上保持 PPL 损失 &lt;0.5%。Speculative Decoding 在长上下文场景把首 token 延迟砍到 80ms。
+                </p>
+                <div class="mt-4 space-y-1.5">
+                  <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
+                    <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
+                    <span>PagedAttention · Continuous Batching · Prefix Caching · Chunked Prefill</span>
+                  </div>
+                  <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
+                    <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
+                    <span>FP8 / W4A16 / W8A8 量化 · Speculative Decoding · Medusa Head</span>
+                  </div>
+                </div>
+                <div class="mt-6">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-widest uppercase">Proficiency</span>
+                    <span class="ai-serif text-lg text-[color:var(--ai-primary)] font-medium">95%</span>
+                  </div>
+                  <div class="h-px bg-[color:var(--ai-muted)] overflow-hidden">
+                    <div class="w-[95%] h-full bg-[color:var(--ai-primary)]"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CAP-03: 多模态与 Agent 编排 -->
+            <div class="relative p-8 md:p-8 md:col-span-5 bg-[color:var(--ai-background)] md:border md:border-[color:var(--ai-border)] md:rounded-none overflow-hidden md:border-l-0 md:border-t-0">
+              <span class="ai-section-number-bg text-[90px] md:text-[120px] -top-2 -right-1 md:-top-4 md:-right-2">03</span>
+              <div class="relative z-10">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="layers" class="w-4 h-4 text-[color:var(--ai-primary)]"></i>
+                  <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-03 · MULTIMODAL & AGENT</span>
+                </div>
+                <h3 class="ai-serif text-2xl md:text-2xl font-medium mt-5 text-[color:var(--ai-foreground)]">多模态与 Agent 编排</h3>
+                <p class="text-[12px] text-[color:var(--ai-muted-foreground)] mt-3 leading-[1.75]">
+                  CLIP / SigLIP 视觉对齐 + Q-Former Adapter 跨模态融合；基于 LangGraph / AutoGen 构建 DAG-based 多智能体编排，支持 ReAct / Reflexion / Plan-and-Execute 三类 reasoning pattern 与工具沙箱。
+                </p>
+                <div class="mt-4 space-y-1.5">
+                  <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
+                    <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
+                    <span>VLM · BLIP-2 · LLaVA · Q-Former · Cross-Attention 融合</span>
+                  </div>
+                  <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
+                    <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
+                    <span>ReAct · Reflexion · Tree-of-Thought · GraphRAG · HyDE</span>
+                  </div>
+                </div>
+                <div class="mt-6">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-widest uppercase">Proficiency</span>
+                    <span class="ai-serif text-lg text-[color:var(--ai-primary)] font-medium">88%</span>
+                  </div>
+                  <div class="h-px bg-[color:var(--ai-muted)] overflow-hidden">
+                    <div class="w-[88%] h-full bg-[color:var(--ai-primary)]"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CAP-04: 数据与训练基础设施 -->
+            <div class="relative p-8 md:p-8 md:col-span-7 bg-[color:var(--ai-background)] md:border md:border-[color:var(--ai-border)] md:rounded-none overflow-hidden md:border-t-0">
+              <span class="ai-section-number-bg text-[90px] md:text-[120px] -top-2 -right-1 md:-top-4 md:-right-2">04</span>
+              <div class="relative z-10">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="database" class="w-4 h-4 text-[color:var(--ai-primary)]"></i>
+                  <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-04 · INFRA & DATA</span>
+                </div>
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mt-5">
+                  <div class="md:max-w-md">
+                    <h3 class="ai-serif text-2xl md:text-2xl font-medium text-[color:var(--ai-foreground)]">数据与训练基础设施</h3>
+                    <p class="text-[12px] text-[color:var(--ai-muted-foreground)] mt-3 leading-[1.75]">
+                      Ray Data + Spark 构建日吞吐 50TB 的去重 / 质量过滤 / 分布式 tokenize 管道；K8s + Volcano 调度千卡训练任务，支持抢占式实例恢复与 NCCL/RDMA 网络拓扑感知。
+                    </p>
+                    <div class="mt-4 space-y-1.5">
+                      <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
+                        <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
+                        <span>MinHash LSH · SimHash 去重 · Quality Classifier · PII 脱敏</span>
+                      </div>
+                      <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
+                        <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
+                        <span>NCCL / RDMA / GPUDirect · Volcano · KubeRay · 镜像分层预热</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="md:text-right md:min-w-[200px]">
+                    <div class="flex items-center justify-between md:justify-end gap-3">
+                      <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-widest uppercase md:order-2">Proficiency</span>
+                      <span class="ai-serif text-lg text-[color:var(--ai-primary)] font-medium md:order-1 md:mr-2">90%</span>
+                    </div>
+                    <div class="h-px bg-[color:var(--ai-muted)] overflow-hidden mt-1.5">
+                      <div class="w-[90%] h-full bg-[color:var(--ai-primary)]"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Second row: CAP-05 + CAP-06 (full width split) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-[color:var(--ai-border)]/50 md:bg-transparent mt-px ai-reveal-stagger">
+            <!-- CAP-05: 评估对齐与安全 -->
+            <div class="relative p-8 md:p-10 bg-[color:var(--ai-background)] md:border md:border-[color:var(--ai-border)] overflow-hidden">
+              <span class="ai-section-number-bg text-[100px] md:text-[140px] -top-2 -right-1 md:-top-4 md:-right-2">05</span>
+              <div class="relative z-10">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="shield-check" class="w-4 h-4 text-[color:var(--ai-primary)]"></i>
+                  <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-05 · EVAL & SAFETY</span>
+                </div>
+                <h3 class="ai-serif text-2xl md:text-[28px] font-medium mt-5 text-[color:var(--ai-foreground)]">评估对齐与安全</h3>
+                <p class="text-[12px] text-[color:var(--ai-muted-foreground)] mt-3 leading-[1.8]">
+                  自研 <span class="text-[color:var(--ai-primary)]">Arena-评测平台</span> 覆盖 MMLU / C-Eval / GSM8K / HumanEval / MATH 等 60+ benchmark；红队测试集成 AdvBench / JailbreakBench，支持自动 + 人工双层对抗，越狱攻击拦截率 96.4%。
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2 text-[11px] ai-mono">
+                  <span class="px-2 py-1 border border-[color:var(--ai-border)] text-[color:var(--ai-foreground)]/80">MMLU</span>
+                  <span class="px-2 py-1 border border-[color:var(--ai-border)] text-[color:var(--ai-foreground)]/80">GSM8K</span>
+                  <span class="px-2 py-1 border border-[color:var(--ai-border)] text-[color:var(--ai-foreground)]/80">HumanEval</span>
+                  <span class="px-2 py-1 border border-[color:var(--ai-border)] text-[color:var(--ai-foreground)]/80">MT-Bench</span>
+                  <span class="px-2 py-1 border border-[color:var(--ai-primary)]/40 text-[color:var(--ai-primary)]">Red Team</span>
+                </div>
+                <div class="mt-6">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-widest uppercase">Proficiency</span>
+                    <span class="ai-serif text-lg text-[color:var(--ai-primary)] font-medium">87%</span>
+                  </div>
+                  <div class="h-px bg-[color:var(--ai-muted)] overflow-hidden">
+                    <div class="w-[87%] h-full bg-[color:var(--ai-primary)]"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CAP-06: 系统架构与选型 -->
+            <div class="relative p-8 md:p-10 bg-[color:var(--ai-background)] md:border md:border-[color:var(--ai-border)] md:border-l-0 overflow-hidden">
+              <span class="ai-section-number-bg text-[100px] md:text-[140px] -top-2 -right-1 md:-top-4 md:-right-2">06</span>
+              <div class="relative z-10">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="git-branch" class="w-4 h-4 text-[color:var(--ai-primary)]"></i>
+                  <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">CAP-06 · ARCHITECTURE</span>
+                </div>
+                <h3 class="ai-serif text-2xl md:text-[28px] font-medium mt-5 text-[color:var(--ai-foreground)]">系统架构与技术选型</h3>
+                <p class="text-[12px] text-[color:var(--ai-muted-foreground)] mt-3 leading-[1.8]">
+                  从 0 设计 <span class="text-[color:var(--ai-primary)]">多活推理网关</span>——按模型路由 + Locality-aware 亲和调度；ID-Hash 一致性保证会话粘连；冷热流量分离，热路径走 vLLM，冷路径走 Serverless GPU（Ray Serve on K8s HPA）。
+                </p>
+                <div class="mt-4 space-y-1.5">
+                  <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
+                    <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
+                    <span>Service Mesh (Istio) · gRPC streaming · Redis Cluster · Kafka</span>
+                  </div>
+                  <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
+                    <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
+                    <span>OTel · Prometheus · Grafana · Loki · 全链路 Trace / Token 级审计</span>
+                  </div>
+                </div>
+                <div class="mt-6">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-widest uppercase">Proficiency</span>
+                    <span class="ai-serif text-lg text-[color:var(--ai-primary)] font-medium">91%</span>
+                  </div>
+                  <div class="h-px bg-[color:var(--ai-muted)] overflow-hidden">
+                    <div class="w-[91%] h-full bg-[color:var(--ai-primary)]"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Tech Stack — Editorial typographic layout -->
+      <section class="py-24 md:py-32">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="mb-12 md:mb-16 ai-reveal">
+            <span class="ai-mono text-[11px] tracking-[0.25em] text-[color:var(--ai-primary)] uppercase">// 02 — 技术栈矩阵</span>
+            <h2 class="ai-serif text-3xl md:text-4xl lg:text-5xl font-medium mt-3 tracking-tight">生产级技术栈</h2>
+            <p class="text-sm text-[color:var(--ai-muted-foreground)] mt-4 max-w-2xl leading-relaxed font-light">
+              所有列出的工具均在生产环境跑过至少 6 个月、过载过 P0 故障。下表按 <span class="text-[color:var(--ai-primary)]">主用</span> / 备用 / 评估中 三档标注。
+            </p>
+          </div>
+
+          <!-- Two-column table layout -->
+          <div class="border border-[color:var(--ai-border)] ai-reveal overflow-hidden">
+            <!-- Table header -->
+            <div class="hidden md:grid grid-cols-12 gap-4 px-6 py-3 bg-[color:var(--ai-muted)]/40 border-b border-[color:var(--ai-border)] ai-mono text-[10px] tracking-wider uppercase text-[color:var(--ai-muted-foreground)]">
+              <div class="col-span-3">领域</div>
+              <div class="col-span-7">技术选型</div>
+              <div class="col-span-2 text-right">熟练度</div>
+            </div>
+
+            <!-- Row 1: 训练框架 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 px-6 py-5 border-b border-[color:var(--ai-border)] ai-editorial-row">
+              <div class="md:col-span-3">
+                <div class="ai-serif text-base font-medium text-[color:var(--ai-foreground)] ai-editorial-title">训练框架</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-1 tracking-wider">TRAINING</div>
+              </div>
+              <div class="md:col-span-7">
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
+                  <span class="text-[color:var(--ai-primary)] font-medium">Megatron-LM</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">DeepSpeed ZeRO-3</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">PyTorch FSDP</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Torchtitan</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">HF Transformers</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-muted-foreground)]/60 text-[12px]">JAX/Flax (评估中)</span>
+                </div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">3D-PARALLEL · 1024×H100 · 99.2% MFU</div>
+              </div>
+              <div class="md:col-span-2 md:text-right">
+                <div class="ai-serif text-base text-[color:var(--ai-primary)] font-medium">5/5</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">MASTER</div>
+              </div>
+            </div>
+
+            <!-- Row 2: 推理服务 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 px-6 py-5 border-b border-[color:var(--ai-border)] ai-editorial-row">
+              <div class="md:col-span-3">
+                <div class="ai-serif text-base font-medium text-[color:var(--ai-foreground)] ai-editorial-title">推理服务</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-1 tracking-wider">INFERENCE</div>
+              </div>
+              <div class="md:col-span-7">
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
+                  <span class="text-[color:var(--ai-primary)] font-medium">vLLM 0.6+</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">TensorRT-LLM</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">Triton Inference Server</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">SGLang</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">ONNX Runtime</span>
+                </div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">PAGED-ATTN · CONTINUOUS-BATCH · 12K QPS</div>
+              </div>
+              <div class="md:col-span-2 md:text-right">
+                <div class="ai-serif text-base text-[color:var(--ai-primary)] font-medium">5/5</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">MASTER</div>
+              </div>
+            </div>
+
+            <!-- Row 3: 量化与压缩 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 px-6 py-5 border-b border-[color:var(--ai-border)] ai-editorial-row">
+              <div class="md:col-span-3">
+                <div class="ai-serif text-base font-medium text-[color:var(--ai-foreground)] ai-editorial-title">量化与压缩</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-1 tracking-wider">COMPRESSION</div>
+              </div>
+              <div class="md:col-span-7">
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
+                  <span class="text-[color:var(--ai-primary)] font-medium">FP8 (H100 native)</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">GPTQ W4A16</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">AWQ</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">SmoothQuant W8A8</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Speculative Decoding</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Medusa Head</span>
+                </div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">PPL LOSS &lt; 0.5% · 2.7× THROUGHPUT</div>
+              </div>
+              <div class="md:col-span-2 md:text-right">
+                <div class="ai-serif text-base text-[color:var(--ai-primary)] font-medium">5/5</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">EXPERT</div>
+              </div>
+            </div>
+
+            <!-- Row 4: RAG / 向量检索 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 px-6 py-5 border-b border-[color:var(--ai-border)] ai-editorial-row">
+              <div class="md:col-span-3">
+                <div class="ai-serif text-base font-medium text-[color:var(--ai-foreground)] ai-editorial-title">RAG / 向量检索</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-1 tracking-wider">RETRIEVAL</div>
+              </div>
+              <div class="md:col-span-7">
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
+                  <span class="text-[color:var(--ai-primary)] font-medium">Milvus 2.4+</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">Qdrant</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Elasticsearch (BM25)</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">ColBERT v2</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">GraphRAG</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">HyDE</span>
+                </div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">HYBRID RERANK · COHERE / BGE-RERANKER</div>
+              </div>
+              <div class="md:col-span-2 md:text-right">
+                <div class="ai-serif text-base text-[color:var(--ai-primary)] font-medium">4/5</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">ADVANCED</div>
+              </div>
+            </div>
+
+            <!-- Row 5: Agent / 编排 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 px-6 py-5 border-b border-[color:var(--ai-border)] ai-editorial-row">
+              <div class="md:col-span-3">
+                <div class="ai-serif text-base font-medium text-[color:var(--ai-foreground)] ai-editorial-title">Agent / 编排</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-1 tracking-wider">ORCHESTRATION</div>
+              </div>
+              <div class="md:col-span-7">
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
+                  <span class="text-[color:var(--ai-primary)] font-medium">LangGraph</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">AutoGen</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">CrewAI</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">OpenAI Swarm</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">DSPy</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80"> Instructor</span>
+                </div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">DAG-BASED · STATE MACHINE · SANDBOX</div>
+              </div>
+              <div class="md:col-span-2 md:text-right">
+                <div class="ai-serif text-base text-[color:var(--ai-primary)] font-medium">4/5</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">ADVANCED</div>
+              </div>
+            </div>
+
+            <!-- Row 6: 多模态 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 px-6 py-5 border-b border-[color:var(--ai-border)] ai-editorial-row">
+              <div class="md:col-span-3">
+                <div class="ai-serif text-base font-medium text-[color:var(--ai-foreground)] ai-editorial-title">多模态</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-1 tracking-wider">MULTIMODAL</div>
+              </div>
+              <div class="md:col-span-7">
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
+                  <span class="text-[color:var(--ai-primary)] font-medium">CLIP / SigLIP</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">BLIP-2</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">LLaVA-1.6</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Qwen-VL</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Whisper-large-v3</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">SDXL / Flux</span>
+                </div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">Q-FORMER · CROSS-ATTN · IMAGE-TEXT ALIGN</div>
+              </div>
+              <div class="md:col-span-2 md:text-right">
+                <div class="ai-serif text-base text-[color:var(--ai-primary)] font-medium">4/5</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">ADVANCED</div>
+              </div>
+            </div>
+
+            <!-- Row 7: 数据 / 存储 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 px-6 py-5 border-b border-[color:var(--ai-border)] ai-editorial-row">
+              <div class="md:col-span-3">
+                <div class="ai-serif text-base font-medium text-[color:var(--ai-foreground)] ai-editorial-title">数据 / 存储</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-1 tracking-wider">DATA</div>
+              </div>
+              <div class="md:col-span-7">
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
+                  <span class="text-[color:var(--ai-primary)] font-medium">Ray Data</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">Spark 3.5</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">DVC</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Airflow</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Parquet + Arrow</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">MinIO / S3</span>
+                </div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">50TB/DAY · MINHASH LSH · 8B TOKENIZE</div>
+              </div>
+              <div class="md:col-span-2 md:text-right">
+                <div class="ai-serif text-base text-[color:var(--ai-primary)] font-medium">5/5</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">MASTER</div>
+              </div>
+            </div>
+
+            <!-- Row 8: 云原生 / 可观测 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 px-6 py-5 border-b border-[color:var(--ai-border)] ai-editorial-row">
+              <div class="md:col-span-3">
+                <div class="ai-serif text-base font-medium text-[color:var(--ai-foreground)] ai-editorial-title">云原生 / 可观测</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-1 tracking-wider">CLOUD-NATIVE</div>
+              </div>
+              <div class="md:col-span-7">
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
+                  <span class="text-[color:var(--ai-primary)] font-medium">Kubernetes 1.30</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">Volcano / KubeRay</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Istio</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Prometheus</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Grafana</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Loki</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">OpenTelemetry</span>
+                </div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">MULTI-CLUSTER · GPU HPA · TRACE 100%</div>
+              </div>
+              <div class="md:col-span-2 md:text-right">
+                <div class="ai-serif text-base text-[color:var(--ai-primary)] font-medium">5/5</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">MASTER</div>
+              </div>
+            </div>
+
+            <!-- Row 9: MLOps / 实验管理 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 px-6 py-5 ai-editorial-row">
+              <div class="md:col-span-3">
+                <div class="ai-serif text-base font-medium text-[color:var(--ai-foreground)] ai-editorial-title">MLOps / 实验</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-1 tracking-wider">MLOPS</div>
+              </div>
+              <div class="md:col-span-7">
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
+                  <span class="text-[color:var(--ai-primary)] font-medium">MLflow</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">Weights &amp; Biases</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">ClearML</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">DVC Studio</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Argo Workflows</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Tekton</span>
+                </div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">FULL-LINEAGE · CANARY DEPLOY · AUTO ROLLBACK</div>
+              </div>
+              <div class="md:col-span-2 md:text-right">
+                <div class="ai-serif text-base text-[color:var(--ai-primary)] font-medium">4/5</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wider">ADVANCED</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Engineering Workflow — Vertical editorial timeline -->
+      <section class="py-24 md:py-32">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="mb-16 md:mb-20 ai-reveal">
+            <span class="ai-mono text-[11px] tracking-[0.25em] text-[color:var(--ai-primary)] uppercase">// 03 — 端到端工程流程</span>
+            <h2 class="ai-serif text-3xl md:text-4xl lg:text-5xl font-medium mt-3 tracking-tight">从想法到生产：六阶段流水线</h2>
+            <p class="text-sm text-[color:var(--ai-muted-foreground)] mt-4 max-w-2xl leading-relaxed font-light">
+              每一阶段都定义了可量化验收门（Gate），任何一项不达标即回滚到上一阶段——这是研究模型与生产模型的本质分水岭。
+            </p>
+          </div>
+
+          <div class="relative max-w-3xl ai-reveal-stagger">
+            <div class="ai-timeline-line"></div>
+
+            <!-- Step 01 -->
+            <div class="relative flex gap-8 md:gap-12 pb-12 md:pb-16 pl-16 md:pl-20">
+              <div class="absolute left-0 top-0 ai-serif text-5xl md:text-6xl text-[color:var(--ai-primary)]/15 font-medium leading-none md:pl-3">01</div>
+              <div class="pt-1 md:pt-2 flex-1">
+                <div class="flex items-baseline gap-3 mb-2">
+                  <h3 class="ai-serif text-xl md:text-2xl font-medium text-[color:var(--ai-foreground)]">需求拆解</h3>
+                  <span class="ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">· GATE: 业务 SLA</span>
+                </div>
+                <p class="text-[13px] text-[color:var(--ai-muted-foreground)] mt-2 leading-[1.85] max-w-md">
+                  从业务 KPI 倒推技术指标：吞吐 (QPS) / 尾延迟 (P99) / 显存占用 (GB) / 单 token 成本 ($) / 召回率 / 安全率，每项给出量化阈值并锁定为发布门。
+                </p>
+                <div class="mt-3 flex flex-wrap gap-1.5">
+                  <span class="ai-mono text-[10px] px-2 py-0.5 bg-[color:var(--ai-primary-soft)] text-[color:var(--ai-primary)] tracking-wide">SLA-DEFINE</span>
+                  <span class="ai-mono text-[10px] px-2 py-0.5 border border-[color:var(--ai-border)] text-[color:var(--ai-muted-foreground)]">DOUBLING-COST-RULE</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 02 -->
+            <div class="relative flex gap-8 md:gap-12 pb-12 md:pb-16 pl-16 md:pl-20">
+              <div class="absolute left-0 top-0 ai-serif text-5xl md:text-6xl text-[color:var(--ai-primary)]/15 font-medium leading-none md:pl-3">02</div>
+              <div class="pt-1 md:pt-2 flex-1">
+                <div class="flex items-baseline gap-3 mb-2">
+                  <h3 class="ai-serif text-xl md:text-2xl font-medium text-[color:var(--ai-foreground)]">数据构造</h3>
+                  <span class="ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">· GATE: 质量 / 去重率</span>
+                </div>
+                <p class="text-[13px] text-[color:var(--ai-muted-foreground)] mt-2 leading-[1.85] max-w-md">
+                  分布式 tokenize + MinHash LSH 去重（保留率 &lt;0.85）+ Quality Classifier（困惑度过滤）+ PII 脱敏 + 指令合成（Self-Instruct / Evol-Instruct）。
+                </p>
+                <div class="mt-3 flex flex-wrap gap-1.5">
+                  <span class="ai-mono text-[10px] px-2 py-0.5 bg-[color:var(--ai-primary-soft)] text-[color:var(--ai-primary)] tracking-wide">MINHASH-LSH</span>
+                  <span class="ai-mono text-[10px] px-2 py-0.5 border border-[color:var(--ai-border)] text-[color:var(--ai-muted-foreground)]">EVOL-INSTRUCT</span>
+                  <span class="ai-mono text-[10px] px-2 py-0.5 border border-[color:var(--ai-border)] text-[color:var(--ai-muted-foreground)]">PII-SCRUB</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 03 -->
+            <div class="relative flex gap-8 md:gap-12 pb-12 md:pb-16 pl-16 md:pl-20">
+              <div class="absolute left-0 top-0 ai-serif text-5xl md:text-6xl text-[color:var(--ai-primary)]/15 font-medium leading-none md:pl-3">03</div>
+              <div class="pt-1 md:pt-2 flex-1">
+                <div class="flex items-baseline gap-3 mb-2">
+                  <h3 class="ai-serif text-xl md:text-2xl font-medium text-[color:var(--ai-foreground)]">分布式训练</h3>
+                  <span class="ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">· GATE: MFU / Loss spike</span>
+                </div>
+                <p class="text-[13px] text-[color:var(--ai-muted-foreground)] mt-2 leading-[1.85] max-w-md">
+                  3D 并行 (DP+TP+PP) + ZeRO-3 在 1024 卡 H100 上 MFU 维持 48%+；Loss spike 监控 + 检查点自动回滚；LR scheduler 采用 cosine + warmup，配合 EMA 评估。
+                </p>
+                <div class="mt-3 flex flex-wrap gap-1.5">
+                  <span class="ai-mono text-[10px] px-2 py-0.5 bg-[color:var(--ai-primary-soft)] text-[color:var(--ai-primary)] tracking-wide">3D-PARALLEL</span>
+                  <span class="ai-mono text-[10px] px-2 py-0.5 border border-[color:var(--ai-border)] text-[color:var(--ai-muted-foreground)]">MFU-48%</span>
+                  <span class="ai-mono text-[10px] px-2 py-0.5 border border-[color:var(--ai-border)] text-[color:var(--ai-muted-foreground)]">LOSS-SPIKE-DETECT</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 04 -->
+            <div class="relative flex gap-8 md:gap-12 pb-12 md:pb-16 pl-16 md:pl-20">
+              <div class="absolute left-0 top-0 ai-serif text-5xl md:text-6xl text-[color:var(--ai-primary)]/15 font-medium leading-none md:pl-3">04</div>
+              <div class="pt-1 md:pt-2 flex-1">
+                <div class="flex items-baseline gap-3 mb-2">
+                  <h3 class="ai-serif text-xl md:text-2xl font-medium text-[color:var(--ai-foreground)]">对齐与评估</h3>
+                  <span class="ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">· GATE: 对齐 / 安全</span>
+                </div>
+                <p class="text-[13px] text-[color:var(--ai-muted-foreground)] mt-2 leading-[1.85] max-w-md">
+                  PPO + DPO 双阶段对齐；Process Reward Model 监督推理链；Red Team 自动化（AdvBench / JailbreakBench 60+ 攻击向量），拦截率 ≥96% 才放行。
+                </p>
+                <div class="mt-3 flex flex-wrap gap-1.5">
+                  <span class="ai-mono text-[10px] px-2 py-0.5 bg-[color:var(--ai-primary-soft)] text-[color:var(--ai-primary)] tracking-wide">PPO-DPO</span>
+                  <span class="ai-mono text-[10px] px-2 py-0.5 border border-[color:var(--ai-border)] text-[color:var(--ai-muted-foreground)]">PRM</span>
+                  <span class="ai-mono text-[10px] px-2 py-0.5 border border-[color:var(--ai-border)] text-[color:var(--ai-muted-foreground)]">RED-TEAM</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 05 -->
+            <div class="relative flex gap-8 md:gap-12 pb-12 md:pb-16 pl-16 md:pl-20">
+              <div class="absolute left-0 top-0 ai-serif text-5xl md:text-6xl text-[color:var(--ai-primary)]/15 font-medium leading-none md:pl-3">05</div>
+              <div class="pt-1 md:pt-2 flex-1">
+                <div class="flex items-baseline gap-3 mb-2">
+                  <h3 class="ai-serif text-xl md:text-2xl font-medium text-[color:var(--ai-foreground)]">推理优化与部署</h3>
+                  <span class="ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">· GATE: QPS / P99</span>
+                </div>
+                <p class="text-[13px] text-[color:var(--ai-muted-foreground)] mt-2 leading-[1.85] max-w-md">
+                  vLLM PagedAttention + Continuous Batching + FP8 量化；K8s HPA 弹性伸缩；金丝雀发布（5%→20%→100% 流量切分），自动回滚触发条件：错误率 &gt;0.1% 持续 30s。
+                </p>
+                <div class="mt-3 flex flex-wrap gap-1.5">
+                  <span class="ai-mono text-[10px] px-2 py-0.5 bg-[color:var(--ai-primary-soft)] text-[color:var(--ai-primary)] tracking-wide">FP8-QUANT</span>
+                  <span class="ai-mono text-[10px] px-2 py-0.5 border border-[color:var(--ai-border)] text-[color:var(--ai-muted-foreground)]">CANARY</span>
+                  <span class="ai-mono text-[10px] px-2 py-0.5 border border-[color:var(--ai-border)] text-[color:var(--ai-muted-foreground)]">AUTO-ROLLBACK</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 06 -->
+            <div class="relative flex gap-8 md:gap-12 pl-16 md:pl-20">
+              <div class="absolute left-0 top-0 ai-serif text-5xl md:text-6xl text-[color:var(--ai-primary)]/15 font-medium leading-none md:pl-3">06</div>
+              <div class="pt-1 md:pt-2 flex-1">
+                <div class="flex items-baseline gap-3 mb-2">
+                  <h3 class="ai-serif text-xl md:text-2xl font-medium text-[color:var(--ai-foreground)]">监控迭代与飞轮</h3>
+                  <span class="ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">· GATE: 在线指标</span>
+                </div>
+                <p class="text-[13px] text-[color:var(--ai-muted-foreground)] mt-2 leading-[1.85] max-w-md">
+                  OTel 全链路 trace + Token 级审计；bad case 自动回流（用户负反馈 / 模型自信度低样本）；周期性 DPO re-train + LoRA 热更新，闭环时间从 7d 压缩至 24h。
+                </p>
+                <div class="mt-3 flex flex-wrap gap-1.5">
+                  <span class="ai-mono text-[10px] px-2 py-0.5 bg-[color:var(--ai-primary-soft)] text-[color:var(--ai-primary)] tracking-wide">OTEL-TRACE</span>
+                  <span class="ai-mono text-[10px] px-2 py-0.5 border border-[color:var(--ai-border)] text-[color:var(--ai-muted-foreground)]">BAD-CASE-LOOP</span>
+                  <span class="ai-mono text-[10px] px-2 py-0.5 border border-[color:var(--ai-border)] text-[color:var(--ai-muted-foreground)]">LORA-HOT-UPDATE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4.5: Engineering Metrics Dashboard -->
+      <section class="py-24 md:py-32 bg-[color:var(--ai-background-2)]/40">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="mb-12 md:mb-16 ai-reveal">
+            <span class="ai-mono text-[11px] tracking-[0.25em] text-[color:var(--ai-primary)] uppercase">// 04 — 工程指标</span>
+            <h2 class="ai-serif text-3xl md:text-4xl lg:text-5xl font-medium mt-3 tracking-tight">用数字说话</h2>
+            <p class="text-sm text-[color:var(--ai-muted-foreground)] mt-4 max-w-2xl leading-relaxed font-light">
+              下方所有数据均来自近期生产环境抽样，单点最大值已剔除 P0 异常。
+            </p>
+          </div>
+
+          <!-- 8-cell metrics grid -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--ai-border)]/40 border border-[color:var(--ai-border)]/40 ai-reveal-stagger">
+
+            <div class="bg-[color:var(--ai-background)] p-6 md:p-8 relative overflow-hidden">
+              <div class="ai-mono text-[10px] tracking-[0.18em] text-[color:var(--ai-muted-foreground)] uppercase">TRAINING MFU</div>
+              <div class="ai-serif text-4xl md:text-5xl font-medium mt-3 text-[color:var(--ai-foreground)] leading-none">
+                48<span class="text-[color:var(--ai-primary)] text-2xl ml-0.5">%</span>
+              </div>
+              <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-3 leading-relaxed">
+                H100 集群 1024 卡预训练实测 Model FLOPs Utilization
+              </div>
+              <div class="mt-3 ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">↑ 1024×H100 / 3D-PARALLEL</div>
+            </div>
+
+            <div class="bg-[color:var(--ai-background)] p-6 md:p-8 relative overflow-hidden">
+              <div class="ai-mono text-[10px] tracking-[0.18em] text-[color:var(--ai-muted-foreground)] uppercase">INFERENCE QPS</div>
+              <div class="ai-serif text-4xl md:text-5xl font-medium mt-3 text-[color:var(--ai-foreground)] leading-none">
+                12K<span class="text-[color:var(--ai-primary)] text-2xl ml-0.5">/s</span>
+              </div>
+              <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-3 leading-relaxed">
+                对话模型 70B 部署峰值，vLLM + Continuous Batching
+              </div>
+              <div class="mt-3 ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">↑ 5-8× VS NAIVE</div>
+            </div>
+
+            <div class="bg-[color:var(--ai-background)] p-6 md:p-8 relative overflow-hidden">
+              <div class="ai-mono text-[10px] tracking-[0.18em] text-[color:var(--ai-muted-foreground)] uppercase">P99 LATENCY</div>
+              <div class="ai-serif text-4xl md:text-5xl font-medium mt-3 text-[color:var(--ai-foreground)] leading-none">
+                180<span class="text-[color:var(--ai-primary)] text-2xl ml-0.5">ms</span>
+              </div>
+              <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-3 leading-relaxed">
+                对话场景首 token 尾延迟，Speculative Decoding 优化
+              </div>
+              <div class="mt-3 ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">↓ 60% VS BASELINE</div>
+            </div>
+
+            <div class="bg-[color:var(--ai-background)] p-6 md:p-8 relative overflow-hidden">
+              <div class="ai-mono text-[10px] tracking-[0.18em] text-[color:var(--ai-muted-foreground)] uppercase">QUANT LOSS</div>
+              <div class="ai-serif text-4xl md:text-5xl font-medium mt-3 text-[color:var(--ai-foreground)] leading-none">
+                &lt;0.5<span class="text-[color:var(--ai-primary)] text-2xl ml-0.5">%</span>
+              </div>
+              <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-3 leading-relaxed">
+                FP8/GPTQ W4A16 量化后 MMLU 困惑度损失
+              </div>
+              <div class="mt-3 ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">→ 2.7× THROUGHPUT</div>
+            </div>
+
+            <div class="bg-[color:var(--ai-background)] p-6 md:p-8 relative overflow-hidden">
+              <div class="ai-mono text-[10px] tracking-[0.18em] text-[color:var(--ai-muted-foreground)] uppercase">JAILBREAK BLOCK</div>
+              <div class="ai-serif text-4xl md:text-5xl font-medium mt-3 text-[color:var(--ai-foreground)] leading-none">
+                96.4<span class="text-[color:var(--ai-primary)] text-2xl ml-0.5">%</span>
+              </div>
+              <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-3 leading-relaxed">
+                AdvBench + JailbreakBench 60+ 攻击向量拦截
+              </div>
+              <div class="mt-3 ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">↑ RED-TEAM-AUTO</div>
+            </div>
+
+            <div class="bg-[color:var(--ai-background)] p-6 md:p-8 relative overflow-hidden">
+              <div class="ai-mono text-[10px] tracking-[0.18em] text-[color:var(--ai-muted-foreground)] uppercase">RAG RECALL</div>
+              <div class="ai-serif text-4xl md:text-5xl font-medium mt-3 text-[color:var(--ai-foreground)] leading-none">
+                +18<span class="text-[color:var(--ai-primary)] text-2xl ml-0.5">pt</span>
+              </div>
+              <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-3 leading-relaxed">
+                Hybrid Rerank + GraphRAG 对比纯 BM25 召回提升
+              </div>
+              <div class="mt-3 ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">↑ BGE-RERANKER</div>
+            </div>
+
+            <div class="bg-[color:var(--ai-background)] p-6 md:p-8 relative overflow-hidden">
+              <div class="ai-mono text-[10px] tracking-[0.18em] text-[color:var(--ai-muted-foreground)] uppercase">DATA PIPELINE</div>
+              <div class="ai-serif text-4xl md:text-5xl font-medium mt-3 text-[color:var(--ai-foreground)] leading-none">
+                50<span class="text-[color:var(--ai-primary)] text-2xl ml-0.5">TB/d</span>
+              </div>
+              <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-3 leading-relaxed">
+                去重 + 质量过滤 + 分布式 tokenize 日吞吐
+              </div>
+              <div class="mt-3 ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">↑ RAY-DATA / SPARK</div>
+            </div>
+
+            <div class="bg-[color:var(--ai-background)] p-6 md:p-8 relative overflow-hidden">
+              <div class="ai-mono text-[10px] tracking-[0.18em] text-[color:var(--ai-muted-foreground)] uppercase">ITERATION CYCLE</div>
+              <div class="ai-serif text-4xl md:text-5xl font-medium mt-3 text-[color:var(--ai-foreground)] leading-none">
+                24<span class="text-[color:var(--ai-primary)] text-2xl ml-0.5">h</span>
+              </div>
+              <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-3 leading-relaxed">
+                bad case 回流到 DPO re-train 完整闭环时间
+              </div>
+              <div class="mt-3 ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">↓ FROM 7 DAYS</div>
+            </div>
+
+          </div>
+
+          <!-- Bottom footnote -->
+          <div class="mt-10 flex items-center justify-center gap-3 text-[color:var(--ai-muted-foreground)]/60 ai-reveal">
+            <span class="h-px w-10 bg-[color:var(--ai-primary)]/30"></span>
+            <span class="ai-mono text-[10px] tracking-[0.2em] uppercase">* DATA SAMPLED FROM PRODUCTION ENVIRONMENT</span>
+            <span class="h-px w-10 bg-[color:var(--ai-primary)]/30"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4.8: System Architecture — ASCII-style diagram -->
+      <section class="py-24 md:py-32">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="mb-12 md:mb-16 ai-reveal">
+            <span class="ai-mono text-[11px] tracking-[0.25em] text-[color:var(--ai-primary)] uppercase">// 05 — 推理网关架构</span>
+            <h2 class="ai-serif text-3xl md:text-4xl lg:text-5xl font-medium mt-3 tracking-tight">多活推理网关</h2>
+            <p class="text-sm text-[color:var(--ai-muted-foreground)] mt-4 max-w-2xl leading-relaxed font-light">
+              按模型路由 + Locality-aware 亲和调度 + 冷热流量分离——这是把 5× QPS 提升落到工程的真正原因。
+            </p>
+          </div>
+
+          <!-- Architecture diagram (SVG vector) -->
+          <div class="ai-glass p-6 md:p-10 ai-reveal">
+            <div class="w-full overflow-x-auto">
+              <svg viewBox="0 0 960 720" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto min-w-[720px]" role="img" aria-label="多活推理网关架构图">
+                <defs>
+                  <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#9C7A4E"/>
+                    <stop offset="50%" stop-color="#B8956A"/>
+                    <stop offset="100%" stop-color="#D4B896"/>
+                  </linearGradient>
+                  <linearGradient id="hotGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="rgba(184, 149, 106, 0.18)"/>
+                    <stop offset="100%" stop-color="rgba(184, 149, 106, 0.04)"/>
+                  </linearGradient>
+                  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M0,0 L10,5 L0,10 z" fill="#B8956A"/>
+                  </marker>
+                  <marker id="arrMuted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M0,0 L10,5 L0,10 z" fill="#6B6B6B"/>
+                  </marker>
+                </defs>
+
+                <!-- ====== Row 1: Client → Gateway → Auth → Router ====== -->
+                <g font-family="JetBrains Mono, monospace" font-size="11" fill="#1A1A1F">
+                  <!-- Client -->
+                  <rect x="20" y="20" width="120" height="50" rx="2" fill="#FFFFFF" stroke="#B8956A" stroke-width="1"/>
+                  <text x="80" y="42" text-anchor="middle" font-weight="600" fill="#B8956A">CLIENT</text>
+                  <text x="80" y="58" text-anchor="middle" font-size="9" fill="#6B6B6B">客户请求</text>
+
+                  <!-- Gateway -->
+                  <rect x="200" y="20" width="180" height="50" rx="2" fill="#FFFFFF" stroke="#B8956A" stroke-width="1"/>
+                  <text x="290" y="42" text-anchor="middle" font-weight="600" fill="#B8956A">API GATEWAY</text>
+                  <text x="290" y="58" text-anchor="middle" font-size="9" fill="#6B6B6B">Envoy + Istio</text>
+
+                  <!-- Auth -->
+                  <rect x="440" y="20" width="160" height="50" rx="2" fill="#FFFFFF" stroke="#B8956A" stroke-width="1"/>
+                  <text x="520" y="42" text-anchor="middle" font-weight="600" fill="#B8956A">AUTH</text>
+                  <text x="520" y="58" text-anchor="middle" font-size="9" fill="#6B6B6B">Rate-Limit · Quota</text>
+
+                  <!-- Router -->
+                  <rect x="660" y="20" width="160" height="50" rx="2" fill="#FFFFFF" stroke="#B8956A" stroke-width="1"/>
+                  <text x="740" y="42" text-anchor="middle" font-weight="600" fill="#B8956A">ROUTER</text>
+                  <text x="740" y="58" text-anchor="middle" font-size="9" fill="#6B6B6B">Model-Aware</text>
+
+                  <!-- Arrows Row 1 -->
+                  <line x1="140" y1="45" x2="195" y2="45" stroke="#B8956A" stroke-width="1.2" marker-end="url(#arr)"/>
+                  <line x1="380" y1="45" x2="435" y2="45" stroke="#B8956A" stroke-width="1.2" marker-end="url(#arr)"/>
+                  <line x1="600" y1="45" x2="655" y2="45" stroke="#B8956A" stroke-width="1.2" marker-end="url(#arr)"/>
+                </g>
+
+                <!-- Vertical down from Router to Model-Aware Router -->
+                <line x1="740" y1="70" x2="740" y2="120" stroke="#B8956A" stroke-width="1.2" marker-end="url(#arr)"/>
+
+                <!-- ====== Row 2: Model-Aware Router (wide) ====== -->
+                <g font-family="JetBrains Mono, monospace" font-size="11" fill="#1A1A1F">
+                  <rect x="380" y="125" width="380" height="60" rx="2" fill="url(#goldGrad)" stroke="#9C7A4E" stroke-width="1"/>
+                  <text x="570" y="150" text-anchor="middle" font-weight="700" fill="#FFFFFF" font-size="13">MODEL-AWARE ROUTER</text>
+                  <text x="570" y="168" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">ID-Hash Session Affinity · Locality-aware Replica</text>
+                </g>
+
+                <!-- Branching lines from Router to 3 paths -->
+                <g stroke="#B8956A" stroke-width="1.2" fill="none">
+                  <line x1="570" y1="185" x2="570" y2="215"/>
+                  <line x1="180" y1="215" x2="930" y2="215"/>
+                  <line x1="180" y1="215" x2="180" y2="240" marker-end="url(#arr)"/>
+                  <line x1="555" y1="215" x2="555" y2="240" marker-end="url(#arr)"/>
+                  <line x1="930" y1="215" x2="930" y2="240" marker-end="url(#arr)"/>
+                </g>
+
+                <!-- ====== Row 3: HOT / WARM / COLD path ====== -->
+                <!-- HOT PATH -->
+                <g font-family="JetBrains Mono, monospace">
+                  <rect x="30" y="245" width="300" height="170" rx="3" fill="url(#hotGrad)" stroke="#B8956A" stroke-width="1.5"/>
+                  <text x="180" y="272" text-anchor="middle" font-weight="700" font-size="13" fill="#B8956A">HOT PATH</text>
+                  <line x1="60" y1="282" x2="300" y2="282" stroke="#B8956A" stroke-width="0.5" stroke-opacity="0.4"/>
+                  <text x="50" y="305" font-size="11" fill="#1A1A1F" font-weight="600">vLLM GPU Pool</text>
+                  <text x="50" y="322" font-size="10" fill="#6B6B6B">12K QPS · P99 180ms</text>
+                  <text x="50" y="338" font-size="10" fill="#6B6B6B">FP8 Quant · H100</text>
+                  <text x="50" y="365" font-size="9" fill="#9C7A4E" letter-spacing="0.5">PREFIX-CACHE · 78%</text>
+                  <text x="50" y="380" font-size="9" fill="#9C7A4E" letter-spacing="0.5">CONTINUOUS-BATCH</text>
+                  <text x="50" y="402" font-size="9" fill="#6B6B6B">↗ 高频对话 / 实时场景</text>
+                </g>
+
+                <!-- WARM PATH -->
+                <g font-family="JetBrains Mono, monospace">
+                  <rect x="350" y="245" width="260" height="170" rx="3" fill="#FFFFFF" stroke="#B8956A" stroke-width="1" stroke-opacity="0.6"/>
+                  <text x="480" y="272" text-anchor="middle" font-weight="700" font-size="13" fill="#B8956A" fill-opacity="0.85">WARM PATH</text>
+                  <line x1="380" y1="282" x2="580" y2="282" stroke="#B8956A" stroke-width="0.5" stroke-opacity="0.3"/>
+                  <text x="370" y="305" font-size="11" fill="#1A1A1F" font-weight="600">Triton + TRT-LLM</text>
+                  <text x="370" y="322" font-size="10" fill="#6B6B6B">4K QPS · P99 350ms</text>
+                  <text x="370" y="338" font-size="10" fill="#6B6B6B">INT4 GPTQ · A100</text>
+                  <text x="370" y="365" font-size="9" fill="#9C7A4E" letter-spacing="0.5">TENSOR-PARALLEL</text>
+                  <text x="370" y="380" font-size="9" fill="#9C7A4E" letter-spacing="0.5">BATCHED-INFERENCE</text>
+                  <text x="370" y="402" font-size="9" fill="#6B6B6B">→ 中频业务 / 批处理</text>
+                </g>
+
+                <!-- COLD PATH -->
+                <g font-family="JetBrains Mono, monospace">
+                  <rect x="630" y="245" width="300" height="170" rx="3" fill="#FFFFFF" stroke="#B8956A" stroke-width="1" stroke-dasharray="4 3" stroke-opacity="0.6"/>
+                  <text x="780" y="272" text-anchor="middle" font-weight="700" font-size="13" fill="#B8956A" fill-opacity="0.85">COLD PATH</text>
+                  <line x1="660" y1="282" x2="900" y2="282" stroke="#B8956A" stroke-width="0.5" stroke-opacity="0.3"/>
+                  <text x="650" y="305" font-size="11" fill="#1A1A1F" font-weight="600">Ray Serve (Serverless)</text>
+                  <text x="650" y="322" font-size="10" fill="#6B6B6B">200 QPS · P99 1.2s</text>
+                  <text x="650" y="338" font-size="10" fill="#6B6B6B">LoRA Adapter · spot GPU</text>
+                  <text x="650" y="365" font-size="9" fill="#9C7A4E" letter-spacing="0.5">K8s-HPA · SCALE-TO-ZERO</text>
+                  <text x="650" y="380" font-size="9" fill="#9C7A4E" letter-spacing="0.5">COST-OPTIMIZED</text>
+                  <text x="650" y="402" font-size="9" fill="#6B6B6B">↓ 长尾 / 低频请求</text>
+                </g>
+
+                <!-- Convergence lines down to Observability -->
+                <g stroke="#B8956A" stroke-width="1.2" fill="none">
+                  <line x1="180" y1="415" x2="180" y2="445"/>
+                  <line x1="480" y1="415" x2="480" y2="445"/>
+                  <line x1="780" y1="415" x2="780" y2="445"/>
+                  <line x1="180" y1="445" x2="780" y2="445"/>
+                  <line x1="480" y1="445" x2="480" y2="475" marker-end="url(#arr)"/>
+                </g>
+
+                <!-- ====== Row 4: Observability ====== -->
+                <g font-family="JetBrains Mono, monospace">
+                  <rect x="240" y="480" width="480" height="70" rx="2" fill="#FFFFFF" stroke="#B8956A" stroke-width="1"/>
+                  <text x="480" y="508" text-anchor="middle" font-weight="700" font-size="12" fill="#B8956A">OBSERVABILITY</text>
+                  <text x="480" y="527" text-anchor="middle" font-size="10" fill="#1A1A1F">OTel + Prometheus + Loki</text>
+                  <text x="480" y="543" text-anchor="middle" font-size="9" fill="#6B6B6B">Token-level Audit · Cost Tracking · Bad-case Sampling</text>
+                </g>
+
+                <!-- Vertical down to Feedback Loop -->
+                <line x1="480" y1="550" x2="480" y2="590" stroke="#B8956A" stroke-width="1.2" marker-end="url(#arr)"/>
+
+                <!-- ====== Row 5: Feedback Loop ====== -->
+                <g font-family="JetBrains Mono, monospace">
+                  <rect x="240" y="595" width="480" height="70" rx="2" fill="url(#goldGrad)" stroke="#9C7A4E" stroke-width="1"/>
+                  <text x="480" y="623" text-anchor="middle" font-weight="700" font-size="12" fill="#FFFFFF">FEEDBACK LOOP</text>
+                  <text x="480" y="642" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.95)">Kafka → DPO Re-train</text>
+                  <text x="480" y="658" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.85)">24h closed-loop · LoRA hot-update</text>
+                </g>
+
+                <!-- Dashed feedback arrow back to Router (closing the loop) -->
+                <path d="M 720 630 Q 920 630 920 400 Q 920 155 760 155"
+                      stroke="#9C7A4E" stroke-width="1" stroke-dasharray="4 3" fill="none" marker-end="url(#arr)" opacity="0.7"/>
+                <text x="905" y="395" font-family="JetBrains Mono, monospace" font-size="9" fill="#9C7A4E" text-anchor="end" opacity="0.85">closed-loop</text>
+
+                <!-- ====== Side labels ====== -->
+                <text x="20" y="335" font-family="Playfair Display, serif" font-size="14" fill="#B8956A" opacity="0.5" transform="rotate(-90, 20, 335)">TRAFFIC</text>
+                <text x="945" y="515" font-family="Playfair Display, serif" font-size="14" fill="#B8956A" opacity="0.5" transform="rotate(90, 945, 515)">FEEDBACK</text>
+              </svg>
+            </div>
+
+            <!-- Legend -->
+            <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] ai-mono text-[color:var(--ai-muted-foreground)] pt-4 border-t border-[color:var(--ai-border)]/50">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 border border-[color:var(--ai-primary)] bg-[color:var(--ai-primary-soft)]/40"></span>
+                <span>HOT · 高频实时</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 border border-[color:var(--ai-primary)]/60 bg-white"></span>
+                <span>WARM · 中频批量</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 border border-dashed border-[color:var(--ai-primary)]/60 bg-white"></span>
+                <span>COLD · 长尾弹性</span>
+              </div>
+              <div class="flex items-center gap-2 ml-auto">
+                <span class="w-6 h-px bg-[color:var(--ai-primary)]"></span>
+                <span>实线 = 同步</span>
+                <span class="w-6 h-px border-t border-dashed border-[color:var(--ai-primary)]/70"></span>
+                <span>虚线 = 异步回环</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Architecture decisions -->
+          <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 ai-reveal-stagger">
+            <div class="p-6 border border-[color:var(--ai-border)] bg-[color:var(--ai-background)]">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="ai-mono text-[10px] tracking-wider text-[color:var(--ai-primary)]">DECISION 01</span>
+              </div>
+              <h4 class="ai-serif text-lg font-medium text-[color:var(--ai-foreground)]">为什么三档流量分离？</h4>
+              <p class="text-[12px] text-[color:var(--ai-muted-foreground)] mt-3 leading-[1.8]">
+                GPU 成本曲线非线性——长尾冷流量走 Serverless 把单位 token 成本砍掉 68%，同时热路径稳定性不被影响。
+              </p>
+            </div>
+            <div class="p-6 border border-[color:var(--ai-border)] bg-[color:var(--ai-background)]">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="ai-mono text-[10px] tracking-wider text-[color:var(--ai-primary)]">DECISION 02</span>
+              </div>
+              <h4 class="ai-serif text-lg font-medium text-[color:var(--ai-foreground)]">为什么 ID-Hash 而非 Round-Robin？</h4>
+              <p class="text-[12px] text-[color:var(--ai-muted-foreground)] mt-3 leading-[1.8]">
+                Prefix Cache 命中率取决于会话粘连性——ID-Hash 让相同会话始终落在同一 vLLM 实例，KV-cache 复用率从 12% 拉到 78%。
+              </p>
+            </div>
+            <div class="p-6 border border-[color:var(--ai-border)] bg-[color:var(--ai-background)]">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="ai-mono text-[10px] tracking-wider text-[color:var(--ai-primary)]">DECISION 03</span>
+              </div>
+              <h4 class="ai-serif text-lg font-medium text-[color:var(--ai-foreground)]">为什么 OTel 全链路 trace？</h4>
+              <p class="text-[12px] text-[color:var(--ai-muted-foreground)] mt-3 leading-[1.8]">
+                Token 级审计让单次推理的 prompt / 完成 / cost / latency 全可追溯——这是模型事故 P0 复盘能 1 小时定位的根因。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Philosophy + CTA — Large editorial pull-quote -->
+      <section class="py-28 md:py-40">
+        <div class="max-w-4xl mx-auto px-6 ai-reveal">
+          <div class="ai-gold-rule w-16 mb-12"></div>
+          <span class="ai-mono text-[11px] tracking-[0.25em] text-[color:var(--ai-primary)] uppercase">// 06 — 技术理念</span>
+          <blockquote class="ai-serif ai-drop-cap text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.25] mt-8 text-[color:var(--ai-foreground)]">
+            好的 AI 工程，不是把模型做大，而是把不确定性变小——用度量化、可回滚、可观测的系统，让智能稳定地交付价值。我们写的不是 notebook，是 SLA。
+          </blockquote>
+          <p class="ai-mono text-xs text-[color:var(--ai-muted-foreground)] mt-10 text-right">— 无界智源 · 工程化信条</p>
+          <div class="mt-12 flex flex-wrap items-center gap-4 md:gap-6">
+            <a data-dom-id="cta-projects" href="projects.html" class="group inline-flex items-center gap-2.5 ai-btn-gold text-xs">
+              看看这些能力的落地
+              <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-0.5"></i>
+            </a>
+            <a href="blog.html" class="ai-text-link text-xs ai-mono tracking-wider">
+              或直接联系技术团队 <i data-lucide="arrow-right" class="w-3 h-3"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer data-global-footer="desktop" class="border-t border-[color:var(--ai-border)] bg-[color:var(--ai-background)]">
+      <div class="mx-auto max-w-7xl px-6 py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div class="space-y-3">
+          <div class="flex items-center gap-2.5">
+            <span class="ai-mono text-xs font-bold text-[color:var(--ai-primary)] tracking-wider">无界</span>
+            <span class="ai-serif text-lg font-medium text-[color:var(--ai-foreground)]">无界智源</span>
+          </div>
+          <p class="text-xs text-[color:var(--ai-muted-foreground)] font-light">AI 科技公司 · 用工程化方式让智能落地</p>
+          <p class="text-[11px] text-[color:var(--ai-muted-foreground)]/60 ai-mono">© 2026 无界智源. 占位内容，请替换为真实信息。</p>
+        </div>
+        <div class="flex items-center gap-1">
+            <a href="https://github.com/wujiezhiyuan" target="_blank" rel="noopener" class="flex h-10 w-10 items-center justify-center text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-primary)] transition-colors"><i data-lucide="github" class="w-4 h-4"></i></a>
+            <a href="https://www.linkedin.com/company/wujiezhiyuan" target="_blank" rel="noopener" class="flex h-10 w-10 items-center justify-center text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-primary)] transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+            <a href="https://twitter.com/wujiezhiyuan" target="_blank" rel="noopener" class="flex h-10 w-10 items-center justify-center text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-primary)] transition-colors"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+            <a href="mailto:hello@wujiezhiyuan.ai" class="flex h-10 w-10 items-center justify-center text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-primary)] transition-colors"><i data-lucide="mail" class="w-4 h-4"></i></a>
+          </div>
+      </div>
+    </footer>
+
+    <script>
+      lucide.createIcons();
+
+      // Scroll progress bar
+      const progressBar = document.getElementById('scrollProgress');
+      const updateProgress = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        if (progressBar) progressBar.style.width = progress + '%';
+      };
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+
+      // Nav scroll state
+      const nav = document.querySelector('[data-global-nav="desktop"]');
+      const onScroll = () => {
+        if (window.scrollY > 20) {
+          nav.classList.add('is-scrolled');
+        } else {
+          nav.classList.remove('is-scrolled');
+        }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Scroll reveal with IntersectionObserver
+      const revealSelectors = '.ai-reveal, .ai-reveal-stagger, .ai-reveal-img, .ai-reveal-line';
+      const revealEls = document.querySelectorAll(revealSelectors);
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+        revealEls.forEach(el => io.observe(el));
+      } else {
+        revealEls.forEach(el => el.classList.add('is-visible'));
+      }
+    </script>
+</body>
+</html>

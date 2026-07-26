@@ -1,0 +1,1331 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目案例 — 无界智源 · AI 科技公司</title>
+    <style id="theme-vars">
+/* ============================================================
+   AI Engineer Portfolio — European Luxury Light Theme (Elevated)
+   Brand prefix: ai  |  Single primary hue: warm gold (#B8956A)
+   ============================================================ */
+
+:root {
+  --ai-background: #F7F4EF;
+  --ai-background-2: #EFEAE2;
+  --ai-foreground: #1A1A1F;
+  --ai-card: #FFFFFF;
+  --ai-card-foreground: #1A1A1F;
+  --ai-popover: #FFFFFF;
+  --ai-popover-foreground: #1A1A1F;
+  --ai-primary: #B8956A;
+  --ai-primary-strong: #9C7A4E;
+  --ai-primary-light: #D4B896;
+  --ai-primary-foreground: #FFFFFF;
+  --ai-primary-glow: rgba(184, 149, 106, 0.18);
+  --ai-primary-soft: rgba(184, 149, 106, 0.08);
+  --ai-muted: #E8E3D9;
+  --ai-muted-foreground: #6B6B6B;
+  --ai-border: #E0D9CD;
+  --ai-border-strong: #C8BFAE;
+  --ai-input: #F2EFE8;
+  --ai-ring: #B8956A;
+  --ai-success: #4A7C59;
+  --ai-warning: #B8860B;
+  --ai-error: #8B3A3A;
+  --ai-radius-sm: 2px;
+  --ai-radius-md: 4px;
+  --ai-radius-lg: 6px;
+  --ai-radius-xl: 8px;
+  --ai-font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  --ai-font-serif: "Playfair Display", "Cormorant Garamond", "Noto Serif SC",
+    "Songti SC", "STSong", Georgia, serif;
+  --ai-font-mono: "JetBrains Mono", "SF Mono", "Cascadia Code", "Fira Code",
+    Consolas, "Courier New", monospace;
+  --ai-nav-bg: rgba(247, 244, 239, 0.85);
+  --ai-card-translucent: rgba(255, 255, 255, 0.7);
+  --ai-scrim: rgba(26, 26, 31, 0.4);
+  --ai-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ai-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ai-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ai-font-sans);
+  background-color: var(--ai-background);
+  color: var(--ai-foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv01", "kern";
+  text-rendering: optimizeLegibility;
+}
+
+.ai-body-backdrop {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(800px 500px at 30% -10%, rgba(184, 149, 106, 0.10), transparent 55%),
+    radial-gradient(500px 400px at 95% 110%, rgba(184, 149, 106, 0.06), transparent 50%),
+    linear-gradient(180deg, #F7F4EF 0%, #F0EBE2 50%, #F3EEE7 100%);
+}
+.ai-body-backdrop::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+}
+
+.ai-grid-bg {
+  background-image:
+    linear-gradient(rgba(184, 149, 106, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 149, 106, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: -1px -1px;
+}
+
+.ai-dot-bg {
+  background-image: radial-gradient(rgba(107, 107, 107, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.ai-gradient-text {
+  background: linear-gradient(100deg, #9C7A4E 0%, #B8956A 35%, #D4B896 50%, #B8956A 65%, #9C7A4E 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  transition: background-position 0.8s var(--ai-ease-out);
+}
+.ai-gradient-text:hover { background-position: right center; }
+
+.ai-glow {
+  box-shadow: 0 0 0 1px rgba(184, 149, 106, 0.12),
+    0 30px 60px -30px rgba(184, 149, 106, 0.2);
+}
+
+.ai-hairline { border: 1px solid var(--ai-border); }
+
+.ai-glass {
+  background: #FFFFFF;
+  border: 1px solid var(--ai-border);
+  box-shadow: 0 1px 2px rgba(26, 26, 31, 0.03),
+    0 8px 24px -12px rgba(26, 26, 31, 0.08);
+}
+
+.ai-serif {
+  font-family: var(--ai-font-serif);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  font-feature-settings: "liga", "dlig";
+}
+
+.ai-serif-display {
+  font-family: var(--ai-font-serif);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-feature-settings: "liga", "dlig", "swsh";
+  line-height: 1.05;
+}
+
+.ai-mono {
+  font-family: var(--ai-font-mono);
+  font-feature-settings: "ss01", "cv01", "tnum";
+  letter-spacing: 0.02em;
+}
+
+.ai-status-dot {
+  position: relative; display: inline-block; width: 8px; height: 8px;
+  border-radius: 9999px; background: var(--ai-primary);
+  box-shadow: 0 0 0 4px rgba(184, 149, 106, 0.12);
+}
+.ai-status-dot::after {
+  content: ""; position: absolute; inset: -4px; border-radius: 9999px;
+  background: rgba(184, 149, 106, 0.18);
+  animation: ai-pulse 2.4s ease-out infinite;
+}
+
+@keyframes ai-pulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+.ai-scanline {
+  background: linear-gradient(90deg, transparent, var(--ai-primary), transparent);
+  height: 1px; opacity: 0.3;
+}
+
+.ai-card-hover {
+  transition: transform 0.5s var(--ai-ease-out),
+    border-color 0.5s var(--ai-ease-out),
+    box-shadow 0.5s var(--ai-ease-out);
+}
+.ai-card-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(184, 149, 106, 0.3);
+  box-shadow: 0 8px 16px rgba(26, 26, 31, 0.04),
+    0 30px 50px -30px rgba(184, 149, 106, 0.25);
+}
+
+.ai-img-reveal { overflow: hidden; position: relative; }
+.ai-img-reveal img {
+  transition: transform 1.2s var(--ai-ease-out),
+    filter 0.8s var(--ai-ease-out);
+  filter: saturate(0.92) contrast(1.02);
+}
+.ai-img-reveal:hover img {
+  transform: scale(1.04);
+  filter: saturate(1) contrast(1.04);
+}
+
+.ai-gold-corners { position: relative; }
+.ai-gold-corners::before,
+.ai-gold-corners::after {
+  content: ""; position: absolute; width: 24px; height: 24px;
+  border: 1px solid var(--ai-primary); opacity: 0.6;
+  transition: opacity 0.4s var(--ai-ease-out),
+    width 0.4s var(--ai-ease-out),
+    height 0.4s var(--ai-ease-out);
+}
+.ai-gold-corners::before {
+  top: -1px; left: -1px; border-right: none; border-bottom: none;
+}
+.ai-gold-corners::after {
+  bottom: -1px; right: -1px; border-left: none; border-top: none;
+}
+.ai-gold-corners:hover::before,
+.ai-gold-corners:hover::after {
+  opacity: 1; width: 32px; height: 32px;
+}
+
+.ai-text-link {
+  position: relative; display: inline-block;
+  color: var(--ai-primary); text-decoration: none;
+  transition: color 0.3s var(--ai-ease-out);
+}
+.ai-text-link::after {
+  content: ""; position: absolute; bottom: -2px; left: 0;
+  width: 100%; height: 1px; background: var(--ai-primary);
+  transform: scaleX(0); transform-origin: right center;
+  transition: transform 0.5s var(--ai-ease-out);
+}
+.ai-text-link:hover::after {
+  transform: scaleX(1); transform-origin: left center;
+}
+
+.ai-btn-gold {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--ai-primary); color: var(--ai-primary-foreground);
+  border-radius: var(--ai-radius-sm);
+  font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em;
+  position: relative; overflow: hidden;
+  transition: all 0.4s var(--ai-ease-out);
+  box-shadow: 0 4px 12px rgba(184, 149, 106, 0.15);
+}
+.ai-btn-gold::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.25) 50%, transparent 80%);
+  transform: translateX(-100%);
+  transition: transform 0.8s var(--ai-ease-out);
+}
+.ai-btn-gold:hover {
+  background: var(--ai-primary-strong);
+  box-shadow: 0 8px 20px rgba(184, 149, 106, 0.25);
+  transform: translateY(-1px);
+}
+.ai-btn-gold:hover::before { transform: translateX(100%); }
+.ai-btn-gold:active { transform: translateY(0); }
+
+.ai-btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 0;
+  color: var(--ai-foreground);
+  font-size: 0.875rem; font-weight: 500;
+  position: relative;
+  transition: color 0.4s var(--ai-ease-out);
+}
+.ai-btn-ghost::after {
+  content: ""; position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 1px; background: var(--ai-border-strong);
+  transition: background 0.4s var(--ai-ease-out);
+}
+.ai-btn-ghost:hover { color: var(--ai-primary); }
+.ai-btn-ghost:hover::after { background: var(--ai-primary); }
+
+.ai-v-divider {
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--ai-primary), transparent);
+  opacity: 0.3;
+}
+
+.ai-section-num {
+  font-family: var(--ai-font-serif);
+  font-size: clamp(6rem, 12vw, 12rem);
+  font-weight: 300; line-height: 1;
+  color: var(--ai-primary); opacity: 0.08;
+  letter-spacing: -0.04em;
+  user-select: none; pointer-events: none;
+}
+
+.ai-dropcap::first-letter {
+  font-family: var(--ai-font-serif);
+  font-size: 3.5em; font-weight: 500;
+  float: left; line-height: 0.85;
+  padding-right: 0.15em; padding-top: 0.1em;
+  color: var(--ai-primary);
+  font-feature-settings: "swsh", "liga";
+}
+
+/* Scroll-reveal */
+.ai-reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.9s var(--ai-ease-out),
+    transform 0.9s var(--ai-ease-out);
+  will-change: opacity, transform;
+}
+.ai-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+.ai-reveal-stagger > * {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.8s var(--ai-ease-out),
+    transform 0.8s var(--ai-ease-out);
+  will-change: opacity, transform;
+}
+.ai-reveal-stagger.is-visible > * { opacity: 1; transform: translateY(0); }
+.ai-reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+.ai-reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.12s; }
+.ai-reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.19s; }
+.ai-reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.26s; }
+.ai-reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.33s; }
+.ai-reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.40s; }
+.ai-reveal-stagger.is-visible > *:nth-child(7) { transition-delay: 0.47s; }
+.ai-reveal-stagger.is-visible > *:nth-child(8) { transition-delay: 0.54s; }
+
+.ai-reveal-img {
+  opacity: 0; clip-path: inset(0 0 100% 0);
+  transition: opacity 0.3s ease,
+    clip-path 1.2s var(--ai-ease-out);
+  will-change: clip-path, opacity;
+}
+.ai-reveal-img.is-visible {
+  opacity: 1; clip-path: inset(0 0 0 0);
+}
+
+.ai-reveal-line {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.2s var(--ai-ease-out);
+  will-change: transform;
+}
+.ai-reveal-line.is-visible { transform: scaleX(1); }
+
+/* Nav scroll state */
+.ai-nav-scroll { transition: all 0.5s var(--ai-ease-out); }
+.ai-nav-scroll.is-scrolled {
+  border-bottom-color: rgba(184, 149, 106, 0.15) !important;
+  background: rgba(247, 244, 239, 0.95) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(184, 149, 106, 0.06),
+    0 8px 24px -16px rgba(26, 26, 31, 0.06);
+}
+
+/* Scroll progress bar */
+.ai-scroll-progress {
+  position: fixed; top: 0; left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--ai-primary), var(--ai-primary-light), var(--ai-primary));
+  z-index: 100;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* Custom scrollbar (refined gold) */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(184, 149, 106, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(184, 149, 106, 0.4); }
+
+::selection {
+  background: rgba(184, 149, 106, 0.2);
+  color: #1A1A1F;
+}
+
+/* ============================================================
+   Page-specific editorial additions
+   ============================================================ */
+
+.ai-corner-tl::before {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 28px; height: 28px;
+  border-top: 1px solid var(--ai-primary);
+  border-left: 1px solid var(--ai-primary);
+  opacity: 0.6;
+}
+.ai-corner-br::after {
+  content: ""; position: absolute; bottom: 0; right: 0;
+  width: 28px; height: 28px;
+  border-bottom: 1px solid var(--ai-primary);
+  border-right: 1px solid var(--ai-primary);
+  opacity: 0.6;
+}
+
+.ai-project-card .ai-project-img {
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.8s var(--ai-ease-out);
+  filter: saturate(0.92) contrast(1.02);
+}
+.ai-project-card:hover .ai-project-img {
+  transform: scale(1.04);
+  filter: saturate(1) contrast(1.04);
+}
+.ai-project-card:hover h3 { color: var(--ai-primary); }
+.ai-project-card h3 { transition: color 0.4s var(--ai-ease-out); }
+
+.ai-drop-cap::first-letter {
+  float: left;
+  font-family: var(--ai-font-serif);
+  font-size: 4.5em; line-height: 0.85;
+  padding-right: 0.12em; padding-top: 0.08em;
+  background: linear-gradient(135deg, #B8956A 0%, #D4B896 50%, #9C7A4E 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  font-weight: 600;
+}
+
+.ai-section-number-bg {
+  position: absolute;
+  font-family: var(--ai-font-serif);
+  font-weight: 400;
+  color: var(--ai-primary); opacity: 0.08;
+  line-height: 1; pointer-events: none; user-select: none;
+}
+
+.ai-gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, var(--ai-primary) 0%, rgba(184, 149, 106, 0.3) 70%, transparent 100%);
+}
+.ai-gold-rule-center {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ai-primary), transparent);
+}
+
+.ai-cat-line { position: relative; }
+.ai-cat-line::after {
+  content: ""; position: absolute;
+  right: 0; top: 50%;
+  width: 40px; height: 1px;
+  background: var(--ai-primary); opacity: 0.4;
+}
+
+.ai-timeline-line {
+  position: absolute; left: 28px; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(184, 149, 106, 0.1) 0%, rgba(184, 149, 106, 0.5) 20%, rgba(184, 149, 106, 0.5) 80%, rgba(184, 149, 106, 0.1) 100%);
+}
+@media (min-width: 768px) { .ai-timeline-line { left: 40px; } }
+
+.ai-project-num {
+  font-family: var(--ai-font-serif);
+  font-weight: 400; font-style: italic;
+  line-height: 0.85; letter-spacing: -0.04em;
+  color: rgba(184, 149, 106, 0.25);
+  text-shadow: 0 2px 40px rgba(0,0,0,0.1);
+  pointer-events: none; user-select: none;
+}
+
+.ai-vert-divider {
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(184, 149, 106, 0.3), transparent);
+}
+
+.ai-editorial-img { position: relative; overflow: hidden; }
+.ai-editorial-img img {
+  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.8s var(--ai-ease-out);
+  filter: saturate(0.92) contrast(1.02);
+}
+.ai-editorial-img:hover img {
+  transform: scale(1.03);
+  filter: saturate(1) contrast(1.04);
+}
+
+.ai-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(26, 26, 31, 0.15) 100%);
+  pointer-events: none;
+}
+
+.ai-nav-editorial {
+  background: var(--ai-nav-bg);
+  border-bottom: 1px solid rgba(184, 149, 106, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.5s var(--ai-ease-out);
+}
+.ai-nav-editorial.is-scrolled {
+  background: rgba(247, 244, 239, 0.97) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(184, 149, 106, 0.08),
+    0 12px 30px -20px rgba(26, 26, 31, 0.08);
+}
+
+.ai-editorial-row { transition: background-color 0.25s ease; }
+.ai-editorial-row:hover { background-color: rgba(184, 149, 106, 0.04); }
+.ai-editorial-row:hover .ai-editorial-title { color: var(--ai-primary); }
+.ai-editorial-title { transition: color 0.3s var(--ai-ease-out); }
+
+.ai-input-underline {
+  background: transparent; border: none;
+  border-bottom: 1px solid var(--ai-border);
+  border-radius: 0; padding: 0.6rem 0;
+  font-size: 0.95rem; color: var(--ai-foreground);
+  transition: border-color 0.3s var(--ai-ease-out);
+  width: 100%; outline: none;
+}
+.ai-input-underline:focus { border-bottom-color: var(--ai-primary); }
+.ai-input-underline::placeholder { color: rgba(107, 107, 107, 0.4); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--ai-background);
+    --color-foreground: var(--ai-foreground);
+    --color-card: var(--ai-card);
+    --color-card-foreground: var(--ai-card-foreground);
+    --color-popover: var(--ai-popover);
+    --color-popover-foreground: var(--ai-popover-foreground);
+    --color-primary: var(--ai-primary);
+    --color-primary-foreground: var(--ai-primary-foreground);
+    --color-muted: var(--ai-muted);
+    --color-muted-foreground: var(--ai-muted-foreground);
+    --color-border: var(--ai-border);
+    --color-input: var(--ai-input);
+    --color-ring: var(--ai-ring);
+    --radius-sm: var(--ai-radius-sm);
+    --radius-md: var(--ai-radius-md);
+    --radius-lg: var(--ai-radius-lg);
+    --radius-xl: var(--ai-radius-xl);
+  }
+  @layer base {
+    body { background: var(--ai-background); color: var(--ai-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--ai-background); }
+      .text-background { color: var(--ai-background); }
+      .border-background { border-color: var(--ai-background); }
+      .ring-background { --tw-ring-color: var(--ai-background); }
+      .bg-foreground { background-color: var(--ai-foreground); }
+      .text-foreground { color: var(--ai-foreground); }
+      .border-foreground { border-color: var(--ai-foreground); }
+      .ring-foreground { --tw-ring-color: var(--ai-foreground); }
+      .bg-card { background-color: var(--ai-card); }
+      .text-card { color: var(--ai-card); }
+      .border-card { border-color: var(--ai-card); }
+      .ring-card { --tw-ring-color: var(--ai-card); }
+      .bg-card-foreground { background-color: var(--ai-card-foreground); }
+      .text-card-foreground { color: var(--ai-card-foreground); }
+      .border-card-foreground { border-color: var(--ai-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--ai-card-foreground); }
+      .bg-popover { background-color: var(--ai-popover); }
+      .text-popover { color: var(--ai-popover); }
+      .border-popover { border-color: var(--ai-popover); }
+      .ring-popover { --tw-ring-color: var(--ai-popover); }
+      .bg-popover-foreground { background-color: var(--ai-popover-foreground); }
+      .text-popover-foreground { color: var(--ai-popover-foreground); }
+      .border-popover-foreground { border-color: var(--ai-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--ai-popover-foreground); }
+      .bg-primary { background-color: var(--ai-primary); }
+      .text-primary { color: var(--ai-primary); }
+      .border-primary { border-color: var(--ai-primary); }
+      .ring-primary { --tw-ring-color: var(--ai-primary); }
+      .bg-primary-foreground { background-color: var(--ai-primary-foreground); }
+      .text-primary-foreground { color: var(--ai-primary-foreground); }
+      .border-primary-foreground { border-color: var(--ai-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--ai-primary-foreground); }
+      .bg-muted { background-color: var(--ai-muted); }
+      .text-muted { color: var(--ai-muted); }
+      .border-muted { border-color: var(--ai-muted); }
+      .ring-muted { --tw-ring-color: var(--ai-muted); }
+      .bg-muted-foreground { background-color: var(--ai-muted-foreground); }
+      .text-muted-foreground { color: var(--ai-muted-foreground); }
+      .border-muted-foreground { border-color: var(--ai-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--ai-muted-foreground); }
+      .bg-border { background-color: var(--ai-border); }
+      .text-border { color: var(--ai-border); }
+      .border-border { border-color: var(--ai-border); }
+      .ring-border { --tw-ring-color: var(--ai-border); }
+      .bg-input { background-color: var(--ai-input); }
+      .text-input { color: var(--ai-input); }
+      .border-input { border-color: var(--ai-input); }
+      .ring-input { --tw-ring-color: var(--ai-input); }
+      .bg-ring { background-color: var(--ai-ring); }
+      .text-ring { color: var(--ai-ring); }
+      .border-ring { border-color: var(--ai-ring); }
+      .ring-ring { --tw-ring-color: var(--ai-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <main>
+      <!-- Ambient backdrop -->
+      <div class="ai-body-backdrop"></div>
+
+      <!-- Scroll progress bar -->
+      <div class="ai-scroll-progress" id="scrollProgress"></div>
+
+      <!-- Global nav (项目案例 active) — refined editorial style -->
+      <header data-global-nav="desktop" class="ai-nav-scroll fixed top-0 inset-x-0 z-50 h-16 border-b border-[color:var(--ai-border)] bg-[color:var(--ai-background)]/90 backdrop-blur-sm">
+        <div class="mx-auto max-w-7xl px-6 h-full flex items-center justify-between gap-6">
+          <a href="index.html" class="flex items-center gap-2.5">
+            <span class="relative flex h-8 w-8 items-center justify-center">
+              <span class="ai-mono text-[13px] font-bold text-[color:var(--ai-primary)] tracking-wider">无界</span>
+            </span>
+            <span class="ai-serif text-[17px] font-medium tracking-tight text-[color:var(--ai-foreground)]">无界<span class="text-[color:var(--ai-primary)]/70">智源</span></span>
+          </a>
+          <nav class="hidden md:flex items-center gap-1">
+            <a data-dom-id="nav-home" data-nav-key="home" href="index.html" class="px-3.5 py-2 text-sm text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-foreground)] transition-colors">首页</a>
+            <a data-dom-id="nav-skills" data-nav-key="skills" href="skills.html" class="px-3.5 py-2 text-sm text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-foreground)] transition-colors">专业技能</a>
+            <a data-dom-id="nav-projects" data-nav-key="projects" href="projects.html" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-semibold text-[color:var(--ai-primary-strong)] bg-[color:var(--ai-primary)]/15 ring-1 ring-[color:var(--ai-primary)]/35 transition-colors">
+              <span class="relative flex h-1.5 w-1.5">
+                <span class="absolute inline-flex h-full w-full rounded-full bg-[color:var(--ai-primary)] opacity-60 animate-ping"></span>
+                <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-[color:var(--ai-primary)]"></span>
+              </span>
+              项目案例
+              <span class="ml-0.5 text-[9px] ai-mono tracking-[0.15em] text-[color:var(--ai-primary)]/70 uppercase border-l border-[color:var(--ai-primary)]/30 pl-1.5">CURRENT</span>
+            </a>
+            <a data-dom-id="nav-blog" data-nav-key="blog" href="blog.html" class="px-3.5 py-2 text-sm text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-foreground)] transition-colors">博客与联系</a>
+          </nav>
+          <a data-dom-id="nav-cta" href="blog.html" class="hidden sm:inline-flex items-center gap-1.5 ai-btn-gold text-xs"><i data-lucide="send" class="w-3.5 h-3.5"></i> 联系我们</a>
+        </div>
+      </header>
+
+      <!-- Page content (offset for fixed nav) -->
+      <div class="pt-16">
+
+        <!-- Section 1: Editorial page header -->
+        <section class="py-28 md:py-36">
+          <div class="mx-auto max-w-7xl px-6 ai-reveal">
+            <span class="ai-mono text-xs tracking-wider text-[color:var(--ai-primary)]/80">// 02 — 项目案例</span>
+            <h1 class="mt-6 ai-serif text-6xl md:text-7xl font-medium leading-[1.05] tracking-tight text-[color:var(--ai-foreground)]">
+              落地<span class="ai-gradient-text italic">项目</span>
+            </h1>
+            <!-- Gold hairline -->
+            <div class="mt-8 ai-gold-rule w-24 md:w-32"></div>
+            <p class="mt-8 max-w-xl text-base text-[color:var(--ai-muted-foreground)] leading-relaxed">从模型到产品的工程实践，关注可度量结果与系统稳定性。</p>
+            <p class="text-sm text-[color:var(--ai-primary)] mt-3 ai-mono tracking-wider">无界智源 · 团队交付案例</p>
+            <!-- Typographic category nav links -->
+            <div class="mt-10 flex flex-wrap items-center gap-x-4 gap-y-3">
+              <a href="#category-internal-ai" class="ai-mono text-xs text-[color:var(--ai-primary)] hover:text-[color:var(--ai-primary-strong)] transition-colors tracking-wide border-b border-[color:var(--ai-primary)]/30 hover:border-[color:var(--ai-primary)] pb-1">
+                01 · 公司内部 AI 系统
+              </a>
+              <span class="text-[color:var(--ai-muted-foreground)]/40">/</span>
+              <a href="#category-marketing-ai" class="ai-mono text-xs text-[color:var(--ai-primary)] hover:text-[color:var(--ai-primary-strong)] transition-colors tracking-wide border-b border-[color:var(--ai-primary)]/30 hover:border-[color:var(--ai-primary)] pb-1">
+                02 · AI 品宣获客系统
+              </a>
+              <span class="text-[color:var(--ai-muted-foreground)]/40">/</span>
+              <a href="#category-advanced-tech" class="ai-mono text-xs text-[color:var(--ai-primary)] hover:text-[color:var(--ai-primary-strong)] transition-colors tracking-wide border-b border-[color:var(--ai-primary)]/30 hover:border-[color:var(--ai-primary)] pb-1">
+                03 · AI 高级技术系统
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ Section 2: Category 01 — 公司内部 AI 系统 ============ -->
+        <section id="category-internal-ai" class="py-24 md:py-32 border-t border-[color:var(--ai-border)]/60 scroll-mt-24">
+          <div class="mx-auto max-w-7xl px-6">
+            <!-- Category header -->
+            <div class="grid md:grid-cols-12 gap-8 mb-14 ai-reveal">
+              <div class="md:col-span-4">
+                <span class="ai-mono text-xs tracking-widest text-[color:var(--ai-primary)] uppercase">// 01 — 分类</span>
+                <h2 class="mt-4 ai-serif text-4xl md:text-5xl font-medium leading-[1.1] tracking-tight text-[color:var(--ai-foreground)]">
+                  公司内部<br><span class="ai-gradient-text italic">AI 系统</span>
+                </h2>
+                <div class="mt-6 ai-gold-rule w-16"></div>
+              </div>
+              <div class="md:col-span-7 md:col-start-6">
+                <p class="text-base md:text-[17px] text-[color:var(--ai-muted-foreground)] leading-[1.85] font-light">
+                  面向企业内部效率与治理场景的 AI 系统建设——知识管理、流程自动化、数据治理，把大模型能力嵌入到员工日常工作的工具链中，让组织智能沉淀、可复用。
+                </p>
+                <p class="mt-4 text-sm ai-mono text-[color:var(--ai-primary)]/80 tracking-wide">关键词：知识助手 · 内部效率 · 治理与可观测</p>
+              </div>
+            </div>
+
+            <!-- 3 internal AI system projects grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 ai-reveal-stagger">
+
+              <!-- Project 01-A: AI-CRM 系统 -->
+              <div class="group">
+                <div class="ai-editorial-img relative w-full">
+                  <div class="w-full aspect-[4/3] bg-gradient-to-br from-[#1A1A1F] via-[#252018] to-[#2A2520] border border-[color:var(--ai-border)] relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-40" style="background: radial-gradient(ellipse at 65% 35%, rgba(212,184,150,0.2) 0%, transparent 55%), radial-gradient(ellipse at 30% 70%, rgba(184,149,106,0.15) 0%, transparent 50%)"></div>
+                    <div class="absolute inset-0 opacity-15" style="background-image: linear-gradient(rgba(184,149,106,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(184,149,106,0.25) 1px, transparent 1px); background-size: 28px 28px;"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <div class="ai-serif text-[120px] md:text-[140px] font-light text-white/8 leading-none select-none">⟡</div>
+                    </div>
+                    <div class="absolute top-4 left-4 ai-mono text-[10px] tracking-[0.2em] text-[color:var(--ai-primary)]/60">WUJIE · CASE</div>
+                    <div class="absolute bottom-4 right-4 ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/40">2026</div>
+                  </div>
+                  <div class="ai-img-overlay"></div>
+                </div>
+                <div class="mt-4 flex items-center gap-2">
+                  <span class="ai-mono text-[11px] tracking-[0.15em] text-[color:var(--ai-primary)]/70">PRJ-01-A</span>
+                  <span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="ai-mono text-[11px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase">内部系统</span>
+                </div>
+                <h3 class="mt-3 ai-serif text-2xl md:text-[26px] font-medium leading-[1.2] tracking-tight text-[color:var(--ai-foreground)] group-hover:text-[color:var(--ai-primary)] transition-colors">
+                  AI-CRM 系统
+                </h3>
+                <p class="mt-3 text-sm text-[color:var(--ai-foreground)]/75 leading-[1.75]">
+                  面向销售与客户运营的智能化 CRM，把客户数据、跟进话术、流失预警全部接入大模型能力。
+                </p>
+                <!-- Core features -->
+                <div class="mt-5">
+                  <div class="ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase mb-3">核心功能</div>
+                  <ul class="space-y-3.5 text-[13px] text-[color:var(--ai-foreground)]/80 leading-[1.7]">
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">360° 客户画像</span> — 整合交易记录、行为日志、客服对话、社交互动 4 类数据源共 200+ 维度,经统一 ID Mapping 后沉淀至客户 360 主题模型。基于 RFM 模型 + K-Means 聚类算法,自动划分客户为 8 类价值层级,并结合 LightGBM 分类模型识别高价值客户与流失风险客户。在某零售客户部署中,画像覆盖率 95%+,高价值客户识别准确率 92%,支撑后续精准营销与个性化服务</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">线索评分与排序</span> — 基于历史 10 万+ 成单数据训练 XGBoost 评分模型,提取线索来源、行为轨迹、企业属性、需求关键词等 50+ 特征,输出 0-100 分线索分值,自动分流至 A/B/C/D 四档优先级。结合实时行为事件流(浏览、留资、咨询)动态调整评分,销售优先跟进高线索分客户。在某 B2B 客户部署中,销售人效提升 3 倍,线索转化率提升 38%</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">跟进话术生成</span> — 结合客户 360 画像与所处销售阶段(认知/兴趣/对比/决策),基于 Qwen-72B 微调模型实时生成个性化跟进话术,支持电话/微信/邮件三渠道文案输出。内置合规审核引擎,自动过滤违规承诺与敏感词,合规通过率 99.5%。在某保险客户场景中,话术采纳率 78%,坐席人均产能提升 2.5 倍</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">流失预警与智能召回</span> — 采用 Survival Analysis 生存分析模型 + LSTM 时序预测双模型架构,基于客户近 90 天的行为衰减趋势、消费频次下降、客服投诉等 30+ 特征,提前 30 天预测流失风险,召回概率输出。系统自动触发分层召回 SOP(优惠/召回话术/专属服务),在某 SaaS 客户部署中,流失率下降 45%,召回成功率 28%</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">销售预测与漏斗分析</span> — 基于 Prophet 季节性分解 + 漏斗转化率建模,输出未来 90 天销售预测与置信区间,MAPE &lt; 8%。支持按渠道/产品/区域/销售 4 维度交叉分析,自动识别漏斗瓶颈节点。结合归因模型(末次/首次/线性/数据驱动),输出每阶段转化率与改进建议,助力管理层科学决策</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">智能工单与客服辅助</span> — 工单基于 BERT 微调模型自动分类路由至正确处理人,准确率 95%。坐席侧实时调用 RAG 知识库,基于对话上下文实时推荐答案与解决方案,首次响应解决率提升 35%。结合情绪识别模型,实时监测客户情绪波动并触发升级机制,平均工单处理时长缩短 40%,CSAT 提升至 4.6/5</span></li>
+                  </ul>
+                </div>
+                <!-- Metrics -->
+                <div class="mt-6 pt-5 border-t border-[color:var(--ai-border)]/50 flex items-baseline gap-5">
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">+38%</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">线索转化率</div>
+                  </div>
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">-45%</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">客户流失率</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 01-B: AI-知识库系统 -->
+              <div class="group">
+                <div class="ai-editorial-img relative w-full">
+                  <div class="w-full aspect-[4/3] bg-gradient-to-br from-[#1A1A1F] via-[#252018] to-[#2A2520] border border-[color:var(--ai-border)] relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-40" style="background: radial-gradient(ellipse at 65% 35%, rgba(212,184,150,0.2) 0%, transparent 55%), radial-gradient(ellipse at 30% 70%, rgba(184,149,106,0.15) 0%, transparent 50%)"></div>
+                    <div class="absolute inset-0 opacity-15" style="background-image: linear-gradient(rgba(184,149,106,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(184,149,106,0.25) 1px, transparent 1px); background-size: 28px 28px;"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <div class="ai-serif text-[120px] md:text-[140px] font-light text-white/8 leading-none select-none">⟡</div>
+                    </div>
+                    <div class="absolute top-4 left-4 ai-mono text-[10px] tracking-[0.2em] text-[color:var(--ai-primary)]/60">WUJIE · CASE</div>
+                    <div class="absolute bottom-4 right-4 ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/40">2026</div>
+                  </div>
+                  <div class="ai-img-overlay"></div>
+                </div>
+                <div class="mt-4 flex items-center gap-2">
+                  <span class="ai-mono text-[11px] tracking-[0.15em] text-[color:var(--ai-primary)]/70">PRJ-01-B</span>
+                  <span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="ai-mono text-[11px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase">内部系统</span>
+                </div>
+                <h3 class="mt-3 ai-serif text-2xl md:text-[26px] font-medium leading-[1.2] tracking-tight text-[color:var(--ai-foreground)] group-hover:text-[color:var(--ai-primary)] transition-colors">
+                  AI-知识库系统
+                </h3>
+                <p class="mt-3 text-sm text-[color:var(--ai-foreground)]/75 leading-[1.75]">
+                  企业级知识中台，自研 RAG 管线与知识图谱自动构建，让组织知识沉淀、可检索、可复用。
+                </p>
+                <div class="mt-5">
+                  <div class="ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase mb-3">核心功能</div>
+                  <ul class="space-y-3.5 text-[13px] text-[color:var(--ai-foreground)]/80 leading-[1.7]">
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">多源知识自动入库</span> — 支持 PDF/Word/Excel/PPT/Confluence/飞书/Notion/SharePoint 等 20+ 数据源,API + 定时任务双链路同步。基于 PaddleOCR + LayoutLMv3 版面分析算法,精准识别标题、段落、表格、图片、公式 5 类版面元素,表格结构化还原准确率 95%。配合 LLM 实现文档智能分块(语义分块 + 滑动窗口),入库准确率 98%,日均处理 10 万+ 文档</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">RAG 语义检索问答</span> — 采用 BGE-M3 向量化模型 + Milvus 亿级向量数据库 + BGE-Reranker 重排序三段式检索架构,支持混合检索(向量+关键词+BM25)。p95 响应延迟 &lt; 800ms,Top-5 召回率 92%,问答准确率 94%。支持多轮上下文理解、答案溯源(标注原文位置)、流式输出,日均服务 50 万+ 查询</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span><span class="font-medium text-[color:var(--ai-foreground)]">知识图谱自动构建</span> — 基于 UIE 通用信息抽取 + LLM Few-shot 抽取双链路,从非结构化文档中抽取实体(人/物/事/地/组织)与关系(归属/因果/时序),自动构建本体图谱。融合 Cross-Document Coreference Resolution 跨文档共指消解,图谱规模可达百万节点 + 千万边。支持基于图谱的多跳推理问答,复杂关系问答准确率 85%+</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">文档智能解析与摘要</span> — LayoutLMv3 版面分析 + Donut 文档理解 + LLM 长文档分块摘要三层架构,支持 100 页+ 长文档。结构化输出文档大纲、关键信息、表格数据,一键生成执行摘要(Executive Summary)。配合公式识别(LaTeX 输出)与图片描述,文档理解完整度 95%+</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">权限分级与版本管理</span> — 采用 RBAC 角色权限模型 + 文档级 ACL 访问控制列表,支持部门/项目/个人 3 级授权粒度,文档级权限精确到读/写/下载/分享 4 个操作。全版本回溯(支持 100+ 历史版本),差异对比可视化。满足等保三级与 ISO 27001 合规要求,审计日志保留 1 年+</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">知识主动推荐</span> — 基于员工岗位、项目、行为日志三维度构建员工画像,结合知识标签体系与协同过滤算法主动推送相关文档。配合知识沉淀 SOP(项目复盘→案例库→最佳实践),组织知识复用率提升 3 倍,新人上手周期缩短 60%</span></li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-5 border-t border-[color:var(--ai-border)]/50 flex items-baseline gap-5">
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">94%</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">检索准确率</div>
+                  </div>
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">-60%</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">检索耗时</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 01-C: AI-数字员工系统 -->
+              <div class="group">
+                <div class="ai-editorial-img relative w-full">
+                  <div class="w-full aspect-[4/3] bg-gradient-to-br from-[#1A1A1F] via-[#252018] to-[#2A2520] border border-[color:var(--ai-border)] relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-40" style="background: radial-gradient(ellipse at 65% 35%, rgba(212,184,150,0.2) 0%, transparent 55%), radial-gradient(ellipse at 30% 70%, rgba(184,149,106,0.15) 0%, transparent 50%)"></div>
+                    <div class="absolute inset-0 opacity-15" style="background-image: linear-gradient(rgba(184,149,106,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(184,149,106,0.25) 1px, transparent 1px); background-size: 28px 28px;"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <div class="ai-serif text-[120px] md:text-[140px] font-light text-white/8 leading-none select-none">⟡</div>
+                    </div>
+                    <div class="absolute top-4 left-4 ai-mono text-[10px] tracking-[0.2em] text-[color:var(--ai-primary)]/60">WUJIE · CASE</div>
+                    <div class="absolute bottom-4 right-4 ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/40">2026</div>
+                  </div>
+                  <div class="ai-img-overlay"></div>
+                </div>
+                <div class="mt-4 flex items-center gap-2">
+                  <span class="ai-mono text-[11px] tracking-[0.15em] text-[color:var(--ai-primary)]/70">PRJ-01-C</span>
+                  <span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="ai-mono text-[11px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase">内部系统</span>
+                </div>
+                <h3 class="mt-3 ai-serif text-2xl md:text-[26px] font-medium leading-[1.2] tracking-tight text-[color:var(--ai-foreground)] group-hover:text-[color:var(--ai-primary)] transition-colors">
+                  AI-数字员工系统
+                </h3>
+                <p class="mt-3 text-sm text-[color:var(--ai-foreground)]/75 leading-[1.75]">
+                  基于多智能体编排的数字员工，自然语言驱动跨系统工具调用，端到端自动完成业务流程。
+                </p>
+                <div class="mt-5">
+                  <div class="ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase mb-3">核心功能</div>
+                  <ul class="space-y-3.5 text-[13px] text-[color:var(--ai-foreground)]/80 leading-[1.7]">
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">多 Agent 任务编排</span> — 基于 LangGraph + 自研 DAG 任务图引擎,支持串行、并行、循环、条件分支、人工审批、子图嵌套 6 类节点编排。任务图可视化设计器,业务方可拖拽式编排业务流程,无需代码。支持断点续跑、任务幂等性保证、失败重试策略(指数退避),复杂业务流程可靠性达 99.5%</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">跨系统工具调用</span> — RPA(UI Automation + 图像识别) + Function Call 双链路架构,已适配 ERP(SAP/用友/金蝶)、CRM、OA(钉钉/飞书/企微)、IM、ITSM、BI 等 30+ 主流企业系统。基于 MCP(Model Context Protocol)协议的标准化工具注册与发现机制,新系统接入 &lt; 1 天,工具调用成功率 96%,支持超时熔断与降级</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">自然语言指令理解</span> — 基于 Qwen-72B + LoRA 微调的意图识别模型,准确率 95%。配合 Slot Filling 槽位填充算法(基于 BERT + CRF),支持多轮澄清对话与槽位补全。支持 100+ 业务意图(查询/办理/审批/咨询等),复杂指令拆解为子任务链(Chain-of-Thought),业务理解准确率 92%+</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">工作流状态机</span> — 有限状态机(FSM) + 持久化上下文(基于 Redis + PostgreSQL),支持任务上下文跨会话保留与断点恢复。事务性保证(基于 Saga 分布式事务模式),任务幂等性 ID 设计,异常自动回滚与补偿。任务平均执行时长 3 分钟,可观测性达每步可审计、可回放、可告警</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">任务沙箱与可观测</span> — 全链路 Trace(基于 OpenTelemetry) + 操作回放 + 异常自动告警(钉钉/飞书/邮件)。每步操作可审计,满足 SOX 与等保三级合规要求。SLO 监控(任务成功率、平均耗时、P99 延迟),异常 MTTR &lt; 5 分钟,运维效率提升 5 倍</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">人机协同与交接</span> — 基于规则 + LLM 双重决策,自动识别需人工介入节点(高风险/低置信度/敏感操作),一键转人工 + 上下文同步同步。支持多人协同、专家指派、SLA 计时,平均交接时长 &lt; 10 秒。在某金融客户部署中,数字化员工覆盖 200+ 业务流程,人工工作量减少 60%+</span></li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-5 border-t border-[color:var(--ai-border)]/50 flex items-baseline gap-5">
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">87%</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">任务完成率</div>
+                  </div>
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">200+</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">自动化流程</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ Section 3: Category 02 — AI 品宣获客系统 ============ -->
+        <section id="category-marketing-ai" class="py-24 md:py-32 border-t border-[color:var(--ai-border)]/60 scroll-mt-24">
+          <div class="mx-auto max-w-7xl px-6">
+            <!-- Category header -->
+            <div class="grid md:grid-cols-12 gap-8 mb-14 ai-reveal">
+              <div class="md:col-span-4">
+                <span class="ai-mono text-xs tracking-widest text-[color:var(--ai-primary)] uppercase">// 02 — 分类</span>
+                <h2 class="mt-4 ai-serif text-4xl md:text-5xl font-medium leading-[1.1] tracking-tight text-[color:var(--ai-foreground)]">
+                  AI 品宣<br><span class="ai-gradient-text italic">获客系统</span>
+                </h2>
+                <div class="mt-6 ai-gold-rule w-16"></div>
+              </div>
+              <div class="md:col-span-7 md:col-start-6">
+                <p class="text-base md:text-[17px] text-[color:var(--ai-muted-foreground)] leading-[1.85] font-light">
+                  面向市场与增长场景的 AI 系统建设——内容生产、智能营销、用户洞察、获客转化，把多模态生成与推荐能力嵌入营销与销售链路，让品宣可量化、获客可归因。
+                </p>
+                <p class="mt-4 text-sm ai-mono text-[color:var(--ai-primary)]/80 tracking-wide">关键词：内容生成 · 多模态营销 · 获客归因</p>
+              </div>
+            </div>
+
+            <!-- 3 marketing AI system projects grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 ai-reveal-stagger">
+
+              <!-- Project 02-A: AI-GEO 系统 -->
+              <div class="group">
+                <div class="ai-editorial-img relative w-full">
+                  <div class="w-full aspect-[4/3] bg-gradient-to-br from-[#1A1A1F] via-[#252018] to-[#2A2520] border border-[color:var(--ai-border)] relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-40" style="background: radial-gradient(ellipse at 65% 35%, rgba(212,184,150,0.2) 0%, transparent 55%), radial-gradient(ellipse at 30% 70%, rgba(184,149,106,0.15) 0%, transparent 50%)"></div>
+                    <div class="absolute inset-0 opacity-15" style="background-image: linear-gradient(rgba(184,149,106,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(184,149,106,0.25) 1px, transparent 1px); background-size: 28px 28px;"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <div class="ai-serif text-[120px] md:text-[140px] font-light text-white/8 leading-none select-none">⟡</div>
+                    </div>
+                    <div class="absolute top-4 left-4 ai-mono text-[10px] tracking-[0.2em] text-[color:var(--ai-primary)]/60">WUJIE · CASE</div>
+                    <div class="absolute bottom-4 right-4 ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/40">2026</div>
+                  </div>
+                  <div class="ai-img-overlay"></div>
+                </div>
+                <div class="mt-4 flex items-center gap-2">
+                  <span class="ai-mono text-[11px] tracking-[0.15em] text-[color:var(--ai-primary)]/70">PRJ-02-A</span>
+                  <span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="ai-mono text-[11px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase">品宣获客</span>
+                </div>
+                <h3 class="mt-3 ai-serif text-2xl md:text-[26px] font-medium leading-[1.2] tracking-tight text-[color:var(--ai-foreground)] group-hover:text-[color:var(--ai-primary)] transition-colors">
+                  AI-GEO 系统
+                </h3>
+                <p class="mt-3 text-sm text-[color:var(--ai-foreground)]/75 leading-[1.75]">
+                  生成式引擎优化（Generative Engine Optimization），让企业品牌在豆包、DeepSeek、通义、文心、ChatGPT、Perplexity 等 AI 问答中获得更多曝光与推荐。
+                </p>
+                <div class="mt-5">
+                  <div class="ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase mb-3">核心功能</div>
+                  <ul class="space-y-3.5 text-[13px] text-[color:var(--ai-foreground)]/80 leading-[1.7]">
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">AI 引擎声量监测</span> — 覆盖豆包、DeepSeek、通义千问、文心一言、Kimi、智谱清言、ChatGPT、Perplexity、Gemini、Claude 等 15+ 主流 AI 平台。基于 Playwright + 代理 IP 池 + 反爬虫策略,自动化抓取品牌词在 AI 问答中的曝光、推荐、提及、负面情感 4 类数据。NLP 情感分析模型(基于 RoBERTa 微调)识别品牌情感倾向,准确率 92%,品牌词监测覆盖率 98%,T+1 数据更新</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">品牌词条内容结构化</span> — LLM(Qwen-72B)+ 知识图谱双链路构建品牌权威内容矩阵。基于 SEO 行业经验提炼的 EEAT(经验/专业/权威/可信)内容标准模板,输出符合 AI 引擎偏好的结构化内容(品牌百科、产品词条、行业指南、案例库)。配合 Schema.org 结构化数据标记,提升 AI 引擎内容解析与召回效率</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">AI 问答归因分析</span> — 自动化抓取品牌在 AI 问答中的曝光内容,基于 NER + 关系抽取识别流量来源(官网/知乎/CSDN/官方号/媒体稿)。输出归因报告(曝光量/推荐率/正面率/负面率),识别高价值流量入口与未覆盖内容缺口。结合关键词机会挖掘(基于搜索量 + AI 引擎偏好),输出内容建设优先级</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">权威内容矩阵生成分发</span> — LLM 批量生成符合 EEAT 标准的深度内容(技术文章/产品介绍/案例故事/行业洞察 4 类),内置查重与质量评分(基于 BERTScore + 规则)。API 自动分发至知乎、CSDN、官方公众号、百家号、头条号、小红书等 10+ 高权重渠道,日均产能 100+ 篇原创内容,内容质量评分 4.5+/5</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">竞品 AI 曝光对比</span> — 实时监控 Top 10 竞品在 15+ AI 引擎中的声量变化,基于 TF-IDF + 语义相似度算法识别内容差距与机会词。输出竞品对比雷达图与机会词优先级清单,辅助品牌方优化内容策略与媒介预算分配</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">GEO 效果看板与策略</span> — 多维度数据看板(曝光趋势/竞品对比/渠道归因/内容效果),支持自定义时间窗口与维度下钻。基于 LLM 的策略推荐引擎,自动输出优化建议(内容缺口/渠道优先级/词条优化方向)。在某 SaaS 客户部署 3 个月,AI 引擎品牌曝光提升 220%,AI 渠道线索增长 3 倍</span></li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-5 border-t border-[color:var(--ai-border)]/50 flex items-baseline gap-5">
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">+220%</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">AI 引擎曝光</div>
+                  </div>
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">15+</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">覆盖 AI 平台</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 02-B: AI-智能外呼获客系统 -->
+              <div class="group">
+                <div class="ai-editorial-img relative w-full">
+                  <div class="w-full aspect-[4/3] bg-gradient-to-br from-[#1A1A1F] via-[#252018] to-[#2A2520] border border-[color:var(--ai-border)] relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-40" style="background: radial-gradient(ellipse at 65% 35%, rgba(212,184,150,0.2) 0%, transparent 55%), radial-gradient(ellipse at 30% 70%, rgba(184,149,106,0.15) 0%, transparent 50%)"></div>
+                    <div class="absolute inset-0 opacity-15" style="background-image: linear-gradient(rgba(184,149,106,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(184,149,106,0.25) 1px, transparent 1px); background-size: 28px 28px;"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <div class="ai-serif text-[120px] md:text-[140px] font-light text-white/8 leading-none select-none">⟡</div>
+                    </div>
+                    <div class="absolute top-4 left-4 ai-mono text-[10px] tracking-[0.2em] text-[color:var(--ai-primary)]/60">WUJIE · CASE</div>
+                    <div class="absolute bottom-4 right-4 ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/40">2026</div>
+                  </div>
+                  <div class="ai-img-overlay"></div>
+                </div>
+                <div class="mt-4 flex items-center gap-2">
+                  <span class="ai-mono text-[11px] tracking-[0.15em] text-[color:var(--ai-primary)]/70">PRJ-02-B</span>
+                  <span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="ai-mono text-[11px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase">品宣获客</span>
+                </div>
+                <h3 class="mt-3 ai-serif text-2xl md:text-[26px] font-medium leading-[1.2] tracking-tight text-[color:var(--ai-foreground)] group-hover:text-[color:var(--ai-primary)] transition-colors">
+                  AI-智能外呼获客系统
+                </h3>
+                <p class="mt-3 text-sm text-[color:var(--ai-foreground)]/75 leading-[1.75]">
+                  面向主动获客场景的 AI 外呼系统，海量自动外呼 + 意向识别 + 人机协同，把电销团队从拨号筛选中解放出来。
+                </p>
+                <div class="mt-5">
+                  <div class="ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase mb-3">核心功能</div>
+                  <ul class="space-y-3.5 text-[13px] text-[color:var(--ai-foreground)]/80 leading-[1.7]">
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">海量并发外呼调度</span> — 基于自研 SIP 软交换 + FreeSWITCH 集群,单集群支持 5000+ 并发通话,日均外呼量 100 万+。智能调度引擎基于运营商频控规则、号码白名单、时段策略、地区分散策略 4 维度动态调度,规避运营商标记与封号,接通率提升 35%,外呼合规率 99.9%+</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">自然语言对话与意向识别</span> — 全链路 ASR(Paraformer 中文识别准确率 97%)+ LLM(Qwen-72B)+ TTS(VITS 流式合成,音色自然度 4.7/5)架构。支持打断、插嘴、方言识别(粤语/四川话/东北话等 8 种主流方言),响应延迟 &lt; 800ms。基于对话内容 + 语气 + 关键词三维度识别客户意向,准确率 92%</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">智能话术动态生成</span> — LLM 基于客户实时反馈(抗拒/兴趣/疑问)动态生成话术,内置话术模板库 200+ 与合规审核引擎。基于规则 + LLM 双重过滤违规承诺、虚假宣传、敏感词,违规率 &lt; 0.1%。在某保险客户场景,话术转化率提升 45%,人工话术编写工作量减少 80%</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">意向分级与转人工</span> — 基于对话内容 + 情绪 + 行为信号三维度算法,自动将客户分为 A(高意向)/B(中意向)/C(待跟进)/D(无意向)四档。A 类实时转人工坐席接管,转接成功率 99.5%,平均转接延迟 &lt; 2 秒,坐席接通前已获得客户完整画像与对话历史,跟进效率提升 5 倍</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">客户画像沉淀与跟进</span> — 自动沉淀通话要点、客户痛点、预算信号、决策角色等信息至 CRM 客户 360 画像。基于客户分级自动生成跟进 SOP(短信/邮件/微信/再次外呼)与跟进提醒,跟进及时率提升 5 倍,线索转化率提升 38%</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">外呼效果归因与 ROI</span> — 全链路数据回流,从外呼触达 → 接通 → 意向 → 转人工 → 成交全链路可量化追踪。支持多维度归因分析(渠道/话术/坐席/时段/地区),ROI 看板实时输出。在某教育客户部署中,外呼获客成本下降 65%,线索转化率提升 2.5 倍</span></li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-5 border-t border-[color:var(--ai-border)]/50 flex items-baseline gap-5">
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">10x</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">外呼效率</div>
+                  </div>
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">-65%</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">单获客成本</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 02-C: AI-内容营销系统 -->
+              <div class="group">
+                <div class="ai-editorial-img relative w-full">
+                  <div class="w-full aspect-[4/3] bg-gradient-to-br from-[#1A1A1F] via-[#252018] to-[#2A2520] border border-[color:var(--ai-border)] relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-40" style="background: radial-gradient(ellipse at 65% 35%, rgba(212,184,150,0.2) 0%, transparent 55%), radial-gradient(ellipse at 30% 70%, rgba(184,149,106,0.15) 0%, transparent 50%)"></div>
+                    <div class="absolute inset-0 opacity-15" style="background-image: linear-gradient(rgba(184,149,106,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(184,149,106,0.25) 1px, transparent 1px); background-size: 28px 28px;"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <div class="ai-serif text-[120px] md:text-[140px] font-light text-white/8 leading-none select-none">⟡</div>
+                    </div>
+                    <div class="absolute top-4 left-4 ai-mono text-[10px] tracking-[0.2em] text-[color:var(--ai-primary)]/60">WUJIE · CASE</div>
+                    <div class="absolute bottom-4 right-4 ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/40">2026</div>
+                  </div>
+                  <div class="ai-img-overlay"></div>
+                </div>
+                <div class="mt-4 flex items-center gap-2">
+                  <span class="ai-mono text-[11px] tracking-[0.15em] text-[color:var(--ai-primary)]/70">PRJ-02-C</span>
+                  <span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="ai-mono text-[11px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase">品宣获客</span>
+                </div>
+                <h3 class="mt-3 ai-serif text-2xl md:text-[26px] font-medium leading-[1.2] tracking-tight text-[color:var(--ai-foreground)] group-hover:text-[color:var(--ai-primary)] transition-colors">
+                  AI-内容营销系统
+                </h3>
+                <p class="mt-3 text-sm text-[color:var(--ai-foreground)]/75 leading-[1.75]">
+                  多模态内容生成 + 全渠道分发 + 转化归因，让品宣内容可批量生产、获客链路可量化追踪。
+                </p>
+                <div class="mt-5">
+                  <div class="ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase mb-3">核心功能</div>
+                  <ul class="space-y-3.5 text-[13px] text-[color:var(--ai-foreground)]/80 leading-[1.7]">
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">多模态素材批量生成</span> — 集成 SDXL(图像)+ CogVideo / SVD(视频)+ 数字人(HeyGen / D-ID 风格)+ LLM(文案)四类生成模型,支持文本/图片/视频/数字人全模态生成。基于品牌 VI 规范的 LoRA 微调,保证品牌视觉一致性。单日产能 1000+ 素材,生成成本仅人工的 1/10,在某快消客户场景,内容产出效率提升 10 倍</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">千人千面内容推荐</span> — 基于用户画像(基础属性 + 兴趣标签 + 行为序列)+ 实时行为事件流,DIN/DIEN 召回模型 + DSSM 双塔排序模型实时推荐。支持冷启动(基于内容标签协同过滤)、热启动(基于历史交互)、实时调整(基于会话内行为)3 种策略。在某零售客户场景,内容点击率提升 45%,转化率提升 38%</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">多渠道分发与铺量</span> — 支持公众号、小红书、抖音、视频号、B 站、知乎、微博、头条号等 20+ 主流内容渠道,基于 RPA + 官方 API 双链路自动分发。账号矩阵管理(支持 1000+ 账号),智能分配(基于账号权重、受众匹配、历史表现),内容自动适配各渠道格式与调性</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">内容效果归因</span> — 全链路数据回流(曝光→点击→互动→留资→成交),基于 UTM 参数 + 用户 ID Mapping + 设备指纹三重归因。支持末次/首次/线性/位置/数据驱动 5 种归因模型,输出每条内容、每个渠道、每个素材的 ROI,营销预算分配效率提升 3 倍</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">选题推荐与热点追踪</span> — 基于微博热搜、抖音热榜、知乎热榜、百度风云榜等 10+ 热点源实时监控,结合行业关键词挖掘(基于 5118 + 飞瓜数据)与竞品内容分析。LLM 智能推荐选题(热度/竞争度/品牌匹配度 3 维度评分),爆款率(阅读 10w+)提升 3 倍</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">ROI 看板</span> — 从内容到获客全链路归因,支持自定义维度分析(渠道/账号/素材/选题/时段)与告警。在某 SaaS 客户部署 6 个月,内容产出效率提升 3.2 倍,单获客成本下降 42%,营销 ROI 提升 2.5 倍</span></li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-5 border-t border-[color:var(--ai-border)]/50 flex items-baseline gap-5">
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">3.2x</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">素材产出效率</div>
+                  </div>
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">-42%</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">单获客成本</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ Section 4: Category 03 — AI 高级技术系统 ============ -->
+        <section id="category-advanced-tech" class="py-24 md:py-32 border-t border-[color:var(--ai-border)]/60 scroll-mt-24">
+          <div class="mx-auto max-w-7xl px-6">
+            <!-- Category header -->
+            <div class="grid md:grid-cols-12 gap-8 mb-14 ai-reveal">
+              <div class="md:col-span-4">
+                <span class="ai-mono text-xs tracking-widest text-[color:var(--ai-primary)] uppercase">// 03 — 分类</span>
+                <h2 class="mt-4 ai-serif text-4xl md:text-5xl font-medium leading-[1.1] tracking-tight text-[color:var(--ai-foreground)]">
+                  AI 高级<br><span class="ai-gradient-text italic">技术系统</span>
+                </h2>
+                <div class="mt-6 ai-gold-rule w-16"></div>
+              </div>
+              <div class="md:col-span-7 md:col-start-6">
+                <p class="text-base md:text-[17px] text-[color:var(--ai-muted-foreground)] leading-[1.85] font-light">
+                  面向前沿与基础设施场景的 AI 系统建设——多智能体编排、推理加速、训练对齐、自定义模型，把研究成果沉淀为可复用的工程能力，支撑业务侧持续迭代。
+                </p>
+                <p class="mt-4 text-sm ai-mono text-[color:var(--ai-primary)]/80 tracking-wide">关键词：多智能体 · 推理优化 · 工程化前沿</p>
+              </div>
+            </div>
+
+            <!-- 4 advanced tech system projects grid (2x2) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 ai-reveal-stagger">
+
+              <!-- Project 03-A: AI-三维引擎系统 -->
+              <div class="group">
+                <div class="ai-editorial-img relative w-full">
+                  <div class="w-full aspect-[4/3] bg-gradient-to-br from-[#1A1A1F] via-[#252018] to-[#2A2520] border border-[color:var(--ai-border)] relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-40" style="background: radial-gradient(ellipse at 65% 35%, rgba(212,184,150,0.2) 0%, transparent 55%), radial-gradient(ellipse at 30% 70%, rgba(184,149,106,0.15) 0%, transparent 50%)"></div>
+                    <div class="absolute inset-0 opacity-15" style="background-image: linear-gradient(rgba(184,149,106,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(184,149,106,0.25) 1px, transparent 1px); background-size: 28px 28px;"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <div class="ai-serif text-[120px] md:text-[140px] font-light text-white/8 leading-none select-none">⟡</div>
+                    </div>
+                    <div class="absolute top-4 left-4 ai-mono text-[10px] tracking-[0.2em] text-[color:var(--ai-primary)]/60">WUJIE · CASE</div>
+                    <div class="absolute bottom-4 right-4 ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/40">2026</div>
+                  </div>
+                  <div class="ai-img-overlay"></div>
+                </div>
+                <div class="mt-4 flex items-center gap-2">
+                  <span class="ai-mono text-[11px] tracking-[0.15em] text-[color:var(--ai-primary)]/70">PRJ-03-A</span>
+                  <span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="ai-mono text-[11px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase">高级技术</span>
+                </div>
+                <h3 class="mt-3 ai-serif text-2xl md:text-[26px] font-medium leading-[1.2] tracking-tight text-[color:var(--ai-foreground)] group-hover:text-[color:var(--ai-primary)] transition-colors">
+                  AI-三维引擎系统
+                </h3>
+                <p class="mt-3 text-sm text-[color:var(--ai-foreground)]/75 leading-[1.75]">
+                  AI 原生的三维引擎，融合神经辐射场、3D 高斯泼溅与实时渲染，支撑数字孪生、虚拟制作与 AIGC 三维资产生成。
+                </p>
+                <div class="mt-5">
+                  <div class="ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase mb-3">核心功能</div>
+                  <ul class="space-y-3.5 text-[13px] text-[color:var(--ai-foreground)]/80 leading-[1.7]">
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">文生/图生 3D 资产</span> — 集成 LGM(Large Gaussian Model)、InstantMesh、Era3D、TripoSR 等 SOTA 3D 生成模型,支持文本/单图/多图输入生成 3D 资产。单张图 10 秒生成 3D 资产(传统建模需 8 小时),支持 PBR 材质(Albedo/Normal/Roughness/Metallic)+ GLB/FBX/OBJ 多格式导出,直接接入 Unity/Unreal/Omniverse 流程</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">神经渲染与画质超分</span> — NeRF(Neural Radiance Fields)+ 3D Gaussian Splatting 融合渲染引擎,支持 4K/8K 超分 + DLSS 3.0 + 光线重建,渲染质量达影视级。配套自研超分模型(ESRGAN + SwinIR),低分辨率素材也能输出 4K 画质,在某影视制作客户场景,渲染成本下降 70%</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">三维重建与数字孪生</span> — 多视图立体视觉(CMVS + PMVS)+ 神经重建(NeuS + Instant-NGP),支持无人机/相机/激光雷达多源数据融合。大场景重建精度达厘米级(1km² 场景误差 &lt; 5cm),适用于智慧园区、数字孪生工厂、城市规划等场景,已在 10+ 项目落地</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">智能物理仿真</span> — 基于 PhysX 5 + Bullet + 自研 ML 物理参数估计,支持刚体、柔体(布料/绳索)、流体(水/烟雾)、破碎 4 类物理仿真。配合可微分物理仿真,反向求解物理参数,仿真速度较传统提升 5 倍,适用于产品设计验证与虚拟测试</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">大规模场景流式加载</span> — 基于 Nanite 风格虚拟几何体 + 自动 LOD(Level of Detail)+ 流式加载,支持 10km²+ 大场景无缝渲染。配合自研遮挡剔除算法(HZB + GPU-Driven),显存占用降低 60%,中端 GPU 也能流畅运行(60fps),适用于元宇宙/虚拟展厅/数字孪生</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">多模态交互驱动</span> — 语音(ASR + LLM 语义理解)+ 动捕(MediaPipe + SMPL-X 人体姿态估计)+ 文本多模态驱动虚拟人。语音驱动口型(Wav2Lip + SadTalker),动捕驱动身体,文本驱动表情,端到端延迟 &lt; 100ms,支持实时直播、虚拟主播、虚拟代言等场景</span></li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-5 border-t border-[color:var(--ai-border)]/50 flex items-baseline gap-5">
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">60fps</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">实时渲染</div>
+                  </div>
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">10x</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">资产产出效率</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 03-B: AI-Agent 系统 -->
+              <div class="group">
+                <div class="ai-editorial-img relative w-full">
+                  <div class="w-full aspect-[4/3] bg-gradient-to-br from-[#1A1A1F] via-[#252018] to-[#2A2520] border border-[color:var(--ai-border)] relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-40" style="background: radial-gradient(ellipse at 65% 35%, rgba(212,184,150,0.2) 0%, transparent 55%), radial-gradient(ellipse at 30% 70%, rgba(184,149,106,0.15) 0%, transparent 50%)"></div>
+                    <div class="absolute inset-0 opacity-15" style="background-image: linear-gradient(rgba(184,149,106,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(184,149,106,0.25) 1px, transparent 1px); background-size: 28px 28px;"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <div class="ai-serif text-[120px] md:text-[140px] font-light text-white/8 leading-none select-none">⟡</div>
+                    </div>
+                    <div class="absolute top-4 left-4 ai-mono text-[10px] tracking-[0.2em] text-[color:var(--ai-primary)]/60">WUJIE · CASE</div>
+                    <div class="absolute bottom-4 right-4 ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/40">2026</div>
+                  </div>
+                  <div class="ai-img-overlay"></div>
+                </div>
+                <div class="mt-4 flex items-center gap-2">
+                  <span class="ai-mono text-[11px] tracking-[0.15em] text-[color:var(--ai-primary)]/70">PRJ-03-B</span>
+                  <span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="ai-mono text-[11px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase">高级技术</span>
+                </div>
+                <h3 class="mt-3 ai-serif text-2xl md:text-[26px] font-medium leading-[1.2] tracking-tight text-[color:var(--ai-foreground)] group-hover:text-[color:var(--ai-primary)] transition-colors">
+                  AI-Agent 系统
+                </h3>
+                <p class="mt-3 text-sm text-[color:var(--ai-foreground)]/75 leading-[1.75]">
+                  通用 Agent 操作系统与编排引擎，提供多智能体协同、工具动态接入、长程记忆与安全沙箱，让大模型能力稳定下沉为可复用基础设施。
+                </p>
+                <div class="mt-5">
+                  <div class="ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase mb-3">核心功能</div>
+                  <ul class="space-y-3.5 text-[13px] text-[color:var(--ai-foreground)]/80 leading-[1.7]">
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">多智能体协同编排</span> — 基于 LangGraph + 自研 DAG 任务图引擎,支持主从(Master-Worker)、对等(Peer-to-Peer)、竞争(Competition)、辩论(Debate)4 类多 Agent 协同模式。任务图可视化设计器,业务方拖拽式编排,无需代码。支持子图嵌套、条件分支、循环、人工审批 6 类节点,复杂业务流程可靠性达 99.5%</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">工具动态注册</span> — 基于 MCP(Model Context Protocol)标准化协议,工具自动发现 + JSON Schema 校验 + OpenAPI 自动转换,新工具接入 &lt; 5 分钟。已预置 200+ 标准工具(数据库/API/文件/邮件/搜索/代码执行等),支持企业自定义工具封装</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">长程记忆管理</span> — 短期(Working Memory,基于 token 上下文)+ 长期(Semantic Memory,基于向量数据库)+ 情景(Episodic Memory,基于时间线)三层记忆架构。配合 MemGPT 风格的记忆管理器,支持百万 token 上下文,RAG + 向量检索召回准确率 92%。在某客服场景,跨会话上下文保留 7 天+</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">ReAct / ToT 推理规划</span> — 集成 ReAct(Reasoning + Acting)、Tree-of-Thought(树状思维链)、Reflexion(自反思)、Plan-and-Execute 4 类推理范式。基于 LLM 自我评估与多路径探索,复杂任务(如多步推理、规划、决策)成功率 87%,优于单链路 30%+</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">Agent 沙箱与安全隔离</span> — Docker + gVisor 沙箱隔离,每个 Agent 独立运行环境,工具调用权限细粒度 RBAC 控制(基于策略 + 角色)。全操作审计日志(基于 OpenTelemetry),敏感操作二次人工确认(基于规则 + LLM 双重判定),满足金融级安全合规要求</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">自学习与策略迭代</span> — 基于强化学习(PPO 算法)+ 人类反馈(RLHF),Agent 从任务执行结果与人工反馈中持续优化策略。配合 DPO(Direct Preference Optimization)替代传统 RLHF,训练效率提升 3 倍。在某客服场景部署 6 个月,任务完成率从 65% 提升至 92%</span></li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-5 border-t border-[color:var(--ai-border)]/50 flex items-baseline gap-5">
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">200ms</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">工具调度延迟</div>
+                  </div>
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">12+</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">协同智能体</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 03-C: AI-工业视觉系统 -->
+              <div class="group">
+                <div class="ai-editorial-img relative w-full">
+                  <div class="w-full aspect-[4/3] bg-gradient-to-br from-[#1A1A1F] via-[#252018] to-[#2A2520] border border-[color:var(--ai-border)] relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-40" style="background: radial-gradient(ellipse at 65% 35%, rgba(212,184,150,0.2) 0%, transparent 55%), radial-gradient(ellipse at 30% 70%, rgba(184,149,106,0.15) 0%, transparent 50%)"></div>
+                    <div class="absolute inset-0 opacity-15" style="background-image: linear-gradient(rgba(184,149,106,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(184,149,106,0.25) 1px, transparent 1px); background-size: 28px 28px;"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <div class="ai-serif text-[120px] md:text-[140px] font-light text-white/8 leading-none select-none">⟡</div>
+                    </div>
+                    <div class="absolute top-4 left-4 ai-mono text-[10px] tracking-[0.2em] text-[color:var(--ai-primary)]/60">WUJIE · CASE</div>
+                    <div class="absolute bottom-4 right-4 ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/40">2026</div>
+                  </div>
+                  <div class="ai-img-overlay"></div>
+                </div>
+                <div class="mt-4 flex items-center gap-2">
+                  <span class="ai-mono text-[11px] tracking-[0.15em] text-[color:var(--ai-primary)]/70">PRJ-03-C</span>
+                  <span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="ai-mono text-[11px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase">高级技术</span>
+                </div>
+                <h3 class="mt-3 ai-serif text-2xl md:text-[26px] font-medium leading-[1.2] tracking-tight text-[color:var(--ai-foreground)] group-hover:text-[color:var(--ai-primary)] transition-colors">
+                  AI-工业视觉系统
+                </h3>
+                <p class="mt-3 text-sm text-[color:var(--ai-foreground)]/75 leading-[1.75]">
+                  面向产线的工业级 AI 视觉系统，覆盖缺陷检测、尺寸测量、视觉引导全场景，让制造质检从人工抽检升级为全检自动化。
+                </p>
+                <div class="mt-5">
+                  <div class="ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase mb-3">核心功能</div>
+                  <ul class="space-y-3.5 text-[13px] text-[color:var(--ai-foreground)]/80 leading-[1.7]">
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">高精度缺陷检测</span> — YOLOv8(目标检测)+ U2Net(显著性分割)+ EfficientNet(细粒度分类)三模型融合架构,支持 50+ 缺陷类别(划痕/凹坑/脏污/变形/缺件/错件等)。mAP@0.5 达 0.96,小目标(小于 5px)检出率 98%,误检率 &lt; 0.5%。模型基于 TensorRT + INT8 量化部署于工业相机边缘端,推理延迟 &lt; 5ms</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">复杂尺寸测量</span> — 亚像素级边缘检测(Zernike 矩 + Sigmoid 拟合,精度 1/10 像素)+ 张正友相机标定 + 双目立体视觉。测量精度达 ±5μm(微米级),支持 GD&T 形位公差(平面度/平行度/同轴度/位置度)16 类判定。在某汽车零部件客户场景,替代三坐标测量仪,检测节拍提升 100 倍</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">机械臂视觉引导</span> — 手眼标定(Eye-in-Hand + Eye-to-Hand 双模式)+ 视觉伺服(PBVS + IBVS)+ 6-DOF 姿态估计(PoseCNN + PVN3D)。定位精度 ±0.05mm,支持无序抓取(基于位姿估计 + 路径规划)、上下料、装配引导、码垛拆垛全场景,适配 ABB/库卡/FANUC/埃斯顿等主流工业机器人</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">多相机协同与 3D 视觉</span> — 结构光(精度 0.05mm)+ 双目立体(精度 0.1mm)+ ToF(精度 1mm)+ 线扫相机(精度 0.02mm)多模态融合。3D 点云重建(基于 Open3D + PCL),支持 6 面外观全检 + 3D 尺寸测量 + 体积测量,适用于复杂结构件检测</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">在线学习与样本积累</span> — 主动学习(Bayesian Uncertainty + Coreset Sampling)自动挑选难例 + 难例挖掘(Hard Negative Mining)+ 数据增强(Mixup + CutMix + 工业场景特化增强)。新缺陷类型仅需 10 张样本即可上线,模型迭代周期 &lt; 2 小时,支持产线持续优化</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">产线数据回流</span> — 全量缺陷数据自动回流(含图像、缺陷标签、模型预测、人工标注)至数据中台,构建数据飞轮(Data Flywheel)。配合自监督预训练(MAE + SimMIM)持续优化模型 backbone,在某 3C 客户部署 12 个月,误检率从 5% 下降至 0.8%,检测类别从 20 扩展到 65</span></li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-5 border-t border-[color:var(--ai-border)]/50 flex items-baseline gap-5">
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">99.2%</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">缺陷检出率</div>
+                  </div>
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">5ms</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">单帧推理</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 03-D: AI-无人机飞控系统 -->
+              <div class="group">
+                <div class="ai-editorial-img relative w-full">
+                  <div class="w-full aspect-[4/3] bg-gradient-to-br from-[#1A1A1F] via-[#252018] to-[#2A2520] border border-[color:var(--ai-border)] relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-40" style="background: radial-gradient(ellipse at 65% 35%, rgba(212,184,150,0.2) 0%, transparent 55%), radial-gradient(ellipse at 30% 70%, rgba(184,149,106,0.15) 0%, transparent 50%)"></div>
+                    <div class="absolute inset-0 opacity-15" style="background-image: linear-gradient(rgba(184,149,106,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(184,149,106,0.25) 1px, transparent 1px); background-size: 28px 28px;"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <div class="ai-serif text-[120px] md:text-[140px] font-light text-white/8 leading-none select-none">⟡</div>
+                    </div>
+                    <div class="absolute top-4 left-4 ai-mono text-[10px] tracking-[0.2em] text-[color:var(--ai-primary)]/60">WUJIE · CASE</div>
+                    <div class="absolute bottom-4 right-4 ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/40">2026</div>
+                  </div>
+                  <div class="ai-img-overlay"></div>
+                </div>
+                <div class="mt-4 flex items-center gap-2">
+                  <span class="ai-mono text-[11px] tracking-[0.15em] text-[color:var(--ai-primary)]/70">PRJ-03-D</span>
+                  <span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="ai-mono text-[11px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase">高级技术</span>
+                </div>
+                <h3 class="mt-3 ai-serif text-2xl md:text-[26px] font-medium leading-[1.2] tracking-tight text-[color:var(--ai-foreground)] group-hover:text-[color:var(--ai-primary)] transition-colors">
+                  AI-无人机飞控系统
+                </h3>
+                <p class="mt-3 text-sm text-[color:var(--ai-foreground)]/75 leading-[1.75]">
+                  AI 原生无人机飞控系统，融合视觉感知、路径规划与边缘推理，实现全自主航线、避障、目标跟踪与集群协同。
+                </p>
+                <div class="mt-5">
+                  <div class="ai-mono text-[10px] tracking-wider text-[color:var(--ai-muted-foreground)]/70 uppercase mb-3">核心功能</div>
+                  <ul class="space-y-3.5 text-[13px] text-[color:var(--ai-foreground)]/80 leading-[1.7]">
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">自主航线规划</span> — A*(全局最优路径)+ RRT*(快速探索随机树)+ DWA(动态窗口法)+ LLM 空间理解四层规划架构。基于高精度地图(卫星图 + DEM 高程)+ 实时感知(激光雷达 + 视觉),支持复杂地形(城市/山区/室内)避障与动态重规划。规划成功率 99%,在某电力巡检客户场景,单次巡检覆盖 50km²,效率较人工提升 20 倍</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">多传感器融合避障</span> — 视觉(双目 + 单目深度估计 MiDaS)+ IMU(高精度惯导)+ 激光雷达(机械/固态/ToF)+ 超声波多传感器融合。基于因子图优化(GTSAM)+ 紧耦合 VIO 视觉惯导里程计(VINS-Fusion),定位精度 ±0.1%,支持 GPS 拒止场景(室内/桥梁/隧道)稳定飞行</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">目标识别与跟踪</span> — DeepSORT + ByteTrack + FairMot 多目标跟踪算法,支持行人/车辆/船舶/电力设备/农业作物 5 类目标识别与跟踪。配合 YOLOv8 实时检测,跟踪准确率 96%,支持轨迹预测(基于 LSTM/Kalman 滤波)。在某安防客户场景,实现 24/7 自主巡航与目标跟踪告警</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">集群协同编队</span> — 分布式 MPC(Model Predictive Control)+ 共识算法(Consensus Algorithm)+ 集群拓扑管理,支持 50+ 无人机集群编队飞行与任务协同。基于 Mesh 网络的自组网通信(基于 LoRa + 5G),支持集群内实时状态共享与避碰。在某物流客户场景,实现多机协同配送,日均配送量提升 5 倍</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">智能返航与应急</span> — 规则引擎(状态机)+ 强化学习(PPO 算法)双重应急决策架构,支持信号丢失/GPS 拒止/电量不足/避障失败/突发天气 5 类异常场景自动处置。配合冗余设计(双 IMU + 双指南针 + 双电池),系统可靠性 99.99%,MTBF &gt; 10000 小时</span></li>
+                    <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1 w-1 rounded-full bg-[color:var(--ai-primary)] shrink-0"></span><span><span class="font-medium text-[color:var(--ai-foreground)]">边缘端实时推理</span> — Jetson Orin / Orin Nano 边缘计算平台部署,模型量化(INT8 / FP16)+ 知识蒸馏(Teacher-Student)+ 剪枝(结构化 + 非结构化)三重优化,推理延迟 &lt; 20ms。支持端云协同(端侧实时控制 + 云端复杂决策),降低对网络依赖,在某巡检客户场景,单次任务可离线运行 60 分钟+</span></li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-5 border-t border-[color:var(--ai-border)]/50 flex items-baseline gap-5">
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">20ms</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">控制延迟</div>
+                  </div>
+                  <div>
+                    <div class="ai-serif text-2xl font-medium ai-gradient-text leading-none">50+</div>
+                    <div class="mt-1.5 text-[10px] text-[color:var(--ai-muted-foreground)] tracking-wide">集群规模</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: CTA collaborate — minimal editorial style -->
+        <section class="py-28 md:py-36 border-t border-[color:var(--ai-border)]/60">
+          <div class="mx-auto max-w-4xl px-6 text-center ai-reveal">
+            <!-- Short centered gold rule -->
+            <div class="mx-auto ai-gold-rule-center w-16 mb-12 md:mb-16"></div>
+
+            <h2 class="ai-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.25] tracking-tight text-[color:var(--ai-foreground)]">
+              有想落地的 AI 项目？<br class="hidden md:block">聊聊<span class="ai-gradient-text italic">合作</span>。
+            </h2>
+            <p class="mt-6 max-w-xl mx-auto text-sm md:text-base text-[color:var(--ai-muted-foreground)] leading-relaxed">
+              无论是大模型应用、Agent 平台还是 MLOps 体系建设，欢迎一起把想法变成可上线的工程方案。
+            </p>
+            <div class="mt-10">
+              <a data-dom-id="cta-contact" href="blog.html" class="inline-flex items-center gap-2 ai-btn-gold text-xs">
+                联系我们
+                <i data-lucide="send" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Global footer — editorial style -->
+      <footer data-global-footer="desktop" class="border-t border-[color:var(--ai-border)] bg-[color:var(--ai-background)]">
+        <div class="mx-auto max-w-7xl px-6 py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div class="space-y-3">
+          <div class="flex items-center gap-2.5">
+            <span class="ai-mono text-xs font-bold text-[color:var(--ai-primary)] tracking-wider">无界</span>
+            <span class="ai-serif text-lg font-medium text-[color:var(--ai-foreground)]">无界智源</span>
+          </div>
+          <p class="text-xs text-[color:var(--ai-muted-foreground)] font-light">AI 科技公司 · 用工程化方式让智能落地</p>
+          <p class="text-[11px] text-[color:var(--ai-muted-foreground)]/60 ai-mono">© 2026 无界智源. 占位内容，请替换为真实信息。</p>
+        </div>
+          <div class="flex items-center gap-1">
+            <a href="https://github.com/wujiezhiyuan" target="_blank" rel="noopener" class="flex h-10 w-10 items-center justify-center text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-primary)] transition-colors"><i data-lucide="github" class="w-4 h-4"></i></a>
+            <a href="https://www.linkedin.com/company/wujiezhiyuan" target="_blank" rel="noopener" class="flex h-10 w-10 items-center justify-center text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-primary)] transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+            <a href="https://twitter.com/wujiezhiyuan" target="_blank" rel="noopener" class="flex h-10 w-10 items-center justify-center text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-primary)] transition-colors"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+            <a href="mailto:hello@wujiezhiyuan.ai" class="flex h-10 w-10 items-center justify-center text-[color:var(--ai-muted-foreground)] hover:text-[color:var(--ai-primary)] transition-colors"><i data-lucide="mail" class="w-4 h-4"></i></a>
+        </div>
+        </div>
+      </footer>
+    </main>
+    <script>
+      lucide.createIcons();
+
+      // Scroll progress bar
+      const progressBar = document.getElementById('scrollProgress');
+      const updateProgress = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        if (progressBar) progressBar.style.width = progress + '%';
+      };
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+
+      // Nav scroll state
+      const nav = document.querySelector('[data-global-nav="desktop"]');
+      const onScroll = () => {
+        if (window.scrollY > 20) {
+          nav.classList.add('is-scrolled');
+        } else {
+          nav.classList.remove('is-scrolled');
+        }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Scroll reveal with IntersectionObserver
+      const revealSelectors = '.ai-reveal, .ai-reveal-stagger, .ai-reveal-img, .ai-reveal-line';
+      const revealEls = document.querySelectorAll(revealSelectors);
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+        revealEls.forEach(el => io.observe(el));
+      } else {
+        revealEls.forEach(el => el.classList.add('is-visible'));
+      }
+
+      // Intercept placeholder links with title hint — show alert instead of jumping to top
+      document.querySelectorAll('a[href="#"]').forEach(a => {
+        if (a.target === '_blank') return;
+        a.addEventListener('click', (e) => {
+          const title = (a.getAttribute('title') || '').trim();
+          if (title) {
+            e.preventDefault();
+            alert(title);
+          }
+        });
+      });
+    </script>
+</body>
+</html>

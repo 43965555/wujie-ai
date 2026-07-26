@@ -1,0 +1,370 @@
+{
+  "data": [
+    {
+      "id": "page-index",
+      "title": "首页",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784526000000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/index.html",
+        "interactions": [
+          {
+            "domId": "cta-projects",
+            "targetPageId": "page-projects",
+            "transitionLabel": "查看项目案例"
+          },
+          {
+            "domId": "cta-skills",
+            "targetPageId": "page-skills",
+            "hideEdge": true,
+            "transitionLabel": "了解技术能力"
+          },
+          {
+            "domId": "cta-contact",
+            "targetPageId": "page-blog",
+            "hideEdge": true,
+            "transitionLabel": "联系我"
+          },
+          {
+            "domId": "nav-skills",
+            "targetPageId": "page-skills",
+            "hideEdge": true,
+            "transitionLabel": "专业技能"
+          },
+          {
+            "domId": "nav-projects",
+            "targetPageId": "page-projects",
+            "hideEdge": true,
+            "transitionLabel": "项目案例"
+          },
+          {
+            "domId": "nav-blog",
+            "targetPageId": "page-blog",
+            "hideEdge": true,
+            "transitionLabel": "博客与联系"
+          },
+          {
+            "domId": "nav-cta",
+            "targetPageId": "page-blog",
+            "hideEdge": true,
+            "transitionLabel": "联系我"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-skills",
+      "title": "专业技能",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784526000000,
+      "canvasData": {
+        "x": 0,
+        "y": 784,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/skills.html",
+        "interactions": [
+          {
+            "domId": "cta-projects",
+            "targetPageId": "page-projects",
+            "hideEdge": true,
+            "transitionLabel": "看看这些能力的落地"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "nav-projects",
+            "targetPageId": "page-projects",
+            "hideEdge": true,
+            "transitionLabel": "项目案例"
+          },
+          {
+            "domId": "nav-blog",
+            "targetPageId": "page-blog",
+            "hideEdge": true,
+            "transitionLabel": "博客与联系"
+          },
+          {
+            "domId": "nav-cta",
+            "targetPageId": "page-blog",
+            "hideEdge": true,
+            "transitionLabel": "联系我"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-projects",
+      "title": "项目案例",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784526000000,
+      "canvasData": {
+        "x": 620,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/projects.html",
+        "interactions": [
+          {
+            "domId": "cta-contact",
+            "targetPageId": "page-blog",
+            "transitionLabel": "联系我"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "nav-skills",
+            "targetPageId": "page-skills",
+            "hideEdge": true,
+            "transitionLabel": "专业技能"
+          },
+          {
+            "domId": "nav-blog",
+            "targetPageId": "page-blog",
+            "hideEdge": true,
+            "transitionLabel": "博客与联系"
+          },
+          {
+            "domId": "nav-cta",
+            "targetPageId": "page-blog",
+            "hideEdge": true,
+            "transitionLabel": "联系我"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-blog",
+      "title": "博客与联系",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784526000000,
+      "canvasData": {
+        "x": 1240,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/blog.html",
+        "interactions": [
+          {
+            "domId": "cta-projects",
+            "targetPageId": "page-projects",
+            "hideEdge": true,
+            "transitionLabel": "看看我的项目"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "nav-skills",
+            "targetPageId": "page-skills",
+            "hideEdge": true,
+            "transitionLabel": "专业技能"
+          },
+          {
+            "domId": "nav-projects",
+            "targetPageId": "page-projects",
+            "hideEdge": true,
+            "transitionLabel": "项目案例"
+          }
+        ]
+      }
+    },
+    {
+      "id": "image-001",
+      "title": "首页主视觉",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1784526100000,
+      "canvasData": {
+        "x": 0,
+        "y": 1298
+      },
+      "devMetadata": {
+        "imageSrc": "assets/hero-main.jpg"
+      }
+    },
+    {
+      "id": "image-002",
+      "title": "关于区视觉",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1784526100000,
+      "canvasData": {
+        "x": 620,
+        "y": 1298
+      },
+      "devMetadata": {
+        "imageSrc": "assets/about-visual.jpg"
+      }
+    },
+    {
+      "id": "image-003",
+      "title": "智能对话系统缩略图",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1784526100000,
+      "canvasData": {
+        "x": 1240,
+        "y": 1298
+      },
+      "devMetadata": {
+        "imageSrc": "assets/project-dialogue.jpg"
+      }
+    },
+    {
+      "id": "image-004",
+      "title": "多模态大模型缩略图",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1784526100000,
+      "canvasData": {
+        "x": 1860,
+        "y": 1298
+      },
+      "devMetadata": {
+        "imageSrc": "assets/project-multimodal.jpg"
+      }
+    },
+    {
+      "id": "image-005",
+      "title": "AI Agent 平台缩略图",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1784526100000,
+      "canvasData": {
+        "x": 2480,
+        "y": 1298
+      },
+      "devMetadata": {
+        "imageSrc": "assets/project-agent.jpg"
+      }
+    },
+    {
+      "id": "image-006",
+      "title": "博客区视觉",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1784526100000,
+      "canvasData": {
+        "x": 3100,
+        "y": 1298
+      },
+      "devMetadata": {
+        "imageSrc": "assets/blog-visual.jpg"
+      }
+    },
+    {
+      "id": "image-007",
+      "title": "首页主视觉（奢金版）",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1784526700000,
+      "canvasData": {
+        "x": 3720,
+        "y": 1298
+      },
+      "devMetadata": {
+        "imageSrc": "assets/hero-main-updated.jpg"
+      }
+    },
+    {
+      "id": "image-008",
+      "title": "关于区视觉（奢金版）",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1784526700000,
+      "canvasData": {
+        "x": 4340,
+        "y": 1298
+      },
+      "devMetadata": {
+        "imageSrc": "assets/about-visual-updated.jpg"
+      }
+    },
+    {
+      "id": "image-009",
+      "title": "智能对话系统缩略图（奢金版）",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1784526700000,
+      "canvasData": {
+        "x": 4960,
+        "y": 1298
+      },
+      "devMetadata": {
+        "imageSrc": "assets/project-dialogue-updated.jpg"
+      }
+    },
+    {
+      "id": "image-010",
+      "title": "多模态大模型缩略图（奢金版）",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1784526700000,
+      "canvasData": {
+        "x": 5580,
+        "y": 1298
+      },
+      "devMetadata": {
+        "imageSrc": "assets/project-multimodal-updated.jpg"
+      }
+    },
+    {
+      "id": "image-011",
+      "title": "AI Agent 平台缩略图（奢金版）",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1784526700000,
+      "canvasData": {
+        "x": 6200,
+        "y": 1298
+      },
+      "devMetadata": {
+        "imageSrc": "assets/project-agent-updated.jpg"
+      }
+    },
+    {
+      "id": "image-012",
+      "title": "博客区视觉（奢金版）",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1784526700000,
+      "canvasData": {
+        "x": 6820,
+        "y": 1298
+      },
+      "devMetadata": {
+        "imageSrc": "assets/blog-visual-updated.jpg"
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "desktop",
+    "projectName": "AI 技术工程师个人站",
+    "visualEditorEnabled": true
+  }
+}
