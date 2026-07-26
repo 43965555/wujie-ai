@@ -894,23 +894,6 @@ body {
         background-color: currentColor;
       }
 
-      /* ============================================================
-         Lorenz 吸引子 — 混沌系统的蝴蝶翅膀
-         3 条轨迹从略微不同的初值出发，叠加渲染形成分形结构
-         ============================================================ */
-      .ai-lorenz-canvas {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        mix-blend-mode: screen;
-        opacity: 1;
-        z-index: 5;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .ai-lorenz-canvas { display: none; }
-      }
     </style>
 </head>
 <body class="min-h-screen font-sans antialiased">
@@ -1065,8 +1048,6 @@ body {
                       <div class="absolute inset-0 opacity-50 ai-pan-slow" style="background:
                         radial-gradient(ellipse at 25% 30%, rgba(212,184,150,0.35) 0%, transparent 50%),
                         radial-gradient(ellipse at 75% 70%, rgba(184,149,106,0.25) 0%, transparent 55%)"></div>
-                      <!-- Lorenz 吸引子 canvas 叠加层 -->
-                      <canvas id="lorenzCanvas" class="ai-lorenz-canvas" aria-hidden="true"></canvas>
                       <div class="absolute inset-0 opacity-20" style="background-image:
                         linear-gradient(rgba(184,149,106,0.25) 1px, transparent 1px),
                         linear-gradient(90deg, rgba(184,149,106,0.25) 1px, transparent 1px);
@@ -1283,151 +1264,6 @@ body {
         </footer>
     </main>
     <script>
-      // ============================================================
-      // Lorenz 吸引子 — 混沌系统的蝴蝶翅膀
-      // 3 条轨迹从略微不同的初值出发，RK4 积分，叠加渲染
-      // 视角缓慢旋转，展现吸引子的三维结构
-      // ============================================================
-      (function initLorenz() {
-        const canvas = document.getElementById('lorenzCanvas');
-        if (!canvas) return;
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-        const ctx = canvas.getContext('2d', { alpha: true });
-        if (!ctx) return;
-
-        // ---- 配置参数（Lorenz 经典混沌参数）----
-        const LORENZ = {
-          SIGMA: 10,                     // σ — 普朗特数
-          RHO: 28,                       // ρ — 瑞利数
-          BETA: 8 / 3,                   // β — 几何参数
-          DT: 0.005,                     // 积分步长
-          TRAIL_LENGTH: 800,             // 每条轨迹的尾部点数
-          TRAIL_COUNT: 3,                // 轨迹数
-          SCALE: 8,                      // 投影缩放
-          DPR_MAX: 2,
-        };
-
-        // ---- RK4 积分一步 ----
-        function lorenzStep(state) {
-          const { x, y, z } = state;
-          const { SIGMA, RHO, BETA, DT } = LORENZ;
-
-          // dx/dt = σ(y - x)
-          // dy/dt = x(ρ - z) - y
-          // dz/dt = xy - βz
-          const deriv = (s) => ({
-            x: SIGMA * (s.y - s.x),
-            y: s.x * (RHO - s.z) - s.y,
-            z: s.x * s.y - BETA * s.z,
-          });
-
-          const k1 = deriv(state);
-          const k2 = deriv({ x: x + k1.x * DT / 2, y: y + k1.y * DT / 2, z: z + k1.z * DT / 2 });
-          const k3 = deriv({ x: x + k2.x * DT / 2, y: y + k2.y * DT / 2, z: z + k2.z * DT / 2 });
-          const k4 = deriv({ x: x + k3.x * DT, y: y + k3.y * DT, z: z + k3.z * DT });
-
-          return {
-            x: x + (k1.x + 2 * k2.x + 2 * k3.x + k4.x) * DT / 6,
-            y: y + (k1.y + 2 * k2.y + 2 * k3.y + k4.y) * DT / 6,
-            z: z + (k1.z + 2 * k2.z + 2 * k3.z + k4.z) * DT / 6,
-          };
-        }
-
-        // ---- 3 条轨迹（略微不同初值，展现混沌敏感性）----
-        const trails = [];
-        for (let i = 0; i < LORENZ.TRAIL_COUNT; i++) {
-          trails.push({
-            state: { x: 0.1 + i * 0.001, y: 0, z: 0 },
-            points: [],
-            hue: i, // 用于颜色区分
-          });
-        }
-
-        // ---- 尺寸适配 ----
-        const container = canvas.parentElement;
-        function resize() {
-          const dpr = Math.min(window.devicePixelRatio, LORENZ.DPR_MAX);
-          const w = container.clientWidth, h = container.clientHeight;
-          canvas.width = w * dpr;
-          canvas.height = h * dpr;
-          canvas.style.width = w + 'px';
-          canvas.style.height = h + 'px';
-          ctx.setTransform(1, 0, 0, 1, 0, 0);
-          ctx.scale(dpr, dpr);
-        }
-        resize();
-        window.addEventListener('resize', resize);
-
-        // ---- 渲染循环 ----
-        let angle = 0;
-        let running = true;
-        const io = new IntersectionObserver(([entry]) => {
-          running = entry.isIntersecting;
-        }, { threshold: 0 });
-        io.observe(container);
-
-        function frame() {
-          if (running) {
-            const dpr = Math.min(window.devicePixelRatio, LORENZ.DPR_MAX);
-            const w = canvas.width / dpr, h = canvas.height / dpr;
-            const cx = w / 2, cy = h / 2;
-
-            // 半透明覆盖：拖尾衰减
-            ctx.fillStyle = 'rgba(10, 10, 14, 0.03)';
-            ctx.fillRect(0, 0, w, h);
-
-            // 视角缓慢旋转（绕 Y 轴）
-            angle += 0.003;
-            const cosA = Math.cos(angle), sinA = Math.sin(angle);
-
-            for (let t = 0; t < LORENZ.TRAIL_COUNT; t++) {
-              const trail = trails[t];
-              // 每帧推进一步
-              trail.state = lorenzStep(trail.state);
-              trail.points.push({ ...trail.state });
-              if (trail.points.length > LORENZ.TRAIL_LENGTH) {
-                trail.points.shift();
-              }
-
-              // 投影 + 绘制
-              ctx.lineWidth = 1.6;
-              ctx.beginPath();
-              for (let i = 0; i < trail.points.length; i++) {
-                const p = trail.points[i];
-                // 绕 Y 轴旋转
-                const rx = p.x * cosA - p.z * sinA;
-                const rz = p.x * sinA + p.z * cosA;
-                // 投影到 2D（z 加偏移，使中心居中）
-                const sx = cx + rx * LORENZ.SCALE;
-                const sy = cy + (p.y - 25) * LORENZ.SCALE - rz * 0.4;
-
-                if (i === 0) ctx.moveTo(sx, sy);
-                else ctx.lineTo(sx, sy);
-
-                // 沿轨迹分段着色，越靠后越亮
-                if (i % 8 === 0 && i > 0) {
-                  const ratio = i / trail.points.length;
-                  const alpha = 0.3 + ratio * 0.6;
-                  // 三条轨迹用略微不同的金色调
-                  const r = 212 - t * 10;
-                  const g = 184 - t * 15;
-                  const b = 150 - t * 20;
-                  ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
-                  ctx.stroke();
-                  ctx.beginPath();
-                  ctx.moveTo(sx, sy);
-                }
-              }
-              ctx.stroke();
-            }
-          }
-          requestAnimationFrame(frame);
-        }
-        requestAnimationFrame(frame);
-      })();
-
-
       // ============================================================
       // 全局配置常量 — 集中管理魔法数字，便于后续维护
       // ============================================================

@@ -954,36 +954,6 @@ body {
         background-color: currentColor;
       }
 
-      /* ============================================================
-         Reaction-Diffusion 背景 — Gray-Scott 图灵斑图
-         低分辨率模拟 → CSS 放大 + 模糊 → 与品牌金黑调融合
-         ============================================================ */
-      .ai-rd-canvas {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        opacity: 0.7;
-        mix-blend-mode: screen;
-        filter: contrast(1.2) saturate(1.2);
-        z-index: 0;
-      }
-      .ai-rd-mask {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        z-index: 1;
-        background:
-          radial-gradient(ellipse 90% 80% at 30% 40%, transparent 30%, var(--ai-background) 95%),
-          linear-gradient(180deg, var(--ai-background) 0%, transparent 20%, transparent 80%, var(--ai-background) 100%);
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .ai-rd-canvas { display: none; }
-      }
-      @media (max-width: 768px) {
-        .ai-rd-canvas { opacity: 0.5; }
-      }
     </style>
 </head>
 <body class="min-h-screen font-sans antialiased">
@@ -1019,12 +989,8 @@ body {
 
       <div class="pt-16">
         <!-- ============ HERO — Editorial magazine split ============ -->
-        <section class="relative overflow-hidden">
-          <!-- Reaction-Diffusion 背景层：Gray-Scott 图灵斑图 -->
-          <canvas id="rdCanvas" class="ai-rd-canvas" aria-hidden="true"></canvas>
-          <div class="ai-rd-mask" aria-hidden="true"></div>
-
-          <div class="relative mx-auto max-w-7xl px-6 py-20 lg:py-28" style="z-index: 2;">
+        <section class="relative">
+          <div class="relative mx-auto max-w-7xl px-6 py-20 lg:py-28">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-start">
               <!-- Left: col-span-7 — Editorial text column -->
               <div class="md:col-span-7 space-y-9 pt-4">
@@ -1584,21 +1550,28 @@ body {
     </main>
     <script>
       // ============================================================
-      // Reaction-Diffusion 背景 — Gray-Scott 图灵斑图
-      // 在 Hero 区渲染 Turing 1952 年提出的形态发生场
-      // 鼠标移动时向该位置注入激活剂，斑图随交互生长
+      // 全局配置常量 — 集中管理魔法数字，便于后续维护
       // ============================================================
-      (function initReactionDiffusion() {
-        const canvas = document.getElementById('rdCanvas');
-        if (!canvas) return;
-        // 降级：减少动效偏好 / 移动端触屏 / 不支持 WebGL2
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        if (window.matchMedia('(pointer: coarse)').matches) return;
+      const CONFIG = {
+        // 滚动进度条 / 导航栏
+        NAV_SCROLL_THRESHOLD: 20,             // 导航栏触发 is-scrolled 状态的滚动阈值(px)
+        // 滚动揭示 IntersectionObserver
+        REVEAL_THRESHOLD: 0.12,               // 元素可见比例阈值
+        REVEAL_ROOT_MARGIN: '0px 0px -60px 0px', // 视口下沿提前量
+        // 磁吸按钮
+        MAGNETIC_STRENGTH: 0.25,              // 磁吸跟随强度(0~1)
+        // 3D 倾斜
+        TILT_PERSPECTIVE: 1000,               // 透视距离(px)
+        TILT_MAX_ANGLE: 6,                    // 最大旋转角度(deg)
+        TILT_LIFT: -4,                        // 倾斜时上抬量(px)
+        // 数字滚动动画
+        COUNTER_THRESHOLD: 0.4,               // 数字滚动触发可见比例
+        COUNTER_DURATION_DEFAULT: 1400,       // 默认动画时长(ms)
+      };
 
-        const gl = canvas.getContext('webgl2', { alpha: true, antialias: false, powerPreference: 'low-power' });
-        if (!gl) return;
-
-        // ---- 启用浮点渲染目标扩展（RG16F 作为 FBO 颜色附件需要）----
+      // _REMOVE_BLOCK_START
+      const CONFIG_OLD_REMOVED = {
+        // _MARKER
         // WebGL2 中浮点纹理默认可采样，但作为渲染目标需要此扩展
         const ext = gl.getExtension('EXT_color_buffer_half_float');
         if (!ext) {
@@ -1672,7 +1645,7 @@ body {
             outState = vec2(clamp(u, 0.0, 1.0), clamp(v, 0.0, 1.0));
           }`;
 
-        // 渲染着色器：把 v 值映射为金黑色调
+        // 渲染着色器：把 v 值映射为深金斑图（在浅色背景上用 multiply 混合）
         const RENDER_FRAG = `#version 300 es
           precision highp float;
           in vec2 vUv;
@@ -1682,18 +1655,20 @@ body {
           void main() {
             vec2 s = texture(uState, vUv).rg;
             float v = s.g;
-            // 金黑映射：深背景 → 暗金 → 高光金
-            vec3 bg = vec3(0.04, 0.04, 0.05);
-            vec3 mid = vec3(0.55, 0.44, 0.30);
-            vec3 gold = vec3(0.85, 0.70, 0.50);
-            vec3 highlight = vec3(1.0, 0.92, 0.75);
+            // 浅色主题映射：白色背景 → 淡金 → 深金斑图
+            // v=0（无激活剂）→ 白色（multiply 后不变）
+            // v=1（高激活剂）→ 深金色（multiply 后变深金斑图）
+            vec3 bg = vec3(1.0);                          // 白色（multiply 中性色）
+            vec3 light = vec3(0.85, 0.75, 0.60);          // 淡金
+            vec3 mid = vec3(0.55, 0.42, 0.25);            // 中金
+            vec3 dark = vec3(0.30, 0.22, 0.12);           // 深金（斑图核心）
             float t = smoothstep(0.0, 0.5, v);
-            vec3 color = mix(bg, mid, t);
-            color = mix(color, gold, smoothstep(0.25, 0.7, v));
-            color = mix(color, highlight, smoothstep(0.6, 0.95, v));
+            vec3 color = mix(bg, light, t);
+            color = mix(color, mid, smoothstep(0.2, 0.6, v));
+            color = mix(color, dark, smoothstep(0.5, 0.9, v));
             // 边缘衰减，融入背景
             float vignette = smoothstep(1.0, 0.3, length(vUv - 0.5) * 1.3);
-            color *= vignette;
+            color = mix(bg, color, vignette);
             fragColor = vec4(color, 1.0);
           }`;
 
