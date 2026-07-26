@@ -435,12 +435,13 @@ body {
 .ai-drop-cap::first-letter {
   float: left;
   font-family: var(--ai-font-serif);
-  font-size: 4.5em; line-height: 0.85;
-  padding-right: 0.12em; padding-top: 0.08em;
+  font-size: 4.5em; line-height: 1;
+  padding-right: 0.14em; padding-top: 0.14em; padding-bottom: 0.08em;
   background: linear-gradient(135deg, #B8956A 0%, #D4B896 50%, #9C7A4E 100%);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
   font-weight: 600;
+  filter: drop-shadow(0 2px 4px rgba(184, 149, 106, 0.20));
 }
 
 .ai-section-number-bg {
@@ -555,13 +556,19 @@ body {
   position: fixed;
   pointer-events: none;
   z-index: 0;
-  width: 480px; height: 480px;
+  width: 680px; height: 680px;
   left: 0; top: 0;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(184,149,106,0.10) 0%, rgba(184,149,106,0.04) 30%, transparent 60%);
+  background:
+    radial-gradient(circle at center,
+      rgba(212,184,150,0.22) 0%,
+      rgba(184,149,106,0.14) 22%,
+      rgba(184,149,106,0.06) 48%,
+      transparent 72%);
   opacity: 0;
   transition: opacity 0.6s var(--ai-ease-out);
   mix-blend-mode: multiply;
+  filter: blur(2px);
 }
 .ai-cursor-spotlight.is-active { opacity: 1; }
 @media (pointer: coarse) { .ai-cursor-spotlight { display: none; } }
@@ -582,14 +589,28 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(184,149,106,0.10) 0%, transparent 60%);
+  background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(212,184,150,0.18) 0%, rgba(184,149,106,0.08) 35%, transparent 70%);
   opacity: 0;
   transition: opacity 0.4s var(--ai-ease-out);
   pointer-events: none;
   z-index: 1;
 }
 .ai-spotlight:hover::before { opacity: 1; }
+.ai-spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(200px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(212,184,150,0.25) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ai-ease-out);
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+.ai-spotlight:hover::after { opacity: 1; }
 .ai-spotlight > * { position: relative; z-index: 2; }
 
 .ai-marquee {
