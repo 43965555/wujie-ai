@@ -981,7 +981,7 @@ body {
                 </div>
                 <h3 class="ai-serif text-3xl md:text-4xl font-medium mt-6 text-[color:var(--ai-foreground)]">大模型预训练与对齐</h3>
                 <p class="text-[13px] md:text-sm text-[color:var(--ai-muted-foreground)] mt-4 leading-[1.9] max-w-lg tracking-[0.005em]">
-                  从 Tokenizer 训练到 MoE 路由设计，覆盖 1B-175B 参数量级模型的预训练全链路。基于 <span class="text-[color:var(--ai-primary)]">3D 并行（DP+TP+PP）+ ZeRO-3</span> 在 1024 卡 H100 集群上稳定训练；对齐侧实现 PPO / DPO / KTO 三套 RLHF 变体，并支持过程奖励（PRM）+ 结果奖励（ORM）的双信号混合。
+                  从 Tokenizer 训练到 MoE 路由设计，覆盖 1B-175B 参数量级模型的预训练全链路。基于 <span class="text-[color:var(--ai-primary)]">3D 并行（DP+TP+PP）+ ZeRO-4</span> 在 1024 卡 B200 集群上稳定训练；对齐侧实现 PPO / DPO / KTO / SimPO / GRPO 五套 RLHF 变体，并支持过程奖励（PRM）+ 结果奖励（ORM）的双信号混合。
                 </p>
                 <div class="mt-6 space-y-2.5">
                   <div class="flex items-start gap-3 text-[12px] text-[color:var(--ai-foreground)]/85">
@@ -990,11 +990,11 @@ body {
                   </div>
                   <div class="flex items-start gap-3 text-[12px] text-[color:var(--ai-foreground)]/85">
                     <span class="ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider mt-0.5 shrink-0">▸ STACK</span>
-                    <span>Megatron-LM · DeepSpeed ZeRO-3 · FSDP · Torchtitan · HF Transformers</span>
+                    <span>Megatron-Core 0.11+ · DeepSpeed 0.16+ (ZeRO-4) · FSDP · Torchtitan · HF Transformers</span>
                   </div>
                   <div class="flex items-start gap-3 text-[12px] text-[color:var(--ai-foreground)]/85">
                     <span class="ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider mt-0.5 shrink-0">▸ ALIGN</span>
-                    <span>RLHF (PPO) · DPO · KTO · ORPO · RLAIF · Constitutional AI · Process Supervision</span>
+                    <span>RLHF (PPO) · DPO · KTO · SimPO · GRPO · ORPO · RLAIF · Constitutional AI 2.0 · Process Supervision</span>
                   </div>
                 </div>
                 <div class="mt-auto pt-10">
@@ -1019,16 +1019,16 @@ body {
                 </div>
                 <h3 class="ai-serif text-2xl md:text-2xl font-medium mt-5 text-[color:var(--ai-foreground)]">推理优化与高并发服务</h3>
                 <p class="text-[12.5px] text-[color:var(--ai-muted-foreground)] mt-3.5 leading-[1.85] tracking-[0.005em]">
-                  vLLM PagedAttention + Continuous Batching 把吞吐抬 5-8×；FP8 / INT4 (GPTQ/AWQ) 量化在 A100/H100 上保持 PPL 损失 &lt;0.5%。Speculative Decoding 在长上下文场景把首 token 延迟砍到 80ms。
+                  vLLM 0.10+ PagedAttention 2.0 + Continuous Batching 把吞吐抬 5-8×；FP8 / INT4 (GPTQ/AWQ) 量化在 H100/B200 上保持 PPL 损失 &lt;0.5%。Speculative Decoding 2.0 在长上下文场景把首 token 延迟砍到 80ms。
                 </p>
                 <div class="mt-4 space-y-1.5">
                   <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
                     <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
-                    <span>PagedAttention · Continuous Batching · Prefix Caching · Chunked Prefill</span>
+                    <span>PagedAttention 2.0 · Continuous Batching · Prefix Caching · Chunked Prefill</span>
                   </div>
                   <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
                     <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
-                    <span>FP8 / W4A16 / W8A8 量化 · Speculative Decoding · Medusa Head</span>
+                    <span>FP8 / W4A16 / W8A8 量化 · Speculative Decoding 2.0 · Medusa Head</span>
                   </div>
                 </div>
                 <div class="mt-6">
@@ -1053,7 +1053,7 @@ body {
                 </div>
                 <h3 class="ai-serif text-2xl md:text-2xl font-medium mt-5 text-[color:var(--ai-foreground)]">多模态与 Agent 编排</h3>
                 <p class="text-[12.5px] text-[color:var(--ai-muted-foreground)] mt-3.5 leading-[1.85] tracking-[0.005em]">
-                  CLIP / SigLIP 视觉对齐 + Q-Former Adapter 跨模态融合；基于 LangGraph / AutoGen 构建 DAG-based 多智能体编排，支持 ReAct / Reflexion / Plan-and-Execute 三类 reasoning pattern 与工具沙箱。
+                  CLIP / SigLIP 视觉对齐 + Q-Former Adapter 跨模态融合；基于 LangGraph 0.3+ / AutoGen 0.4 (AG2) 构建 DAG-based 多智能体编排，支持 ReAct / Reflexion / Plan-and-Execute 三类 reasoning pattern 与 MCP（Model Context Protocol）工具沙箱。
                 </p>
                 <div class="mt-4 space-y-1.5">
                   <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
@@ -1089,7 +1089,7 @@ body {
                   <div class="md:max-w-md">
                     <h3 class="ai-serif text-2xl md:text-2xl font-medium text-[color:var(--ai-foreground)]">数据与训练基础设施</h3>
                     <p class="text-[12.5px] text-[color:var(--ai-muted-foreground)] mt-3.5 leading-[1.85] tracking-[0.005em]">
-                      Ray Data + Spark 构建日吞吐 50TB 的去重 / 质量过滤 / 分布式 tokenize 管道；K8s + Volcano 调度千卡训练任务，支持抢占式实例恢复与 NCCL/RDMA 网络拓扑感知。
+                      Ray Data + Spark 3.5 构建日吞吐 50TB 的去重 / 质量过滤 / 分布式 tokenize 管道；K8s 1.32+ + Volcano 调度千卡训练任务，支持抢占式实例恢复与 NCCL/RDMA 网络拓扑感知。
                     </p>
                     <div class="mt-4 space-y-1.5">
                       <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
@@ -1160,7 +1160,7 @@ body {
                 </div>
                 <h3 class="ai-serif text-2xl md:text-[28px] font-medium mt-5 text-[color:var(--ai-foreground)]">系统架构与技术选型</h3>
                 <p class="text-[12px] text-[color:var(--ai-muted-foreground)] mt-3 leading-[1.8]">
-                  从 0 设计 <span class="text-[color:var(--ai-primary)]">多活推理网关</span>——按模型路由 + Locality-aware 亲和调度；ID-Hash 一致性保证会话粘连；冷热流量分离，热路径走 vLLM，冷路径走 Serverless GPU（Ray Serve on K8s HPA）。
+                  从 0 设计 <span class="text-[color:var(--ai-primary)]">多活推理网关</span>——按模型路由 + Locality-aware 亲和调度；ID-Hash 一致性保证会话粘连；冷热流量分离，热路径走 vLLM 0.10+，冷路径走 Serverless GPU（Ray Serve 2.x on K8s HPA）。
                 </p>
                 <div class="mt-4 space-y-1.5">
                   <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
@@ -1169,7 +1169,7 @@ body {
                   </div>
                   <div class="flex items-start gap-2 text-[11px] text-[color:var(--ai-foreground)]/80">
                     <span class="ai-mono text-[color:var(--ai-primary)] shrink-0">▸</span>
-                    <span>OTel · Prometheus · Grafana · Loki · 全链路 Trace / Token 级审计</span>
+                    <span>OTel · Prometheus · Grafana · Loki · Langfuse 3 · 全链路 Trace / Token 级审计</span>
                   </div>
                 </div>
                 <div class="mt-6">
@@ -1215,14 +1215,15 @@ body {
               </div>
               <div class="md:col-span-7">
                 <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
-                  <span class="text-[color:var(--ai-primary)] font-medium">Megatron-LM</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-primary)] font-medium">DeepSpeed ZeRO-3</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">Megatron-Core 0.11+</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">DeepSpeed 0.16+ (ZeRO-4)</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-primary)] font-medium">PyTorch FSDP</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-foreground)]/80">Torchtitan</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80">HF Transformers</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Unsloth 2.0</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Axolotl 0.5</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-muted-foreground)]/60 text-[12px]">JAX/Flax (评估中)</span>
                 </div>
-                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">3D-PARALLEL · 1024×H100 · 99.2% MFU</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">3D-PARALLEL · 1024×B200 · 99.2% MFU</div>
               </div>
               <div class="md:col-span-2 md:text-right">
                 <div class="ai-serif text-base text-[color:var(--ai-primary)] font-medium">5/5</div>
@@ -1238,11 +1239,11 @@ body {
               </div>
               <div class="md:col-span-7">
                 <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
-                  <span class="text-[color:var(--ai-primary)] font-medium">vLLM 0.6+</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-primary)] font-medium">TensorRT-LLM</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-primary)] font-medium">Triton Inference Server</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80">SGLang</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80">ONNX Runtime</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">vLLM 0.10+</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">TensorRT-LLM 2026 (B200)</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">Triton Inference Server 25.x</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">SGLang 2.0</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">MLX 3 / llama.cpp v0.9</span>
                 </div>
                 <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">PAGED-ATTN · CONTINUOUS-BATCH · 12K QPS</div>
               </div>
@@ -1260,12 +1261,12 @@ body {
               </div>
               <div class="md:col-span-7">
                 <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
-                  <span class="text-[color:var(--ai-primary)] font-medium">FP8 (H100 native)</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">FP8 (B200 native)</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-primary)] font-medium">GPTQ W4A16</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-primary)] font-medium">AWQ</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-foreground)]/80">SmoothQuant W8A8</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80">Speculative Decoding</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80">Medusa Head</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Speculative Decoding 2.0</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">INT3/INT4 + Activation Beams</span>
                 </div>
                 <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">PPL LOSS &lt; 0.5% · 2.7× THROUGHPUT</div>
               </div>
@@ -1283,14 +1284,14 @@ body {
               </div>
               <div class="md:col-span-7">
                 <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
-                  <span class="text-[color:var(--ai-primary)] font-medium">Milvus 2.4+</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-primary)] font-medium">Qdrant</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">Milvus 2.5+ (Sparse-Dense)</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">Qdrant 1.13+</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-foreground)]/80">Elasticsearch (BM25)</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80">ColBERT v2</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">pgvector 0.8 (HNSW+IVF)</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-foreground)]/80">GraphRAG</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80">HyDE</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">ColBERT v2 / HyDE</span>
                 </div>
-                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">HYBRID RERANK · COHERE / BGE-RERANKER</div>
+                <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">HYBRID RERANK · COHERE RERANK 3.5 / VOYAGE RERANK 2</div>
               </div>
               <div class="md:col-span-2 md:text-right">
                 <div class="ai-serif text-base text-[color:var(--ai-primary)] font-medium">4/5</div>
@@ -1306,12 +1307,12 @@ body {
               </div>
               <div class="md:col-span-7">
                 <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
-                  <span class="text-[color:var(--ai-primary)] font-medium">LangGraph</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-primary)] font-medium">AutoGen</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80">CrewAI</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80">OpenAI Swarm</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80">DSPy</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80"> Instructor</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">LangGraph 0.3+</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">AutoGen 0.4 (AG2)</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">CrewAI 0.95+</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">OpenAI Agents SDK</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">MCP (Model Context Protocol)</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">DSPy / Instructor</span>
                 </div>
                 <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">DAG-BASED · STATE MACHINE · SANDBOX</div>
               </div>
@@ -1331,10 +1332,10 @@ body {
                 <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
                   <span class="text-[color:var(--ai-primary)] font-medium">CLIP / SigLIP</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-primary)] font-medium">BLIP-2</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-primary)] font-medium">LLaVA-1.6</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80">Qwen-VL</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">LLaVA-1.6 / Qwen3-VL</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-foreground)]/80">Whisper-large-v3</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80">SDXL / Flux</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">FLUX.2 / SD 4.0</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">SAM 2.5 / DWPose</span>
                 </div>
                 <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">Q-FORMER · CROSS-ATTN · IMAGE-TEXT ALIGN</div>
               </div>
@@ -1375,13 +1376,13 @@ body {
               </div>
               <div class="md:col-span-7">
                 <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[13px]">
-                  <span class="text-[color:var(--ai-primary)] font-medium">Kubernetes 1.30</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-primary)] font-medium">Kubernetes 1.32+</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-primary)] font-medium">Volcano / KubeRay</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-foreground)]/80">Istio</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-foreground)]/80">Prometheus</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-foreground)]/80">Grafana</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-foreground)]/80">Loki</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80">OpenTelemetry</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">OpenTelemetry / OpenLLMetry</span>
                 </div>
                 <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">MULTI-CLUSTER · GPU HPA · TRACE 100%</div>
               </div>
@@ -1402,9 +1403,9 @@ body {
                   <span class="text-[color:var(--ai-primary)] font-medium">MLflow</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-primary)] font-medium">Weights &amp; Biases</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-foreground)]/80">ClearML</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80">DVC Studio</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">Arize Phoenix 4</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
                   <span class="text-[color:var(--ai-foreground)]/80">Argo Workflows</span><span class="text-[color:var(--ai-muted-foreground)]/40">·</span>
-                  <span class="text-[color:var(--ai-foreground)]/80">Tekton</span>
+                  <span class="text-[color:var(--ai-foreground)]/80">evidently 0.5</span>
                 </div>
                 <div class="ai-mono text-[10px] text-[color:var(--ai-muted-foreground)] mt-2 tracking-wider">FULL-LINEAGE · CANARY DEPLOY · AUTO ROLLBACK</div>
               </div>
@@ -1478,7 +1479,7 @@ body {
                   <span class="ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">· GATE: MFU / Loss spike</span>
                 </div>
                 <p class="text-[13px] text-[color:var(--ai-muted-foreground)] mt-2 leading-[1.85] max-w-md">
-                  3D 并行 (DP+TP+PP) + ZeRO-3 在 1024 卡 H100 上 MFU 维持 48%+；Loss spike 监控 + 检查点自动回滚；LR scheduler 采用 cosine + warmup，配合 EMA 评估。
+                  3D 并行 (DP+TP+PP) + ZeRO-4 在 1024 卡 B200 上 MFU 维持 48%+；Loss spike 监控 + 检查点自动回滚；LR scheduler 采用 cosine + warmup，配合 EMA 评估。
                 </p>
                 <div class="mt-3 flex flex-wrap gap-1.5">
                   <span class="ai-mono text-[10px] px-2 py-0.5 bg-[color:var(--ai-primary-soft)] text-[color:var(--ai-primary)] tracking-wide">3D-PARALLEL</span>
@@ -1516,7 +1517,7 @@ body {
                   <span class="ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">· GATE: QPS / P99</span>
                 </div>
                 <p class="text-[13px] text-[color:var(--ai-muted-foreground)] mt-2 leading-[1.85] max-w-md">
-                  vLLM PagedAttention + Continuous Batching + FP8 量化；K8s HPA 弹性伸缩；金丝雀发布（5%→20%→100% 流量切分），自动回滚触发条件：错误率 &gt;0.1% 持续 30s。
+                  vLLM 0.10+ PagedAttention 2.0 + Continuous Batching + FP8 量化；K8s HPA 弹性伸缩；金丝雀发布（5%→20%→100% 流量切分），自动回滚触发条件：错误率 &gt;0.1% 持续 30s。
                 </p>
                 <div class="mt-3 flex flex-wrap gap-1.5">
                   <span class="ai-mono text-[10px] px-2 py-0.5 bg-[color:var(--ai-primary-soft)] text-[color:var(--ai-primary)] tracking-wide">FP8-QUANT</span>
@@ -1535,7 +1536,7 @@ body {
                   <span class="ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">· GATE: 在线指标</span>
                 </div>
                 <p class="text-[13px] text-[color:var(--ai-muted-foreground)] mt-2 leading-[1.85] max-w-md">
-                  OTel 全链路 trace + Token 级审计；bad case 自动回流（用户负反馈 / 模型自信度低样本）；周期性 DPO re-train + LoRA 热更新，闭环时间从 7d 压缩至 24h。
+                  OTel 全链路 trace + Token 级审计；bad case 自动回流（用户负反馈 / 模型自信度低样本）；周期性 DPO re-train + DoRA / QDoRA 热更新，闭环时间从 7d 压缩至 24h。
                 </p>
                 <div class="mt-3 flex flex-wrap gap-1.5">
                   <span class="ai-mono text-[10px] px-2 py-0.5 bg-[color:var(--ai-primary-soft)] text-[color:var(--ai-primary)] tracking-wide">OTEL-TRACE</span>
@@ -1568,9 +1569,9 @@ body {
                 48<span class="text-[color:var(--ai-primary)] text-2xl ml-0.5">%</span>
               </div>
               <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-3 leading-relaxed">
-                H100 集群 1024 卡预训练实测 Model FLOPs Utilization
+                H100/B200 集群 1024 卡预训练实测 Model FLOPs Utilization
               </div>
-              <div class="mt-3 ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">↑ 1024×H100 / 3D-PARALLEL</div>
+              <div class="mt-3 ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">↑ 1024×B200 / 3D-PARALLEL</div>
             </div>
 
             <div class="bg-[color:var(--ai-background)] p-6 md:p-8 relative overflow-hidden">
@@ -1579,7 +1580,7 @@ body {
                 12K<span class="text-[color:var(--ai-primary)] text-2xl ml-0.5">/s</span>
               </div>
               <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-3 leading-relaxed">
-                对话模型 70B 部署峰值，vLLM + Continuous Batching
+                对话模型 70B 部署峰值，vLLM 0.10+ + Continuous Batching
               </div>
               <div class="mt-3 ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">↑ 5-8× VS NAIVE</div>
             </div>
@@ -1590,7 +1591,7 @@ body {
                 180<span class="text-[color:var(--ai-primary)] text-2xl ml-0.5">ms</span>
               </div>
               <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-3 leading-relaxed">
-                对话场景首 token 尾延迟，Speculative Decoding 优化
+                对话场景首 token 尾延迟，Speculative Decoding 2.0 优化
               </div>
               <div class="mt-3 ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">↓ 60% VS BASELINE</div>
             </div>
@@ -1625,7 +1626,7 @@ body {
               <div class="text-[11px] text-[color:var(--ai-muted-foreground)] mt-3 leading-relaxed">
                 Hybrid Rerank + GraphRAG 对比纯 BM25 召回提升
               </div>
-              <div class="mt-3 ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">↑ BGE-RERANKER</div>
+              <div class="mt-3 ai-mono text-[10px] text-[color:var(--ai-primary)] tracking-wider">↑ COHERE RERANK 3.5</div>
             </div>
 
             <div class="bg-[color:var(--ai-background)] p-6 md:p-8 relative overflow-hidden">
@@ -1747,9 +1748,9 @@ body {
                   <rect x="30" y="245" width="300" height="170" rx="3" fill="url(#hotGrad)" stroke="#B8956A" stroke-width="1.5"/>
                   <text x="180" y="272" text-anchor="middle" font-weight="700" font-size="13" fill="#B8956A">HOT PATH</text>
                   <line x1="60" y1="282" x2="300" y2="282" stroke="#B8956A" stroke-width="0.5" stroke-opacity="0.4"/>
-                  <text x="50" y="305" font-size="11" fill="#1A1A1F" font-weight="600">vLLM GPU Pool</text>
+                  <text x="50" y="305" font-size="11" fill="#1A1A1F" font-weight="600">vLLM 0.10+ GPU Pool</text>
                   <text x="50" y="322" font-size="10" fill="#6B6B6B">12K QPS · P99 180ms</text>
-                  <text x="50" y="338" font-size="10" fill="#6B6B6B">FP8 Quant · H100</text>
+                  <text x="50" y="338" font-size="10" fill="#6B6B6B">FP8 Quant · B200</text>
                   <text x="50" y="365" font-size="9" fill="#9C7A4E" letter-spacing="0.5">PREFIX-CACHE · 78%</text>
                   <text x="50" y="380" font-size="9" fill="#9C7A4E" letter-spacing="0.5">CONTINUOUS-BATCH</text>
                   <text x="50" y="402" font-size="9" fill="#6B6B6B">↗ 高频对话 / 实时场景</text>
@@ -1760,9 +1761,9 @@ body {
                   <rect x="350" y="245" width="260" height="170" rx="3" fill="#FFFFFF" stroke="#B8956A" stroke-width="1" stroke-opacity="0.6"/>
                   <text x="480" y="272" text-anchor="middle" font-weight="700" font-size="13" fill="#B8956A" fill-opacity="0.85">WARM PATH</text>
                   <line x1="380" y1="282" x2="580" y2="282" stroke="#B8956A" stroke-width="0.5" stroke-opacity="0.3"/>
-                  <text x="370" y="305" font-size="11" fill="#1A1A1F" font-weight="600">Triton + TRT-LLM</text>
+                  <text x="370" y="305" font-size="11" fill="#1A1A1F" font-weight="600">Triton 25.x + TRT-LLM 2026</text>
                   <text x="370" y="322" font-size="10" fill="#6B6B6B">4K QPS · P99 350ms</text>
-                  <text x="370" y="338" font-size="10" fill="#6B6B6B">INT4 GPTQ · A100</text>
+                  <text x="370" y="338" font-size="10" fill="#6B6B6B">INT4 GPTQ · H100</text>
                   <text x="370" y="365" font-size="9" fill="#9C7A4E" letter-spacing="0.5">TENSOR-PARALLEL</text>
                   <text x="370" y="380" font-size="9" fill="#9C7A4E" letter-spacing="0.5">BATCHED-INFERENCE</text>
                   <text x="370" y="402" font-size="9" fill="#6B6B6B">→ 中频业务 / 批处理</text>
@@ -1773,9 +1774,9 @@ body {
                   <rect x="630" y="245" width="300" height="170" rx="3" fill="#FFFFFF" stroke="#B8956A" stroke-width="1" stroke-dasharray="4 3" stroke-opacity="0.6"/>
                   <text x="780" y="272" text-anchor="middle" font-weight="700" font-size="13" fill="#B8956A" fill-opacity="0.85">COLD PATH</text>
                   <line x1="660" y1="282" x2="900" y2="282" stroke="#B8956A" stroke-width="0.5" stroke-opacity="0.3"/>
-                  <text x="650" y="305" font-size="11" fill="#1A1A1F" font-weight="600">Ray Serve (Serverless)</text>
+                  <text x="650" y="305" font-size="11" fill="#1A1A1F" font-weight="600">Ray Serve 2.x (Serverless)</text>
                   <text x="650" y="322" font-size="10" fill="#6B6B6B">200 QPS · P99 1.2s</text>
-                  <text x="650" y="338" font-size="10" fill="#6B6B6B">LoRA Adapter · spot GPU</text>
+                  <text x="650" y="338" font-size="10" fill="#6B6B6B">DoRA / QDoRA Adapter · spot GPU</text>
                   <text x="650" y="365" font-size="9" fill="#9C7A4E" letter-spacing="0.5">K8s-HPA · SCALE-TO-ZERO</text>
                   <text x="650" y="380" font-size="9" fill="#9C7A4E" letter-spacing="0.5">COST-OPTIMIZED</text>
                   <text x="650" y="402" font-size="9" fill="#6B6B6B">↓ 长尾 / 低频请求</text>
@@ -1794,7 +1795,7 @@ body {
                 <g font-family="JetBrains Mono, monospace">
                   <rect x="240" y="480" width="480" height="70" rx="2" fill="#FFFFFF" stroke="#B8956A" stroke-width="1"/>
                   <text x="480" y="508" text-anchor="middle" font-weight="700" font-size="12" fill="#B8956A">OBSERVABILITY</text>
-                  <text x="480" y="527" text-anchor="middle" font-size="10" fill="#1A1A1F">OTel + Prometheus + Loki</text>
+                  <text x="480" y="527" text-anchor="middle" font-size="10" fill="#1A1A1F">OTel + Prometheus + Loki + Langfuse 3</text>
                   <text x="480" y="543" text-anchor="middle" font-size="9" fill="#6B6B6B">Token-level Audit · Cost Tracking · Bad-case Sampling</text>
                 </g>
 
@@ -1806,7 +1807,7 @@ body {
                   <rect x="240" y="595" width="480" height="70" rx="2" fill="url(#goldGrad)" stroke="#9C7A4E" stroke-width="1"/>
                   <text x="480" y="623" text-anchor="middle" font-weight="700" font-size="12" fill="#FFFFFF">FEEDBACK LOOP</text>
                   <text x="480" y="642" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.95)">Kafka → DPO Re-train</text>
-                  <text x="480" y="658" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.85)">24h closed-loop · LoRA hot-update</text>
+                  <text x="480" y="658" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.85)">24h closed-loop · DoRA hot-update</text>
                 </g>
 
                 <!-- Dashed feedback arrow back to Router (closing the loop) -->
@@ -1860,7 +1861,7 @@ body {
               </div>
               <h4 class="ai-serif text-lg font-medium text-[color:var(--ai-foreground)]">为什么 ID-Hash 而非 Round-Robin？</h4>
               <p class="text-[12px] text-[color:var(--ai-muted-foreground)] mt-3 leading-[1.8]">
-                Prefix Cache 命中率取决于会话粘连性——ID-Hash 让相同会话始终落在同一 vLLM 实例，KV-cache 复用率从 12% 拉到 78%。
+                Prefix Cache 命中率取决于会话粘连性——ID-Hash 让相同会话始终落在同一 vLLM 0.10+ 实例，KV-cache 复用率从 12% 拉到 78%。
               </p>
             </div>
             <div class="p-6 border border-[color:var(--ai-border)] bg-[color:var(--ai-background)]">
