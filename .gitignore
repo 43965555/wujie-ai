@@ -14,3 +14,7 @@ runtime-*.json
 validation-report.json
 *.design
 /scripts/
+
+# PPT 临时校验/修复脚本（调试产物）
+pitch/check_overflow*.py
+pitch/fix_overflow*.py
